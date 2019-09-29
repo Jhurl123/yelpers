@@ -28,8 +28,18 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              {
+                "input": "src/styles/_variables.scss",
+                "lazy": true
+              }
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/styles",
+                "node_modules"
+              ]
+            },
             "scripts": []
           },
           "configurations": {

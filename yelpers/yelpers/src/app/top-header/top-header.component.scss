@@ -1,0 +1,21 @@
+@import '../../styles/variables';
+
+.c-header {
+  background-color: $primary;
+  padding: 1.2em;
+  width: 100;
+
+  &_inner {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 6em;
+  }
+
+  &_logo {
+    max-height: 60px;
+  }
+
+  &_list {
+    display: inline-block;
+  }
+}
