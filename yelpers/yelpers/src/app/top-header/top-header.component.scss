@@ -2,7 +2,7 @@
 
 .c-header {
   background-color: $primary;
-  padding: 1.2em;
+  padding: .2em;
   width: 100;
 
   &_inner {
@@ -16,6 +16,17 @@
   }
 
   &_list {
-    display: inline-block;
+
+    margin: 0;
+
+    li {
+      display:inline-block;
+      padding: .85em;
+      padding-top: 1.5em;
+
+       a {
+        color: $white;
+      }
+    }
   }
 }
