@@ -7,26 +7,65 @@
 
   &_inner {
     display: flex;
+    align-items: center;
     justify-content: space-between;
     padding: 0 6em;
+    padding-bottom: .5em;
+
+    @media screen and (max-width: $xlarge) {
+      padding-left: 0;
+      padding-right: 0;
+    }
   }
 
   &_logo {
     max-height: 60px;
   }
 
+  &_controls {
+    padding-top: .7em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
   &_list {
 
     margin: 0;
+    padding-left: 3em;
 
     li {
       display:inline-block;
       padding: .85em;
-      padding-top: 1.5em;
+      padding-bottom: .5em;
 
        a {
         color: $white;
       }
+    }
+  }
+
+  &_account {
+
+    &-controls {
+      margin: 0;
+
+      a {
+        margin:0 .5em;
+      }
+    }
+
+    &-login {
+      margin: 0;
+      padding: .25 1em;
+      color: $primary;
+      background-color: $white;
+      border-radius: 6px;
+    }
+
+    &-signup {
+      color: $white;
     }
   }
 }

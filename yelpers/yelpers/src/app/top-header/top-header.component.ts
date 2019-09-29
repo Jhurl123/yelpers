@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-top-header',
@@ -7,9 +7,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TopHeaderComponent implements OnInit {
 
+  mobileSize: boolean = false;
+
+  @HostListener('window:resize', ['$event'])
+    onResize(event) {
+      if( window.innerWidth >= 768 ) {
+        this.mobileSize = false;
+      }
+      else {
+        this.mobileSize = true;
+      }
+    }
+
   constructor() { }
 
   ngOnInit() {
+    console.log(window);
   }
 
 }
