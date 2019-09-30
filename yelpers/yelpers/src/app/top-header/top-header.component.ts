@@ -11,7 +11,7 @@ export class TopHeaderComponent implements OnInit {
 
   @HostListener('window:resize', ['$event'])
     onResize(event) {
-      if( window.innerWidth >= 768 ) {
+      if( window.outerWidth >= 768 ) {
         this.mobileSize = false;
       }
       else {
