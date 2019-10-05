@@ -4,15 +4,16 @@
     <div class="row">
       <div class="columns small-12 c-header_inner">
         <img class="c-header_logo" src='../../assets/images/header-logo.png'>
-        <div class='c-header_controls'>
-          <nav>
-            <ul class="c-header_list" *ngIf="!mobileSize">
+        <div class="c-header_controls" *ngIf="!mobileSize">
+          <nav >
+            <ul class="c-header_list">
               <li class="c-header_list-item"><a>Restaurants</a></li>
               <li class="c-header_list-item"><a>Hotels</a></li>
               <li class="c-header_list-item"><a>Things To Do</a></li>
               <li class="c-header_list-item"><a>Home Services</a></li>
             </ul>
           </nav>
+
 
           <div class="c-header_account-controls">
             <a class="c-header_account-signup">
@@ -23,6 +24,15 @@
             </a>
           </div>
         </div>
+        <div class="c-header_mobile-controls" *ngIf="mobileSize">
+          <button
+            class="c-header_mobile-button"
+            (click)="toggleSlideMenu($event)"
+          >
+            <img src="../../assets/images/bars-solid.svg">
+          </button>
+        </div>
+
       </div>
     </div>
 

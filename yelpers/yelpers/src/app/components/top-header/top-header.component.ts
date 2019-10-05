@@ -1,5 +1,7 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 
+import { ViewportSizingService } from "@/services/viewport-sizing/viewport-sizing.service";
+
 @Component({
   selector: 'app-top-header',
   templateUrl: './top-header.component.html',
@@ -8,21 +10,21 @@ import { Component, OnInit, HostListener } from '@angular/core';
 export class TopHeaderComponent implements OnInit {
 
   mobileSize: boolean = false;
+  slideMenu: boolean = false;
 
   @HostListener('window:resize', ['$event'])
     onResize(event) {
-      if( window.outerWidth >= 768 ) {
-        this.mobileSize = false;
-      }
-      else {
-        this.mobileSize = true;
-      }
+     this.sizing.getWindowSize();
     }
 
-  constructor() { }
+  constructor(private sizing: ViewportSizingService) { }
 
   ngOnInit() {
-    console.log(window);
+    this.sizing.getWindowSize();
+  }
+
+  toggleSlideMenu(event) {
+    this.slideMenu = !this.slideMenu;
   }
 
 }
