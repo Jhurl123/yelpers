@@ -1,7 +1,13 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <section>
-  <app-top-header></app-top-header>
-  <app-slide-menu></app-slide-menu>
+  <app-top-header [mobileSize]="mobileSize" (toggleMenu)="toggleButton($event)"></app-top-header>
+  <app-slide-menu
+    class="mobile-nav"
+    [openMenu]="openMenu"
+    [mobileSize]="mobileSize"
+    (closeMenu)=toggleButton($event)
+  >
+  </app-slide-menu>
   <router-outlet></router-outlet>
 </section>
 

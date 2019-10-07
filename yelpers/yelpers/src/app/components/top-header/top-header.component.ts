@@ -1,7 +1,9 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import { Router } from '@angular/router';
 
 import { ViewportSizingService } from "@/services/viewport-sizing/viewport-sizing.service";
-
+import { AuthenticationService } from '@/services/authentication.service';
+` `
 @Component({
   selector: 'app-top-header',
   templateUrl: './top-header.component.html',
@@ -9,22 +11,35 @@ import { ViewportSizingService } from "@/services/viewport-sizing/viewport-sizin
 })
 export class TopHeaderComponent implements OnInit {
 
-  mobileSize: boolean = false;
-  slideMenu: boolean = false;
+  @Input('mobileSize') display: boolean = false;
 
-  @HostListener('window:resize', ['$event'])
-    onResize(event) {
-     this.sizing.getWindowSize();
-    }
+  @Output() toggleMenu = new EventEmitter<{toggle: boolean}>();
 
-  constructor(private sizing: ViewportSizingService) { }
+  toggle:boolean = false;
+
+
+  constructor(
+    private sizing: ViewportSizingService,
+    private authService: AuthenticationService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
-    this.sizing.getWindowSize();
+
   }
 
   toggleSlideMenu(event) {
-    this.slideMenu = !this.slideMenu;
+
+    this.toggleMenu.emit({
+      toggle: !this.toggle
+    });
+
+
   }
+
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/login']);
+}
 
 }

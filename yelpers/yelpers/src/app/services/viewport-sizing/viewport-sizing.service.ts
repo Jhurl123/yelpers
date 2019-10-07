@@ -4,17 +4,20 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ViewportSizingService {
-
-  mobileSize:boolean = false;
-
   constructor() { }
 
   getWindowSize() {
+
+    let mobileSize:boolean = true;
+
     if( window.outerWidth >= 768 ) {
-      this.mobileSize = false;
+      mobileSize = false;
     }
     else {
-      this.mobileSize = true;
+      mobileSize = true;
     }
+
+    return mobileSize;
   }
+
 }

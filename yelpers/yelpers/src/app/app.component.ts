@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
+
+import { ViewportSizingService } from '@/services/viewport-sizing/viewport-sizing.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,27 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'yelpers';
+
+  mobileSize: boolean = false;
+  openMenu: boolean = false;
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.mobileSize = this.sizing.getWindowSize();
+    if( !this.mobileSize ) {
+      this.openMenu = false;
+    }
+
+  }
+
+  constructor(private sizing: ViewportSizingService) {}
+
+  ngOnInit() {
+    this.mobileSize = this.sizing.getWindowSize();
+  }
+
+  toggleButton(event) {
+    this.openMenu = !this.openMenu;
+  }
+
 }

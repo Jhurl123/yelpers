@@ -1,1 +1,23 @@
-<p>slide-menu works!</p>
+<div class="c-slide-menu" [ngClass]="{ 'c-slide-menu--open' : display && mobileSize }">
+    <header class="c-slide-menu_header">
+      <div class="row">
+        <div class="c-slide-menu_inner small-12 columns">
+
+          <app-search></app-search>
+
+          <button
+            class="c-slide-menu_close"
+            type="button"
+            (click)="closeSlideMenu()"
+          >
+            X
+          </button>
+
+        </div>
+      </div>
+    </header>
+
+    <app-mobile-logo></app-mobile-logo>
+
+    <app-mobile-nav (closeMenu)="closeSlideMenu()"></app-mobile-nav>
+</div>
