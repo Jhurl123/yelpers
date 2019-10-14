@@ -1,0 +1,15 @@
+<label
+  for="destination_categories"
+  [formGroup]="parentForm"
+>
+
+  <select
+    name="destination_categories"
+    id="destination_categories"
+    [formControlName]="'Categories'"
+  >
+  <option *ngFor="let option of categories" value="{{option.id}}">{{ option.category }}</option>
+
+  </select>
+
+</label>

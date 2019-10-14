@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { AuthGuard } from './helpers/auth.guard';
+
 import { HomeComponent } from '@/views/home/home.component';
 import { HotelsComponent } from '@/views/hotels/hotels.component';
 import { RestaurantsComponent } from '@/views/restaurants/restaurants.component';
@@ -13,18 +15,10 @@ import { MyAccountComponent } from '@/views/my-account/my-account.component';
 import { ThingsToDoComponent } from '@/views/things-to-do/things-to-do.component';
 import { HomeServicesComponent } from '@/views/home-services/home-services.component';
 
-import { AuthGuard } from './helpers/auth.guard';
-
 const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
   },
   {
     path: 'hotels',
@@ -51,8 +45,9 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
-    path: 'my-1account',
-    component: MyAccountComponent
+    path: 'my-account',
+    canActivate: [AuthGuard],
+    component: MyAccountComponent,
   }
 ];
 

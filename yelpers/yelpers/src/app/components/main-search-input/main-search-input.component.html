@@ -1,0 +1,19 @@
+<div class="c-search-input">
+  <div class="c-search-input_inner">
+
+    <label
+      for="destination_search"
+    >
+      <span>Look for</span>
+    </label>
+    <div  [formGroup]="parentForm">
+      <input
+        type="text"
+        name="destination_search"
+        id="destination_search"
+        placeholder="Restaurants, Hotels etc.."
+        [formControlName]="'SearchTerms'"
+      />
+    </div>
+  </div>
+</div>

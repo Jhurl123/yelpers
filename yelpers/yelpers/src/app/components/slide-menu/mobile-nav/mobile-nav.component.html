@@ -45,9 +45,31 @@
 
   </ul>
 
-  <div class="c-mobile-nav_account-controls row">
-    <div class="small-12 columns">
-    </div>
+  <div class="c-mobile-nav_account-controls" *ngIf="!loggedIn">
+    <a
+      class="c-mobile-nav_account-signup" routerLink="signup"
+      (click)="closeMenuClick()"
+    >
+      Sign Up
+    </a>
+    <a
+      class="c-mobile-nav_account-login button"
+      routerLink="login"
+      [queryParams]="{returnUrl: returnUrl}"
+      (click)="closeMenuClick()"
+    >
+      Login
+    </a>
+  </div>
+
+  <div class="c-mobile-nav_account-controls" *ngIf="loggedIn">
+    <a
+      class="c-mobile-nav_account-login button"
+      routerLink="signup"
+      (click)="logout(); closeMenuClick()"
+      >
+      Sign Out
+    </a>
   </div>
 </div>
 

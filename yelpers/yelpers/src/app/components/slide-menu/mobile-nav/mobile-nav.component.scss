@@ -47,4 +47,33 @@
       }
     }
   }
+
+  &_account {
+
+    &-controls {
+
+      margin: 0;
+
+      a {
+        margin:0 .5em;
+      }
+
+    }
+
+    &-button {
+      color: $white;
+      display: inline-block;
+      padding: 0.85em;
+      padding-bottom: 0.5em;
+    }
+
+    &-login {
+      margin: 0;
+      margin-top: 1em;
+      padding: .25 1em;
+      color: $primary;
+      background-color: $white;
+      border-radius: 6px;
+    }
+  }
 }

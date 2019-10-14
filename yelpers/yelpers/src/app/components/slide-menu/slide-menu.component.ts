@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { AuthenticationService } from '@/services/authentication.service';
 
 import { ViewportSizingService } from '@/services/viewport-sizing/viewport-sizing.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-slide-menu',
@@ -11,12 +13,12 @@ export class SlideMenuComponent implements OnInit {
 
   @Input('openMenu') display: boolean = false;
   @Input('mobileSize') mobileSize: boolean = false;
-
   @Output() closeMenu = new EventEmitter<{toggle: boolean}>();
 
-
-  constructor(private sizing: ViewportSizingService) {
-
+  constructor(
+    private authService: AuthenticationService,
+    private router: Router
+  ) {
   }
 
   ngOnInit() {
@@ -32,4 +34,5 @@ export class SlideMenuComponent implements OnInit {
       toggle: !this.display
     });
   }
+
 }

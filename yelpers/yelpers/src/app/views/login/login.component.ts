@@ -1,12 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
-import { AlertService, AuthenticationService } from '@/_services';
+import { AuthenticationService } from '@/services/authentication.service';
+import { UserService } from '@/services/user.service';
+
 
 @Component({ templateUrl: 'login.component.html' })
 export class LoginComponent implements OnInit {
+
+    @Output() login = new EventEmitter<boolean>();
+
     loginForm: FormGroup;
     loading = false;
     submitted = false;
@@ -17,20 +22,21 @@ export class LoginComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         private authenticationService: AuthenticationService,
-        private alertService: AlertService
+        private userService: UserService
     ) {
         // redirect to home if already logged in
         if (this.authenticationService.currentUserValue) {
-            this.router.navigate(['/']);
+            this.router.navigate(['/home']);
         }
     }
 
-    ngOnInit() {
+  ngOnInit() {
         this.loginForm = this.formBuilder.group({
             username: ['', Validators.required],
             password: ['', Validators.required]
         });
 
+        console.log(JSON.parse(localStorage.getItem('users')));
         // get return url from route parameters or default to '/'
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     }
@@ -40,9 +46,6 @@ export class LoginComponent implements OnInit {
 
     onSubmit() {
         this.submitted = true;
-
-        // reset alerts on submit
-        this.alertService.clear();
 
         // stop here if form is invalid
         if (this.loginForm.invalid) {
@@ -54,10 +57,11 @@ export class LoginComponent implements OnInit {
             .pipe(first())
             .subscribe(
                 data => {
+                    this.login.emit(true);
                     this.router.navigate([this.returnUrl]);
                 },
                 error => {
-                    this.alertService.error(error);
+                    console.log(error);
                     this.loading = false;
                 });
     }

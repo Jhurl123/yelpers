@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
+import { JwtInterceptor } from '@/helpers/jwt.interceptor';
+import { ErrorInterceptor } from '@/helpers/error.interceptor';
 import { fakeBackendProvider } from './helpers/fake-backend';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -21,6 +23,10 @@ import { MyAccountComponent } from './views/my-account/my-account.component';
 import { SearchResultsComponent } from './views/search-results/search-results.component';
 import { ThingsToDoComponent } from './views/things-to-do/things-to-do.component';
 import { HomeServicesComponent } from './views/home-services/home-services.component';
+import { MainSearchContainerComponent } from './components/main-search-container/main-search-container.component';
+import { MainSearchInputComponent } from './components/main-search-input/main-search-input.component';
+import { CategoriesSelectComponent } from './components/categories-select/categories-select.component';
+import { LocationSelectComponent } from './components/location-select/location-select.component';
 
 
 @NgModule({
@@ -39,7 +45,11 @@ import { HomeServicesComponent } from './views/home-services/home-services.compo
     MyAccountComponent,
     SearchResultsComponent,
     ThingsToDoComponent,
-    HomeServicesComponent
+    HomeServicesComponent,
+    MainSearchContainerComponent,
+    MainSearchInputComponent,
+    CategoriesSelectComponent,
+    LocationSelectComponent
   ],
   imports: [
     BrowserModule,
