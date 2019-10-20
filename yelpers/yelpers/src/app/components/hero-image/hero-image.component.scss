@@ -1,0 +1,87 @@
+@import '../../../styles/_variables.scss';
+
+.c-hero-image {
+  height: 75vh;
+  max-width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+
+  .row {
+    height: 100%;
+  }
+
+  &_container {
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    padding: 0 150px;
+  }
+
+  &_overlay {
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    opacity: .15;
+    background-color: #000000;
+  }
+
+  &_text {
+    color: $white;
+    text-align: left;
+    position: relative;
+
+    &-container {
+      display: flex;
+      justify-content: center;
+      width: 80%;
+    }
+
+    h1 {
+      color: $white;
+      display: inline-block;
+      font-size: 3.5em;
+      line-height: 1;
+      margin-bottom: .5em;
+    }
+
+    h4 {
+      color: $white;
+      margin-bottom: 0;
+      line-height: 1;
+      font-weight: bold;
+    }
+
+    h2 {
+      display: inline;
+      line-height: 1;
+      font-size: 3.5em;
+      margin-bottom: 0;
+    }
+  }
+
+  .offset {
+    padding-left: 1rem;
+  }
+
+  &_button {
+
+    display: inline;
+    background: $primary;
+    line-height: 49px;
+    font-weight: bold;
+    float: right;
+    border-radius: 8px;
+    padding: 0 15px;
+    margin-left: 4rem;
+
+    &-container {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+}

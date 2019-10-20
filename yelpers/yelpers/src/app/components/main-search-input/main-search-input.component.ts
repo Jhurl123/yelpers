@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-main-search-input',
@@ -10,10 +11,10 @@ export class MainSearchInputComponent implements OnInit {
 
   @Input() parentForm: FormGroup;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
-    console.log(this.parentForm)
+
   }
 
 }

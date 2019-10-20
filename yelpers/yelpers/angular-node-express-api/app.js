@@ -2,8 +2,8 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
-var users = require('./routes/users');
+const routes = require('./routes/route');
+var yelp = require('./controllers/yelp');
 
 var app = express();
 
@@ -15,10 +15,5 @@ app.listen(3000, function (){
   console.log('Server listening on port 3000');
 });
 
-// server side
-app.get('/api', function (req, res) {
-  console.log("Route Called");
-  users.getRestaurants();
-});
-
+app.use( routes);
 module.exports = app;

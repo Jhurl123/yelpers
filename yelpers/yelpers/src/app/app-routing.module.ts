@@ -15,6 +15,8 @@ import { MyAccountComponent } from '@/views/my-account/my-account.component';
 import { ThingsToDoComponent } from '@/views/things-to-do/things-to-do.component';
 import { HomeServicesComponent } from '@/views/home-services/home-services.component';
 
+import { SearchResultsComponent } from '@/views/search-results/search-results.component';
+
 const routes: Routes = [
   {
     path: 'home',
@@ -43,6 +45,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'search-results',
+    component: SearchResultsComponent
   },
   {
     path: 'my-account',

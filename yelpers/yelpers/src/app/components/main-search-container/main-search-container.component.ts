@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, ReactiveFormsModule, FormGroup, Validators, NgForm} from '@angular/forms';
+import { Router, NavigationEnd } from '@angular/router';
 
 import { YelpService } from '@/services/yelp.service';
 
@@ -13,10 +14,12 @@ export class MainSearchContainerComponent implements OnInit {
   searchForm: FormGroup;
   isOpen: boolean = true;
   result: any;
+  response = {};
 
   constructor(
     private formBuilder: FormBuilder,
-    private yelpService: YelpService
+    private yelpService: YelpService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -24,6 +27,13 @@ export class MainSearchContainerComponent implements OnInit {
     this.searchForm = this.formBuilder.group({
       SearchTerms: ['', Validators.required],
       Location: ['', Validators.required],
+    });
+
+    this.router.events.subscribe((event) => {
+      if(event instanceof NavigationEnd) {
+        this.searchForm.reset();
+      }
+
     });
   }
 
@@ -33,11 +43,13 @@ export class MainSearchContainerComponent implements OnInit {
   }
 
   onSubmit() {
+
     console.log(this.searchForm);
-     this.yelpService.getRestaurant().subscribe((result) => {
+     this.yelpService.getRestaurant(this.searchForm.value).subscribe((result) => {
 
       this.result = result;
 
+      this.response = result;
       console.log(this.result);
      });
   }

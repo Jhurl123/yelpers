@@ -27,6 +27,9 @@ import { MainSearchContainerComponent } from './components/main-search-container
 import { MainSearchInputComponent } from './components/main-search-input/main-search-input.component';
 import { CategoriesSelectComponent } from './components/categories-select/categories-select.component';
 import { LocationSelectComponent } from './components/location-select/location-select.component';
+import { HeroImageComponent } from './components/hero-image/hero-image.component';
+import { RandNearbyComponent } from './components/rand-nearby/rand-nearby.component';
+import { BusinessCardComponent } from './component/business-card/business-card.component';
 
 
 @NgModule({
@@ -49,7 +52,10 @@ import { LocationSelectComponent } from './components/location-select/location-s
     MainSearchContainerComponent,
     MainSearchInputComponent,
     CategoriesSelectComponent,
-    LocationSelectComponent
+    LocationSelectComponent,
+    HeroImageComponent,
+    RandNearbyComponent,
+    BusinessCardComponent
   ],
   imports: [
     BrowserModule,

@@ -24,13 +24,29 @@ export class YelpService {
     return throwError(error);
   }
 
-  public getRestaurant() {
-    let config = `/api`;
+  public getRestaurant(searchObject: any) {
+    let config = `/api/search`;
 
-    console.log("this method called");
-    return this.http.get(config, this.httpOptions)
+    console.log(searchObject);
+    return this.http.post(config, searchObject, this.httpOptions)
     .pipe(
       catchError(this.handleError)
     );
   }
+
+  public getNearby(position) {
+    let config = '/api/random-nearby'
+
+    let searchObject = {
+      latitude: position.coords.latitude,
+      longitude: position.coords.longitude
+    }
+
+    console.log(searchObject);
+    return this.http.post(config, searchObject, this.httpOptions)
+    .pipe(
+      catchError(this.handleError)
+    );
+  }
+
 }

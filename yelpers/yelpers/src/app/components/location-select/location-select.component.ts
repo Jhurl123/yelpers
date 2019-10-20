@@ -16,7 +16,6 @@ export class LocationSelectComponent implements OnInit {
 
   ngOnInit() {
 
-    navigator.geolocation.getCurrentPosition(this.success, this.error);
   }
 
   success(pos) {
