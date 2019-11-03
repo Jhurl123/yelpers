@@ -50,7 +50,7 @@ export class MainSearchContainerComponent implements OnInit {
       this.result = result;
 
       this.response = result;
-      console.log(this.result);
+
      });
   }
 

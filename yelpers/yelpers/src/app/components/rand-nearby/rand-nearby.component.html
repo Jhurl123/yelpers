@@ -1,7 +1,15 @@
 <section class="c-rand-nearby">
-  <div *ngFor="let card of cards">
-    <app-business-card [business]="card">
+  <div class="row">
+    <!-- introductory content -->
 
-    </app-business-card>
+    <div
+      class="columns large-4 medium-6 small-12 c-rand-nearby_column"
+      *ngFor="let business of businesses"
+    >
+
+      <app-business-card [business]="business">
+
+      </app-business-card>
+    </div>
   </div>
 </section>

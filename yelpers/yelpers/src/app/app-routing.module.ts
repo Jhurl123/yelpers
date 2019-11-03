@@ -23,6 +23,11 @@ const routes: Routes = [
     component: HomeComponent,
   },
   {
+    path: '',
+    redirectTo: '/home',
+    pathMatch: 'full'
+  },
+  {
     path: 'hotels',
     component: HotelsComponent
   },

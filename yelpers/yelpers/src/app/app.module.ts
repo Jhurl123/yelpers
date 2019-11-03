@@ -29,7 +29,14 @@ import { CategoriesSelectComponent } from './components/categories-select/catego
 import { LocationSelectComponent } from './components/location-select/location-select.component';
 import { HeroImageComponent } from './components/hero-image/hero-image.component';
 import { RandNearbyComponent } from './components/rand-nearby/rand-nearby.component';
-import { BusinessCardComponent } from './component/business-card/business-card.component';
+import { BusinessCardComponent } from './components/business-card/business-card.component';
+import { ContentRowComponent } from './components/content-row/content-row.component';
+
+import { RatingModule } from 'ng-starrating';
+import { TabsComponent } from './components/tabs/tabs.component';
+import { TabsSectionComponent } from './components/tabs/tabs-section/tabs-section.component';
+import { TabBodyComponent } from './components/tabs/tab-body/tab-body.component';
+import { TabsBodyComponent } from './components/tabs/tabs-body/tabs-body.component';
 
 
 @NgModule({
@@ -55,13 +62,19 @@ import { BusinessCardComponent } from './component/business-card/business-card.c
     LocationSelectComponent,
     HeroImageComponent,
     RandNearbyComponent,
-    BusinessCardComponent
+    BusinessCardComponent,
+    ContentRowComponent,
+    TabsComponent,
+    TabsSectionComponent,
+    TabBodyComponent,
+    TabsBodyComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RatingModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

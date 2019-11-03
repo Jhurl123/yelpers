@@ -21,7 +21,7 @@ export class RandNearbyComponent implements OnInit {
 
   success = (pos) => {
     this.yelpService.getNearby(pos).subscribe((result) => {
-      this.businesses = result['businesses'];
+      this.businesses = result['businesses'].slice(0, 9);
 
     });
   }
