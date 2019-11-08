@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-tabs-body',
@@ -6,6 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tabs-body.component.scss']
 })
 export class TabsBodyComponent implements OnInit {
+
+  @Input() id: string;
+  @Input() active: boolean;
+  @Input() content: {};
+
+
 
   constructor() { }
 

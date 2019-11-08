@@ -35,8 +35,9 @@ import { ContentRowComponent } from './components/content-row/content-row.compon
 import { RatingModule } from 'ng-starrating';
 import { TabsComponent } from './components/tabs/tabs.component';
 import { TabsSectionComponent } from './components/tabs/tabs-section/tabs-section.component';
-import { TabBodyComponent } from './components/tabs/tab-body/tab-body.component';
 import { TabsBodyComponent } from './components/tabs/tabs-body/tabs-body.component';
+import { TabComponent } from './components/tabs/tab/tab.component';
+import { TwoColumnContentComponent } from './components/two-column-content/two-column-content.component';
 
 
 @NgModule({
@@ -66,8 +67,9 @@ import { TabsBodyComponent } from './components/tabs/tabs-body/tabs-body.compone
     ContentRowComponent,
     TabsComponent,
     TabsSectionComponent,
-    TabBodyComponent,
-    TabsBodyComponent
+    TabsBodyComponent,
+    TabComponent,
+    TwoColumnContentComponent
   ],
   imports: [
     BrowserModule,
