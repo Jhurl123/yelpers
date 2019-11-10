@@ -40,6 +40,10 @@ import { TabComponent } from './components/tabs/tab/tab.component';
 import { TwoColumnContentComponent } from './components/two-column-content/two-column-content.component';
 
 
+import { YelpService } from './services/yelp.service';
+import { DataService } from './services/data/data.service';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -81,7 +85,7 @@ import { TwoColumnContentComponent } from './components/two-column-content/two-c
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-
+    DataService,
     // provider used to create fake backend
     fakeBackendProvider
   ],

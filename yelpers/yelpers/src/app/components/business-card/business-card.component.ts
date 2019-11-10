@@ -23,6 +23,10 @@ export class BusinessCardComponent implements OnInit {
     this.buildAddress();
     this.buildCategory();
 
+    if(this.business['image_url'] == "" ) {
+      this.business['image_url'] = "../../../assets/images/placeholder-image.jpg";
+    }
+
   }
 
   buildAddress() {

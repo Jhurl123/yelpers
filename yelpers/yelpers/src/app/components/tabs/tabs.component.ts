@@ -33,7 +33,7 @@ export class TabsComponent implements OnInit {
       content: {
         imageSrc: '../../../assets/images/repair-home-two-column.jpg',
         headerText: 'Find the Best Quote',
-        bodyText: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eu nisl sed erat lacinia finibus. Donec eget bibendum felis. Mauris vulputate pellentesque libero, \n eget porttitor eros egestas eu. Praesent lacinia gravida metus, ac malesuada purus interdum ut. Vivamus tortor est, luctus et ante quis, consectetur bibendum mi. Morbi viverra odio vitae sem accumsan, quis aliquam mi finibus. Sed hendrerit luctus felis, a lacinia lorem mattis at',
+        bodyText: 'Lorem ipsum dolor sit amet, Donec eget bibendum felis. Mauris vulputate pellentesque libero, \n eget porttitor eros egestas eu. Pinterdum ut. Vivamus tortor est, luctus et ante quis, consectetur bibendum mi. Morbi viverra odio vitae sem accumsan, quis aliquam mi finibus. Sed hendrerit luctus felis, a lacinia lorem mattis at',
         linkText: 'Visit Home Repair',
         linkRoute: '/home-services'
       },
@@ -47,7 +47,7 @@ export class TabsComponent implements OnInit {
       content: {
         imageSrc: '../../../assets/images/hotel-home-two-column.jpg',
         headerText: 'Stay in the Place of your Dreams',
-        bodyText: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eu nisl sed erat lacinia finibus. Donec eget bibendum felis. Mauris vulputate pellentesque libero, eget porttitor eros egestas eu. Praesent lacinia gravida metus, ac malesuada purus interdum ut. Vivamus tortor est, luctus et ante quis, consectetur bibendum mi. Morbi viverra odio vitae sem accumsan, quis aliquam mi finibus.',
+        bodyText: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent lacinia gravida metus, ac malesuada purus interdum ut. Vivamus tortor est, luctus et ante quis, consectetur bibendum mi. Morbi viverra odio vitae sem accumsan, quis aliquam mi finibus.',
         linkText: 'Visit Hotels',
         linkRoute: '/hotels'
       },

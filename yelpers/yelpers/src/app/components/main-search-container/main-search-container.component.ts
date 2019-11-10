@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, ReactiveFormsModule, FormGroup, Validators, NgForm} from '@angular/forms';
 import { Router, NavigationEnd } from '@angular/router';
 
+import { DataService } from '@/services/data/data.service';
 import { YelpService } from '@/services/yelp.service';
 
 @Component({
@@ -15,10 +16,13 @@ export class MainSearchContainerComponent implements OnInit {
   isOpen: boolean = true;
   result: any;
   response = {};
+  query: string;
+  location: string;
 
   constructor(
     private formBuilder: FormBuilder,
     private yelpService: YelpService,
+    public dataService: DataService,
     private router: Router
   ) { }
 
@@ -29,12 +33,12 @@ export class MainSearchContainerComponent implements OnInit {
       Location: ['', Validators.required],
     });
 
-    this.router.events.subscribe((event) => {
-      if(event instanceof NavigationEnd) {
-        this.searchForm.reset();
-      }
+    // this.router.events.subscribe((event) => {
+    //   if(event instanceof NavigationEnd) {
+    //     this.searchForm.reset();
+    //   }
 
-    });
+    // });
   }
 
   toggleOpen() {
@@ -42,16 +46,27 @@ export class MainSearchContainerComponent implements OnInit {
     this.isOpen = !this.isOpen;
   }
 
-  onSubmit() {
+  onSubmit(form) {
 
-    console.log(this.searchForm);
-     this.yelpService.getRestaurant(this.searchForm.value).subscribe((result) => {
 
-      this.result = result;
+    this.query = form.get('SearchTerms').value;
+    this.location = form.get('Location').value;
 
-      this.response = result;
+    let searchObject = {
+      SearchTerms: this.query,
+      Location: this.location
+    };
 
-     });
+
+
+    this.yelpService.getRestaurant(searchObject).subscribe((result) => {
+
+      console.log(result);
+
+      this.result = result['businesses'];
+      this.dataService.setBusinesses(result['businesses']);
+      });
+      this.router.navigate(['/search-results',{query:this.query,location:this.location}]);
   }
 
 }

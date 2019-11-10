@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { BehaviorSubject } from 'rxjs';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
@@ -14,6 +15,8 @@ export class YelpService {
       'Authorization': 'Bearer 1TSelC6r6EeO4FBjtmYzL9SFeCrgZLSINT3Gxuhk4Ml5kLgtEJ-2FDsiBq6zmeNCdPYMvZjGjvSUiJvdQRs4b5xfdfq0XSiRHeI191na_bpNpvCHkIm3UZjuMhdWXXYx'
     })
   };
+
+  businesses: [];
 
   constructor(
     private http: HttpClient,

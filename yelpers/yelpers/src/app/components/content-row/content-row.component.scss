@@ -5,11 +5,19 @@
   text-align: center;
   padding: 3em 0 3em 0;
 
+  @media screen and (max-width: 640px) {
+    padding: 1em 0 1em 0;
+  }
+
   h2 {
     font-size: 2.45em;
     color: $black;
     margin-bottom: 1.5rem;
     text-transform: capitalize;
+
+    @media screen and (max-width: 640px) {
+      font-size: 1.8em;
+    }
 
     &::after {
       background: $primary;
@@ -25,5 +33,9 @@
 
   p {
     font-size: 1.35rem;
+
+    @media screen and (max-width: 640px) {
+      font-size: 1rem;
+    }
   }
 }
