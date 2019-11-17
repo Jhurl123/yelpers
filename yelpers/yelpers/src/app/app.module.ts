@@ -34,7 +34,7 @@ import { ContentRowComponent } from './components/content-row/content-row.compon
 
 import { RatingModule } from 'ng-starrating';
 import { NgxPaginationModule } from 'ngx-pagination'; // <-- import the module
-
+import { SlideshowModule } from 'ng-simple-slideshow';
 import { TabsComponent } from './components/tabs/tabs.component';
 import { TabsSectionComponent } from './components/tabs/tabs-section/tabs-section.component';
 import { TabsBodyComponent } from './components/tabs/tabs-body/tabs-body.component';
@@ -89,7 +89,8 @@ import { ImageSliderComponent } from './components/image-slider/image-slider.com
     ReactiveFormsModule,
     HttpClientModule,
     RatingModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    SlideshowModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

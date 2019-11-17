@@ -5,6 +5,15 @@
         <h1>{{ business. name }}</h1>
       </div>
       <img src="{{ business.image_url }}"/>
+      <div class="v-single_gallery">
+        <slideshow
+          [imageUrls]="imgArray"
+          [height]="height"
+          [minHeight]="'525px'"
+          [autoPlay]="true"
+          [showArrows]="false"
+          ></slideshow>
+      </div>
     </div>
   </div>
 </section>
