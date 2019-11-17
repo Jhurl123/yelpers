@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ImageSliderComponent implements OnInit {
 
+  test: string;
   constructor() { }
 
   ngOnInit() {
