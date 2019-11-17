@@ -16,7 +16,16 @@
     z-index: 2;
     display: flex;
     align-items: center;
+    justify-content: center;
     padding: 0 150px;
+
+    @media screen and (max-width: 768px) {
+      padding: 0 100px;
+    }
+
+    @media screen and (max-width: 480px) {
+      padding: 0;
+    }
   }
 
   &_overlay {
@@ -25,58 +34,49 @@
     top: 0;
     left: 0;
     right: 0;
-    opacity: .15;
+    opacity: .35;
     background-color: #000000;
   }
 
   &_text {
     color: $white;
-    text-align: left;
-    position: relative;
-
-    &-container {
-      display: flex;
-      justify-content: center;
-      width: 80%;
-    }
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
 
     h1 {
-      color: $white;
-      display: inline-block;
-      font-size: 3.5em;
-      line-height: 1;
-      margin-bottom: .5em;
+      margin-bottom: 2rem;
     }
 
     h4 {
-      color: $white;
-      margin-bottom: 0;
-      line-height: 1;
-      font-weight: bold;
+      margin-bottom: 2rem;
     }
 
-    h2 {
-      display: inline;
-      line-height: 1;
-      font-size: 3.5em;
-      margin-bottom: 0;
-    }
-  }
-
-  .offset {
-    padding-left: 1rem;
   }
 
   &_button {
 
-    display: inline;
     background: $primary;
     line-height: 49px;
     font-weight: bold;
-    float: right;
     border-radius: 8px;
     padding: 0 15px;
-    margin-left: 4rem;
+    color: #ffffff;
+    width: 30%;
+
+    @media screen and (max-width: 900px) {
+      width: 40%;
+    }
+
+    @media screen and (max-width: 768px) {
+      width: 70%;
+    }
+
+    @media screen and (max-width: 480px) {
+      width: 100%;
+    }
 
     &-container {
       display: flex;

@@ -1,5 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, Renderer2 } from '@angular/core';
 import { AuthenticationService } from '@/services/authentication.service';
+import { DOCUMENT } from '@angular/common';
 
 import { ViewportSizingService } from '@/services/viewport-sizing/viewport-sizing.service';
 import { Router } from '@angular/router';
@@ -17,7 +18,8 @@ export class SlideMenuComponent implements OnInit {
 
   constructor(
     private authService: AuthenticationService,
-    private router: Router
+    private router: Router,
+    private renderer: Renderer2
   ) {
   }
 
@@ -27,6 +29,13 @@ export class SlideMenuComponent implements OnInit {
   ngOnChanges() {
     if(this.mobileSize === false) {
       this.display = false;
+    }
+
+    if(this.display) {
+      this.renderer.setStyle(document.body, 'overflow', 'hidden')
+    }
+    else {
+      this.renderer.setStyle(document.body, 'overflow', 'auto')
     }
   }
   closeSlideMenu() {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, ReactiveFormsModule, FormGroup, Validators, NgForm} from '@angular/forms';
-import { Router, NavigationEnd } from '@angular/router';
+import { Router, NavigationStart, NavigationEnd, ActivatedRoute } from '@angular/router';
 
 import { DataService } from '@/services/data/data.service';
 import { YelpService } from '@/services/yelp.service';
@@ -18,12 +18,14 @@ export class MainSearchContainerComponent implements OnInit {
   response = {};
   query: string;
   location: string;
+  validationError: string = "";
 
   constructor(
     private formBuilder: FormBuilder,
     private yelpService: YelpService,
     public dataService: DataService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
@@ -33,12 +35,20 @@ export class MainSearchContainerComponent implements OnInit {
       Location: ['', Validators.required],
     });
 
-    // this.router.events.subscribe((event) => {
-    //   if(event instanceof NavigationEnd) {
-    //     this.searchForm.reset();
-    //   }
+    this.route.queryParams.subscribe(param => {
 
-    // });
+
+      if( Object.entries(param).length > 0 ) {
+
+        let searchObject = {
+          SearchTerms: param.query,
+          Location: param.location
+        }
+
+        this.getBusinesses(searchObject);
+      }
+    });
+
   }
 
   toggleOpen() {
@@ -48,25 +58,43 @@ export class MainSearchContainerComponent implements OnInit {
 
   onSubmit(form) {
 
+    this.query = form.get('SearchTerms').value.replace(/<[^>]+>/g, '');
+    this.location = form.get('Location').value.replace(/<[^>]+>/g, '');
 
-    this.query = form.get('SearchTerms').value;
-    this.location = form.get('Location').value;
-
-    let searchObject = {
-      SearchTerms: this.query,
-      Location: this.location
-    };
+    let query = this.query,
+        location = this.location;
 
 
+    if( !form.valid) {
+      if( !query ) {
+        this.validationError = "Please Enter an item to search!";
+      }
+      else if ( !location ) {
+        this.validationError = "Please enter a location!";
+      }
+    }
+    else {
+      this.validationError = "";
 
-    this.yelpService.getRestaurant(searchObject).subscribe((result) => {
+      let searchObject = {
+        SearchTerms: query.trim(),
+        Location: location.trim()
+      };
 
-      console.log(result);
-
-      this.result = result['businesses'];
-      this.dataService.setBusinesses(result['businesses']);
-      });
-      this.router.navigate(['/search-results',{query:this.query,location:this.location}]);
+      this.getBusinesses(searchObject);
+      this.router.navigate(['/search-results'], { queryParams: {query: query, location: location}});
+    }
   }
 
+  getBusinesses(searchObject) {
+
+    this.yelpService.getRestaurants(searchObject).subscribe((result) => {
+
+
+      this.result = result['businesses'];
+
+      this.dataService.setBusinesses(result['businesses'], searchObject);
+    });
+
+  }
 }

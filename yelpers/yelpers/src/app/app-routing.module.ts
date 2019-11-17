@@ -16,6 +16,7 @@ import { ThingsToDoComponent } from '@/views/things-to-do/things-to-do.component
 import { HomeServicesComponent } from '@/views/home-services/home-services.component';
 
 import { SearchResultsComponent } from '@/views/search-results/search-results.component';
+import { SingleBusinessComponent } from '@/views/single-business/single-business.component';
 
 const routes: Routes = [
   {
@@ -59,6 +60,10 @@ const routes: Routes = [
     path: 'my-account',
     canActivate: [AuthGuard],
     component: MyAccountComponent,
+  },
+  {
+    path: 'business/:id',
+    component: SingleBusinessComponent
   }
 ];
 

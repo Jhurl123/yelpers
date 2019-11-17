@@ -88,3 +88,28 @@
 .is-open {
   transform: scaleY(1);
 }
+
+.img-rotate {
+  transition: all .5s ease;
+  transform: rotateX(180deg);
+}
+
+.row.failed {
+  margin-top: 3em;
+}
+
+.validation {
+  text-align: center;
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+
+  &_container {
+    padding: 1em;
+    background-color: #ffffff;
+    border: solid 1px #ffffff;
+    border-radius: 4px;
+    color: $primary;
+  }
+}

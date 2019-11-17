@@ -13,6 +13,11 @@
 
     div {
       width: 100%;
+
+      &.invalid.ng-touched {
+        border: solid 2px $primary;
+        background-color: #f3c8c8;
+      }
     }
 
   }

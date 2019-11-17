@@ -1,5 +1,11 @@
 <section class="c-main-search" [ngClass]="{'container-is-closed': !isOpen}">
-  <div class="row">
+
+  <div class="validation" [ngClass]="{'failed':validationError.length > 0}" *ngIf="validationError.length > 0">
+    <div class="validation_container">
+      {{ validationError }}
+    </div>
+  </div>
+  <div class="row" [ngClass]="{'failed':validationError.length > 0}">
     <div class="c-main-search_form-container columns small-12" [ngClass]="{ 'is-open': isOpen}">
       <form [formGroup]="searchForm" (ngSubmit)="onSubmit(searchForm)">
         <div class="c-main-search_form-inner">
@@ -29,7 +35,7 @@
       class="c-main-search_toggle"
       (click)="toggleOpen()"
     >
-      <img width="25" height="25" alt="Search Bar Toggle" src="../../../assets/images/chevron-double-down-duotone.svg">
+      <img [ngClass]="{'img-rotate': isOpen}"  width="25" height="25" alt="Search Bar Toggle" src="../../../assets/images/chevron-double-down-duotone.svg">
     </button>
   </div>
 </section>

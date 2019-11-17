@@ -13,4 +13,30 @@
   &_card {
      padding-bottom: 2em;
   }
+
+  &_spinner_container {
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    margin-top: 10em;
+    flex-direction: column;
+  }
+
+  &_pagination {
+    margin: 0 auto;
+
+    &::ng-deep {
+
+      .ngx-pagination {
+        color: red;
+        text-align: center;
+
+        .current {
+          color: #ffffff;
+          background-color: $primary;
+        }
+
+      }
+    }
+  }
 }

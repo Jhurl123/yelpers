@@ -61,7 +61,7 @@ export class TabsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.svgObject);
+
   }
 
   activateTab(event) {

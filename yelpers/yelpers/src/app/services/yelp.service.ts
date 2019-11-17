@@ -16,8 +16,6 @@ export class YelpService {
     })
   };
 
-  businesses: [];
-
   constructor(
     private http: HttpClient,
   ) { }
@@ -27,10 +25,9 @@ export class YelpService {
     return throwError(error);
   }
 
-  public getRestaurant(searchObject: any) {
+  public getRestaurants(searchObject: any) {
     let config = `/api/search`;
 
-    console.log(searchObject);
     return this.http.post(config, searchObject, this.httpOptions)
     .pipe(
       catchError(this.handleError)
@@ -38,7 +35,7 @@ export class YelpService {
   }
 
   public getNearby(position) {
-    let config = '/api/random-nearby'
+    let config = '/api/random-nearby';
 
     let searchObject = {
       latitude: position.coords.latitude,
@@ -50,6 +47,34 @@ export class YelpService {
     .pipe(
       catchError(this.handleError)
     );
+  }
+
+  public getSingle(id) {
+    let config = '/api/single';
+
+    console.log(id)
+    let idObject = {
+      id: id
+    }
+
+    return this.http.post(config, idObject, this.httpOptions)
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  public getReviews(id) {
+    let config = '/api/reviews';
+
+    console.log(id)
+    let idObject = {
+      id: id
+    }
+
+    return this.http.post(config, idObject, this.httpOptions)
+    .pipe(
+      catchError(this.handleError)
+    )
   }
 
 }

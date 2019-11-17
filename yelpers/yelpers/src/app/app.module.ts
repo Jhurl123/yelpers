@@ -33,6 +33,8 @@ import { BusinessCardComponent } from './components/business-card/business-card.
 import { ContentRowComponent } from './components/content-row/content-row.component';
 
 import { RatingModule } from 'ng-starrating';
+import { NgxPaginationModule } from 'ngx-pagination'; // <-- import the module
+
 import { TabsComponent } from './components/tabs/tabs.component';
 import { TabsSectionComponent } from './components/tabs/tabs-section/tabs-section.component';
 import { TabsBodyComponent } from './components/tabs/tabs-body/tabs-body.component';
@@ -42,6 +44,9 @@ import { TwoColumnContentComponent } from './components/two-column-content/two-c
 
 import { YelpService } from './services/yelp.service';
 import { DataService } from './services/data/data.service';
+import { CssSpinnerComponent } from './components/css-spinner/css-spinner.component';
+import { SingleBusinessComponent } from './views/single-business/single-business.component';
+import { ImageSliderComponent } from './components/image-slider/image-slider.component';
 
 
 @NgModule({
@@ -73,14 +78,18 @@ import { DataService } from './services/data/data.service';
     TabsSectionComponent,
     TabsBodyComponent,
     TabComponent,
-    TwoColumnContentComponent
+    TwoColumnContentComponent,
+    CssSpinnerComponent,
+    SingleBusinessComponent,
+    ImageSliderComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RatingModule
+    RatingModule,
+    NgxPaginationModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

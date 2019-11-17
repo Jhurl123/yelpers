@@ -20,5 +20,13 @@ router.post('/api/random-nearby', function(req, res) {
   yelp.getRandNearby(req, res);
 });
 
+router.post('/api/single', function( req, res) {
+  yelp.getSingle(req, res);
+})
+
+router.post('/api/reviews', function( req, res) {
+  yelp.getReviews(req, res);
+})
+
 
 module.exports = router;

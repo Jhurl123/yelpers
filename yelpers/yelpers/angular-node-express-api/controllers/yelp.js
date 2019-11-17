@@ -12,10 +12,7 @@ exports.getRestaurants = function( req, res ) {
   let terms = req.body.SearchTerms,
       location = req.body.Location;
 
-    request.get({url:`https://api.yelp.com/v3/businesses/search?term=${terms}&location=${location}`, headers: headers}, function(request, response, next) {
-
-
-  console.dir(response);
+    request.get({url:`https://api.yelp.com/v3/businesses/search?term=${terms}&location=${location}&limit=50`, headers: headers}, function(request, response, next) {
   }).pipe(res);
 };
 
@@ -24,8 +21,26 @@ exports.getRandNearby = function( req, res ) {
       latitude = req.body.latitude;
 
       request.get({url:`https://api.yelp.com/v3/businesses/search?latitude=${latitude}&longitude=${longitude}`, headers: headers}, function(request, response,next) {
-        console.dir(response);
       }).pipe(res);
+}
+
+exports.getSingle = function( req, res) {
+  let id = req.body.id;
+
+  request.get({url: `https://api.yelp.com/v3/businesses/${id}`, headers: headers}, function(request, response, next) {
+
+  }).pipe(res);
+}
+
+exports.getReviews = function( req, res) {
+
+  console.dir(req.body);
+  let id = req.body.id;
+
+  request.get({url: `https://api.yelp.com/v3/businesses/${id}/reviews`, headers: headers}, function(request, response, next) {
+    console.dir(response)
+
+  }).pipe(res);
 }
 
 module.exports = exports;

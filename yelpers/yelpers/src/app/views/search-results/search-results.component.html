@@ -1,19 +1,42 @@
 <section class="v-search">
   <div class="row">
-    <div class="columns small-12" *ngIf="businesses">
+    <div class="columns small-12" *ngIf="businesses?.length > 0">
       <div class="v-search_header">
         <h1>Results for {{ query }} in {{ location }}</h1>
       </div>
       <div class="row">
         <div
           class="columns medium-4 small-12 v-search_card"
-          *ngFor="let business of businesses"
+          *ngFor="let business of businesses | paginate: { itemsPerPage: 12, currentPage: p, id: 'some_id' }"
         >
           <app-business-card [business]="business">
 
           </app-business-card>
         </div>
       </div>
+      <pagination-controls
+        id="some_id"
+        class="v-search_pagination"
+        (pageChange)="pageChanged($event)"
+        directionLinks="true"
+        responsive="true"
+        previousLabel="Previous"
+        nextLabel="Next"
+        screenReaderPaginationLabel="Pagination"
+        screenReaderPageLabel="page"
+        screenReaderCurrentLabel="You're on page">
+      </pagination-controls>
     </div>
+    <ng-template [ngIf]="showSpinner">
+      <div class="v-search_spinner_container">
+        <app-css-spinner></app-css-spinner>
+      </div>
+    </ng-template>
+
+    <div class="v-search_spinner_container" *ngIf="noResults">
+      <h1>Your search returned no results!</h1>
+      <p>Please narrow your search or try again!</p>
+    </div>
+
   </div>
 </section>
