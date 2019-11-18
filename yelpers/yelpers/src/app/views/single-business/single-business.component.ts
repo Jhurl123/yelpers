@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+
 
 import { YelpService } from '@/services/yelp.service';
 
 import { Business } from '@/models/business/busines.model';
-import { Review } from '@/models/review/review';
+import { Review } from '@/models/review/review.model';
 
 
 @Component({
@@ -18,13 +19,14 @@ export class SingleBusinessComponent implements OnInit {
   reviews: Review[];
   imgArray: string[];
 
+  @ViewChild('slideshow', {static: false}) slideshow: any;
+
   constructor(
     private yelpService: YelpService,
     private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
-
 
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.setBusiness(params.get("id"));
@@ -38,13 +40,13 @@ export class SingleBusinessComponent implements OnInit {
       console.log(result);
       this.imgArray = result.photos;
       this.business = result;
-    })
-    console.log(id);
+    });
 
     this.yelpService.getReviews(id).subscribe((result: Review[]) => {
       console.log(result);
       this.reviews = result;
-    })
+    });
 
   }
+
 }

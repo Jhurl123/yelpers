@@ -1,19 +1,47 @@
 <section class="v-single" *ngIf="business">
   <div class="row">
     <div class="columns small-12">
-      <div class="v-single_header">
-        <h1>{{ business. name }}</h1>
-      </div>
-      <img src="{{ business.image_url }}"/>
-      <div class="v-single_gallery">
+      <div class="v-single_img-container">
         <slideshow
+          #slideshow
           [imageUrls]="imgArray"
-          [height]="height"
-          [minHeight]="'525px'"
-          [autoPlay]="true"
-          [showArrows]="false"
-          ></slideshow>
+          [minHeight]="'350px'"
+          [autoPlay]="false"
+          [showArrows]="true"
+        ></slideshow>
       </div>
+
+      <div class="columns small-12 v-single_main">
+        <div class="v-single_header">
+          <h1>{{ business.name }}</h1>
+          <star-rating value="{{ business.rating }}" checkedcolor="#FEC011" uncheckedcolor="#e7e2e2" size="24px"  readonly="true"></star-rating>
+          <span class="v-single_review-count">({{ business.review_count }})</span>
+          <h4
+            class="v-single_open"
+            [ngClass]="{'is_open': business.hours.is_open_now }"
+            [innerHTML]="business.hours.is_open_now ? 'Open' : 'Closed'"
+          >
+            {{ business.hours.is_open_now }}
+        </h4>
+        </div>
+      </div>
+
+      <div class="columns small-6">
+
+        <span class="v-single_categories">
+          <ng-template ngFor let-category let-i="index" [ngForOf]="business.categories">
+            <ng-template [ngIf]="i !== business.categories.length-1" [ngIfElse]="elseBlock">
+              {{ category.title }} ,
+            </ng-template>
+            <ng-template #elseBlock>
+                {{ category.title }}
+            </ng-template>
+          </ng-template>
+        </span>
+      </div>
+
+      <div class="columns small-6"></div>
+
     </div>
   </div>
 </section>
