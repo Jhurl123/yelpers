@@ -32,13 +32,22 @@ exports.getSingle = function( req, res) {
   }).pipe(res);
 }
 
+// TODO  Alias should be a comma separated list?
+exports.getSingleCategory = function( req, res) {
+  let alias = req.body.alias;
+
+  request.get({url: `https://api.yelp.com/v3/businesses/search?categorie=${alias}`, headers: headers}, function(request, response, next) {
+
+  }).pipe(res);
+}
+
 exports.getReviews = function( req, res) {
 
-  console.dir(req.body);
+  // console.dir(req.body);
   let id = req.body.id;
 
   request.get({url: `https://api.yelp.com/v3/businesses/${id}/reviews`, headers: headers}, function(request, response, next) {
-    console.dir(response)
+    // console.dir(response)
 
   }).pipe(res);
 }

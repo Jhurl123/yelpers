@@ -29,6 +29,7 @@
             ],
             "styles": [
               "src/styles.scss",
+              "./node_modules/ngx-lightbox/lightbox.css",
               {
                 "input": "src/styles/_variables.scss",
                 "lazy": true

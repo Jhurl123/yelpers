@@ -18,12 +18,10 @@ export class DataService {
     }
     else {
       this.businessSource.next(null);
-      console.log(this.businessSource)
     }
   }
 
   getBusinesses(){
-    console.log(this.businesses)
     return this.businessSource;
   }
 

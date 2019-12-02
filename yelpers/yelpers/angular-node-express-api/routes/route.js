@@ -11,22 +11,24 @@ router.get('/', function() {
 });
 
 router.post('/api/search', function (req, res) {
-  console.log("Route Called");
   yelp.getRestaurants(req, res);
 });
 
 router.post('/api/random-nearby', function(req, res) {
-  console.log("route Called");
   yelp.getRandNearby(req, res);
 });
 
 router.post('/api/single', function( req, res) {
   yelp.getSingle(req, res);
-})
+});
+
+router.post('/api/single-category', function( req, res) {
+  yelp.getSingleCategory(req, res);
+});
 
 router.post('/api/reviews', function( req, res) {
   yelp.getReviews(req, res);
-})
+});
 
 
 module.exports = router;

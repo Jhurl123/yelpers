@@ -31,10 +31,6 @@ import { HeroImageComponent } from './components/hero-image/hero-image.component
 import { RandNearbyComponent } from './components/rand-nearby/rand-nearby.component';
 import { BusinessCardComponent } from './components/business-card/business-card.component';
 import { ContentRowComponent } from './components/content-row/content-row.component';
-
-import { RatingModule } from 'ng-starrating';
-import { NgxPaginationModule } from 'ngx-pagination'; // <-- import the module
-import { SlideshowModule } from 'ng-simple-slideshow';
 import { TabsComponent } from './components/tabs/tabs.component';
 import { TabsSectionComponent } from './components/tabs/tabs-section/tabs-section.component';
 import { TabsBodyComponent } from './components/tabs/tabs-body/tabs-body.component';
@@ -47,6 +43,13 @@ import { DataService } from './services/data/data.service';
 import { CssSpinnerComponent } from './components/css-spinner/css-spinner.component';
 import { SingleBusinessComponent } from './views/single-business/single-business.component';
 import { ImageSliderComponent } from './components/image-slider/image-slider.component';
+
+// Dependencies
+import { RatingModule } from 'ng-starrating';
+import { NgxPaginationModule } from 'ngx-pagination'; // <-- import the module
+import { SlideshowModule } from 'ng-simple-slideshow';
+import { LightboxModule } from 'ngx-lightbox';
+import { ReviewsComponent } from './components/reviews/reviews.component';
 
 
 @NgModule({
@@ -81,7 +84,8 @@ import { ImageSliderComponent } from './components/image-slider/image-slider.com
     TwoColumnContentComponent,
     CssSpinnerComponent,
     SingleBusinessComponent,
-    ImageSliderComponent
+    ImageSliderComponent,
+    ReviewsComponent
   ],
   imports: [
     BrowserModule,
@@ -90,7 +94,8 @@ import { ImageSliderComponent } from './components/image-slider/image-slider.com
     HttpClientModule,
     RatingModule,
     NgxPaginationModule,
-    SlideshowModule
+    SlideshowModule,
+    LightboxModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

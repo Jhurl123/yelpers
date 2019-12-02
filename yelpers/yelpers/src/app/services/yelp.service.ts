@@ -42,7 +42,6 @@ export class YelpService {
       longitude: position.coords.longitude
     }
 
-    console.log(searchObject);
     return this.http.post(config, searchObject, this.httpOptions)
     .pipe(
       catchError(this.handleError)
@@ -52,7 +51,20 @@ export class YelpService {
   public getSingle(id) {
     let config = '/api/single';
 
-    console.log(id)
+    let idObject = {
+      id: id
+    }
+
+    return this.http.post(config, idObject, this.httpOptions)
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  // TODO fix this method to accept multiple strings ie. Categories
+  public getSingleCategory(id) {
+    let config = '/api/single';
+
     let idObject = {
       id: id
     }
