@@ -8,7 +8,8 @@ var exports = module.exports = {};
 // server side
 router.get('/*', function(req, res) {
 console.log("test");
-res.sendFile(path.join(__dirname + '../../dist/yelpers/index.html'));
+//introduce error handling for sendfile
+res.sendFile('../../dist/yelpers/index.html');
 });
 
 router.post('/api/search', function (req, res) {
