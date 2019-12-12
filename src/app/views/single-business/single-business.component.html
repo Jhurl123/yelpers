@@ -1,0 +1,113 @@
+<section class="v-single" *ngIf="business">
+  <div class="row v-single_main">
+    <div class="columns small-12">
+      <div class="v-single_header">
+        <h1>{{ business?.name }}</h1>
+        <span class="v-single_categories" *ngFor="let category of business?.categories; let i = index">
+          <a routerLink="/">
+            <ng-template [ngIf]="i != business?.categories.length - 1" [ngIfElse]="noCommablock">
+                {{ category.title }},
+            </ng-template>
+            <ng-template #noCommablock>
+              {{ category.title }}
+            </ng-template>
+          </a>
+        </span>
+        <div class="v-single_review-container">
+          <star-rating value="{{ business.rating }}" checkedcolor="#FEC011" uncheckedcolor="#e7e2e2" size="24px"  readonly="true"></star-rating>
+          <span class="v-single_review-count">({{ business?.review_count }})</span>
+        </div>
+      </div>
+    </div>
+    <div class="columns medium-6 small-12">
+      <div class="v-single_image-container">
+        <slideshow
+          #slideshow
+          [imageUrls]="imgArray"
+          [minHeight]="'350px'"
+          [autoPlay]="false"
+          [showArrows]="true"
+        ></slideshow>
+      </div>
+    </div>
+
+    <div class="columns medium-6 small-12 v-single_info">
+      <div class="columns small-12">
+        <h5 class="v-single_hours-head">
+          Hours
+        </h5>
+        <h5
+          class="v-single_open"
+          [ngClass]="{'is_open': business.hours?.is_open_now }"
+          [innerHTML]="business.hours?.is_open_now ? '- Open' : '- Closed'"
+          *ngIf="hours"
+        >
+        </h5>
+
+        <div class="v-single_calendar">
+          <div class="v-single_calendar-day" *ngFor="let day of hours">
+            <div class="v-single_calendar-header">
+              {{ day.day_name }}
+            </div>
+            <div class="v-single_calendar-hours">
+              <ng-template [ngIf]="!day.closed" [ngIfElse]="closedBlock">
+                {{ day.start }}
+                <ng-template [ngIf]="day.start_mod">
+                  {{ day.start_mod}}
+                </ng-template>
+                <br>
+                -
+                <br>
+                {{ day.end }}
+                <ng-template [ngIf]="day.end_mod">
+                  {{ day.end_mod }}
+                </ng-template>
+              </ng-template>
+              <ng-template #closedBlock>
+                <p>Closed</p>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+
+        <!-- <ul class="v-single_hours" *ngIf="hours; else noHours">
+          <li *ngFor="let day of hours">
+            <span class="v-single_hours-day">{{day.day_name}}: </span>
+            <ng-template [ngIf]="!day.closed" [ngIfElse]="closed">
+              {{ day.start + day.start_mod }} - {{ day.end + day.end_mod }}
+            </ng-template>
+            <ng-template #closed> - Closed</ng-template>
+          </li>
+        </ul>
+        <ng-template #noHours>
+          <span class="v-single_no-hours">
+            Sorry, no hours posted
+          </span>
+        </ng-template> -->
+
+      </div>
+
+      <div class="columns small-6">
+        <iframe
+          frameborder="0" style="border:0; width: 100%;"
+          [src]="business?.map_location" allowfullscreen>
+        </iframe>
+      </div>
+
+      <div class="columns small-6">
+          <h5 class="v-single_location-header">Location</h5>
+          <p class="v-single_location">
+            {{ business?.location.display_address.join('\n') }}
+          </p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+      <div class="columns small-12">
+        <div class="v-single_reviews-container">
+
+          <app-reviews-list [id]="business.id"></app-reviews-list>
+        </div>
+      </div>
+    </div>
+</section>

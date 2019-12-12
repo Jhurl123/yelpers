@@ -1,0 +1,21 @@
+<section class="c-tabs">
+  <ul class="c-tabs_headers">
+    <app-tab *ngFor="let tab of tabs"
+      [id]="tab.id"
+      iconSrc="{{ tab.iconSrc }}"
+      iconAlt="{{ tab.iconAlt }}"
+      text="{{ tab.text }}"
+      [active]="tab.active"
+      (toggleTab)="activateTab($event)"
+    >
+    </app-tab>
+  </ul>
+
+  <app-tabs-body
+    *ngFor="let tab of tabs"
+    [id]="tab.id"
+    [active]="tab.active"
+    [content]="tab.content"
+  >
+  </app-tabs-body>
+</section>

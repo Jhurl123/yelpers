@@ -1,0 +1,115 @@
+@import '../../../styles/variables';
+
+.c-main-search {
+
+  background-color: $primary;
+  width: 100%;
+  padding: 3em;
+  position: relative;
+  transition: .2s all ease-in-out;
+
+  @media screen and (max-width: 768px) {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  &_container {
+    background-color: $primary;
+    border-radius: 50%;
+    bottom: -18%;
+    padding: .9em;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+
+    img {
+      cursor: pointer;
+      max-width: 25px;
+    }
+
+    @media screen and (max-width: 768px) {
+      bottom: -10%;
+    }
+  }
+
+  &_form {
+
+    &-container {
+      transition: .2s all ease-in-out;
+      transform-origin: top;
+      transform: scaleY(0);
+
+    }
+
+    &-submit {
+
+      background: $white;
+      margin-left: 1.5em;
+      padding: .55em;
+      border-radius: 50%;
+      cursor: pointer;
+
+      img {
+        width: 20px;
+        height: 20px;
+      }
+
+      @media screen and (max-width: 768px) {
+        margin-left: 0;
+      }
+    }
+  }
+
+  &_input {
+    display: inline-block;
+    width: 50%;
+
+    @media screen and (max-width: 768px) {
+      width: 100%;
+    }
+  }
+
+  &_select {
+    display: inline-block;
+  }
+}
+
+.container-is-closed {
+  padding: 0;
+
+  .row {
+    @media screen and (max-width: 768px) {
+      max-height: 40px;
+    }
+  }
+}
+
+.is-open {
+  transform: scaleY(1);
+}
+
+.img-rotate {
+  transition: all .5s ease;
+  transform: rotateX(180deg);
+}
+
+.row.failed {
+  margin-top: 3em;
+}
+
+.validation {
+  text-align: center;
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+
+  &_container {
+    padding: 1em;
+    background-color: #ffffff;
+    border: solid 1px #ffffff;
+    border-radius: 4px;
+    color: $primary;
+  }
+}

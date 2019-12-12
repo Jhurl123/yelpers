@@ -1,0 +1,178 @@
+@import '../../../styles/variables';
+.v-single{
+
+
+  &_header {
+    text-align: center;
+    padding-bottom: 2em;
+
+    h1 {
+      color: $primary;
+      margin-bottom: 0;
+      font-size: 2.1rem;
+
+      @media screen and (max-width: 768px) {
+        font-size: 1.75rem;
+      }
+    }
+  }
+
+  &_categories {
+    font-size: 1.2rem;
+  }
+
+  &_review {
+
+    &-count {
+      font-size: .75em;
+      color: #7a7777b0;
+    }
+
+    &-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  &_image-container {
+
+    // height: 100%;
+    @media screen and (max-width: 768px) {
+      width: 100%;
+      margin-bottom: 2em;
+    }
+
+  }
+
+  &_main {
+    padding-top: 3em;
+
+    @media screen and (max-width: 768px) {
+      padding-left: 0;
+    }
+  }
+
+  ul {
+    font-size: 1.2rem;
+    list-style-type: none;
+    margin: 0;
+
+    li {
+      font-size: 1.1rem;
+    }
+  }
+
+  h5 {
+    display: inline;
+  }
+
+  hr {
+    margin: .5em 0;
+  }
+
+  &_hours {
+
+    &-head {
+      font-weight: bold;
+      margin-bottom: 1em;
+
+      @media screen and (max-width: 768px) {
+        font-size: 1.3rem;
+      }
+    }
+
+    &-day {
+      font-weight: bold;
+
+      @media screen and (max-width: 900px) {
+        display: block;
+      }
+    }
+  }
+
+  &_open {
+    color: $primary;
+
+    @media screen and (max-width: 768px) {
+      font-size: 1.3rem;
+    }
+
+    &.is_open {
+      color: green;
+    }
+  }
+
+  &_map {
+    padding-top: 5em;
+  }
+
+  &_calendar {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    margin: 2em 0;
+    width: 100%;
+
+    @media screen and (max-width: 1200px) {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      margin: .75em 0;
+    }
+
+    &-header{
+      padding: .25em;
+      text-align: center;
+      border-bottom: 1px solid #324F17;
+    }
+
+    &-hours {
+      padding: .25em;
+      text-align: center;
+      line-height: 1.1;
+    }
+
+    &-day {
+      border-top: 1px solid #324F17;
+      border-bottom: 1px solid #324F17;
+      border-left: 1px solid #324F17;
+      background-color: #d9f0c3;
+
+      @media screen and (max-width: 1200px) {
+        border: 1px solid #324F17;
+        border-radius: 5px;
+        margin: .25em;
+      }
+
+      &:first-of-type {
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+      }
+
+      &:last-of-type {
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+        border-right: 1px solid #324F17;
+
+      }
+    }
+
+  }
+
+  &_location {
+    &-header {
+      font-weight: bold;
+
+      @media screen and (max-width: 768px) {
+        font-size: 1.3rem;
+      }
+    }
+  }
+
+  &_reviews {
+
+    &-container {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+  }
+
+}
