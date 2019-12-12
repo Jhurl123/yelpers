@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const request = require('request');
-const app = require('../app');
 const yelp = require('../controllers/yelp');
+const reviewScrape = require('../scrapeReviews');
 var exports = module.exports = {};
 
 // server side
@@ -27,7 +26,10 @@ router.post('/api/single-category', function( req, res) {
 });
 
 router.post('/api/reviews', function( req, res) {
-  yelp.getReviews(req, res);
+
+  reviewScrape.scrapeReviews(req, res)
+  // yelp.getReviews(req, res);
+
 });
 
 

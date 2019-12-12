@@ -40,6 +40,7 @@
     // height: 100%;
     @media screen and (max-width: 768px) {
       width: 100%;
+      margin-bottom: 2em;
     }
 
   }
@@ -75,6 +76,10 @@
     &-head {
       font-weight: bold;
       margin-bottom: 1em;
+
+      @media screen and (max-width: 768px) {
+        font-size: 1.3rem;
+      }
     }
 
     &-day {
@@ -88,6 +93,10 @@
 
   &_open {
     color: $primary;
+
+    @media screen and (max-width: 768px) {
+      font-size: 1.3rem;
+    }
 
     &.is_open {
       color: green;
@@ -104,6 +113,11 @@
     margin: 2em 0;
     width: 100%;
 
+    @media screen and (max-width: 1200px) {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      margin: .75em 0;
+    }
+
     &-header{
       padding: .25em;
       text-align: center;
@@ -114,7 +128,6 @@
       padding: .25em;
       text-align: center;
       line-height: 1.1;
-
     }
 
     &-day {
@@ -123,6 +136,11 @@
       border-left: 1px solid #324F17;
       background-color: #d9f0c3;
 
+      @media screen and (max-width: 1200px) {
+        border: 1px solid #324F17;
+        border-radius: 5px;
+        margin: .25em;
+      }
 
       &:first-of-type {
         border-top-left-radius: 5px;
@@ -140,9 +158,20 @@
   }
 
   &_location {
-
     &-header {
       font-weight: bold;
+
+      @media screen and (max-width: 768px) {
+        font-size: 1.3rem;
+      }
+    }
+  }
+
+  &_reviews {
+
+    &-container {
+      max-width: 960px;
+      margin: 0 auto;
     }
   }
 

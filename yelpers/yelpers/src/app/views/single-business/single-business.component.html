@@ -51,11 +51,17 @@
             </div>
             <div class="v-single_calendar-hours">
               <ng-template [ngIf]="!day.closed" [ngIfElse]="closedBlock">
-                {{ day.start + day.start_mod }}
+                {{ day.start }}
+                <ng-template [ngIf]="day.start_mod">
+                  {{ day.start_mod}}
+                </ng-template>
                 <br>
                 -
                 <br>
-                {{ day.end + day.end_mod }}
+                {{ day.end }}
+                <ng-template [ngIf]="day.end_mod">
+                  {{ day.end_mod }}
+                </ng-template>
               </ng-template>
               <ng-template #closedBlock>
                 <p>Closed</p>
@@ -95,13 +101,13 @@
           </p>
       </div>
     </div>
-    <div class="row">
+  </div>
+  <div class="row">
       <div class="columns small-12">
         <div class="v-single_reviews-container">
 
-          <app-reviews-list></app-reviews-list>
+          <app-reviews-list [id]="business.id"></app-reviews-list>
         </div>
       </div>
     </div>
-  </div>
 </section>

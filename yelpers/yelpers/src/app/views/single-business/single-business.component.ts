@@ -8,6 +8,7 @@ import { Lightbox } from 'ngx-lightbox';
 
 import { Business } from '@/models/business/busines.model';
 import { Review } from '@/models/review/review.model';
+import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 
 @Component({
   selector: 'app-single-business',
@@ -73,13 +74,14 @@ export class SingleBusinessComponent implements OnInit {
           result['map_location'] = this.sanitizer.bypassSecurityTrustResourceUrl(mapLocation);
       }
 
+      // Get Reviews
+      this.yelpService.getReviews(id, result.url).subscribe((result: Review[]) => {
+        this.reviews = result;
+        console.log(this.reviews)
+      });
       this.business = result;
     });
 
-    // Get Reviews
-    this.yelpService.getReviews(id).subscribe((result: Review[]) => {
-      this.reviews = result;
-    });
 
   }
 
@@ -110,39 +112,71 @@ export class SingleBusinessComponent implements OnInit {
   // Format hour response
   formatHours(hours) {
 
-    console.log(hours);
-    this.weekDays.forEach( day => {
+    console.log(this.weekDays)
+    console.log(hours)
+    hours.forEach( day => {
 
-      var newSchedule = day;
-      for( let i = 0; i < hours.length; i++ ) {
-        let schedule = hours[i];
+      var schedule = day;
 
-        newSchedule['start_mod'] = schedule.start < 1200 ? 'am' : 'pm';
-        newSchedule['end_mod']   = schedule.end < 1200 ? 'am' : 'pm';
+      // schedule.start           = schedule.start === '0000' ? 'Not Specified' : schedule.start;
+      // schedule.end             = schedule.end === '0000' ? 'Not Specified' : schedule.end;
 
-        if(schedule.day === day['day']) {
-          newSchedule['day_name'] = day['day_name'];
+      if(schedule.start === "0000") {
+        schedule.start = "Not Specified";
+      }
+      else {
+        schedule['start_mod'] = schedule.start < 1200 ? 'am' : 'pm';
+      }
 
-          if(parseInt(schedule.end, 10) > 1200) {
-            newSchedule['end'] = this.convertTime24to12(schedule.end);
-          }
+      if(schedule.end === "0000") {
+        schedule.end = "Not Specified"
+      }
+      else {
+        schedule['end_mod'] = schedule.end < 1200 ? 'am' : 'pm';
+      }
 
-          if(schedule.start[0] == 0) {
-            schedule.start = this.addColon(schedule.start, 2);
+      for(let i = 0; i < this.weekDays.length; i ++ ) {
+        let hours = this.weekDays;
 
-          }
-
-          newSchedule['start'] = schedule.start;
+        if(schedule.day === hours[i]['day']) {
+          schedule['day_name'] = hours[i]['day_name']
+          console.log(schedule)
           break;
-        }
-        if(i === hours.length -1) {
-          newSchedule['closed'] = true;
         }
       }
 
-      this.hours.push(newSchedule);
+      if(parseInt(schedule.end, 10) > 1200) {
+        schedule['end'] = this.convertTime24to12(schedule.end);
+      }
+      else {
+        schedule['end'] = schedule.end;
+      }
+
+      if(schedule.start[0] == 0) {
+        schedule.start = this.addColon(schedule.start, 2);
+      }
+      else {
+        schedule.start = this.addColon(schedule.start, 1);
+      }
+
+      if(schedule.end[0] == 0 && schedule.end !== "Not Specified") {
+        schedule.end = this.addColon(schedule.end, 2);
+      }
+      else if(schedule.end !== "Not Specified") {
+        schedule.end = this.addColon(schedule.end, 1);
+      }
+
+      schedule['start'] = schedule.start;
+
+      // if(i === hours.length -1) {
+      //   schedule['closed'] = true;
+      // }
+
+      this.hours.push(schedule);
 
     });
+
+    console.log(this.hours)
 
   }
 
@@ -159,6 +193,7 @@ export class SingleBusinessComponent implements OnInit {
     }
 
     hourNum -= 12;
+    console.log(`${hourNum}:${minutes}`)
     return `${hourNum}:${minutes}`;
   }
 

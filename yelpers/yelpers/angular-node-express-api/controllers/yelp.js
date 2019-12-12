@@ -46,6 +46,8 @@ exports.getReviews = function( req, res) {
   // console.dir(req.body);
   let id = req.body.id;
 
+  console.log(req.body.url)
+
   request.get({url: `https://api.yelp.com/v3/businesses/${id}/reviews`, headers: headers}, function(request, response, next) {
     // console.dir(response)
 

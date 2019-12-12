@@ -75,15 +75,15 @@ export class YelpService {
     )
   }
 
-  public getReviews(id) {
+  public getReviews(id, url) {
     let config = '/api/reviews';
 
-    console.log(id)
-    let idObject = {
-      id: id
+    let reviewObject = {
+      id: id,
+      url: url
     }
 
-    return this.http.post(config, idObject, this.httpOptions)
+    return this.http.post(config, reviewObject, this.httpOptions)
     .pipe(
       catchError(this.handleError)
     )

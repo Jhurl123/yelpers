@@ -49,7 +49,8 @@ import { RatingModule } from 'ng-starrating';
 import { NgxPaginationModule } from 'ngx-pagination'; // <-- import the module
 import { SlideshowModule } from 'ng-simple-slideshow';
 import { LightboxModule } from 'ngx-lightbox';
-import { ReviewsComponent } from './components/reviews/reviews.component';
+import { ReviewsListComponent } from './components/reviews/reviews-list/reviews-list.component';
+import { ReviewComponent } from './components/reviews/review/review.component';
 
 
 @NgModule({
@@ -85,7 +86,8 @@ import { ReviewsComponent } from './components/reviews/reviews.component';
     CssSpinnerComponent,
     SingleBusinessComponent,
     ImageSliderComponent,
-    ReviewsComponent
+    ReviewsListComponent,
+    ReviewComponent
   ],
   imports: [
     BrowserModule,
