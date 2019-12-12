@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const yelp = require('../controllers/yelp');
 const reviewScrape = require('../scrapeReviews');
+var path = require('path');
 var exports = module.exports = {};
 
 // server side
