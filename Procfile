@@ -1,1 +1,1 @@
-web: node app.js
+web: node angular-node-express-api/app.js

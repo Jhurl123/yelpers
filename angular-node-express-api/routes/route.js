@@ -6,7 +6,7 @@ var exports = module.exports = {};
 
 // server side
 router.get('/', function() {
-
+console.log("test");
 });
 
 router.post('/api/search', function (req, res) {
