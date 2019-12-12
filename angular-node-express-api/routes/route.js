@@ -5,8 +5,9 @@ const reviewScrape = require('../scrapeReviews');
 var exports = module.exports = {};
 
 // server side
-router.get('/', function() {
+router.get('/*', function(req, res) {
 console.log("test");
+res.sendFile(path.join(__dirname + '/dist/yelpers/index.html'));
 });
 
 router.post('/api/search', function (req, res) {
