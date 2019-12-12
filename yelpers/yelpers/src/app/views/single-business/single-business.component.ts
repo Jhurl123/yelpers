@@ -23,7 +23,8 @@ export class SingleBusinessComponent implements OnInit {
   album: Array<{}> = [];
   hours: Array<{}> = [];
 
-  apiUrl: string = 'https://www.google.com/maps/embed/v1/place?key=AIzaSyD95RlFOYq0f8dcwe92D9JvRsD0cJaEbfg&q=';
+  // Review Notes for api key
+  apiUrl: string = 'https://www.google.com/maps/embed/v1/place?key=xxxx=';
 
   weekDays:  Array<{}> = [
     { day: 0, day_name: 'Sun.', closed: false },
