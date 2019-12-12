@@ -11,7 +11,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser())
 
-app.listen(3000, function (){
+console.log(process.env.PORT);
+app.listen(process.env.PORT, function (){
   console.log('Server listening on port 3000');
 });
 
