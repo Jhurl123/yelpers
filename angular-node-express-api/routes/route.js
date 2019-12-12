@@ -8,7 +8,7 @@ var exports = module.exports = {};
 // server side
 router.get('/*', function(req, res) {
   console.log(path.dirname(require.main.filename))
-console.log("test");
+console.log(__dirname, '../../dist/yelpers/index.html');
 //introduce error handling for
 res.sendFile(path.join(__dirname, '../../dist/yelpers/index.html'));
 });
