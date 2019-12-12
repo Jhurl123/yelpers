@@ -10,7 +10,7 @@ router.get('/*', function(req, res) {
   console.log(path.dirname(require.main.filename))
 console.log("test");
 //introduce error handling for
-res.sendFile(path.join(__dirname, '../../', 'dist/yelpers/index.html'));
+res.sendFile(path.join(__dirname, '../dist/yelpers/index.html'));
 });
 
 router.post('/api/search', function (req, res) {
