@@ -12,6 +12,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+app.use(express.static('./'));
+
 // Allow node to read the .env file
 dotenv.config();
 
