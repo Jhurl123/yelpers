@@ -24,7 +24,7 @@ export class SingleBusinessComponent implements OnInit {
   hours: Array<{}> = [];
 
   // Review Notes for api key
-  apiUrl: string = 'https://www.google.com/maps/embed/v1/place?key=xxxx=';
+  apiUrl: string = 'https://www.google.com/maps/embed/v1/place?key=AIzaSyA-O-hGRxxv9Hli_zGc4OqzaiCFYT0f1d8=';
 
   weekDays:  Array<{}> = [
     { day: 0, day_name: 'Sun.', closed: false },
