@@ -7,7 +7,7 @@
     "client": "ng serve --proxy-config proxy.conf.json",
     "server": " nodemon ../yelpers/angular-node-express-api/app.js",
     "servers": "npm-run-all -p client server",
-    "build": "ng build",
+    "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
