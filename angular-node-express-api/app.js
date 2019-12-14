@@ -29,15 +29,15 @@ const forceSSL = function() {
 // Instruct the app
 // to use the forceSSL
 // middleware
-app.use(forceSSL());
+// app.use(forceSSL());
 
 app.use(express.static(__dirname + '/dist'));
 // Allow node to read the .env file
 dotenv.config();
 
 // was listening on port 3000 before the change
-console.log(8000);
-app.listen(8000, function (){
+var port = process.env.PORT || 8080;
+app.listen(port, function (){
   console.log(`Server listening on port ${process.env.PORT}`);
 });
 
