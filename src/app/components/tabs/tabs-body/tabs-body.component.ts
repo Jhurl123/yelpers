@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { tabContent } from '@/models/tabs.model';
 
 @Component({
   selector: 'app-tabs-body',
@@ -7,9 +8,9 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class TabsBodyComponent implements OnInit {
 
-  @Input() id: string;
+  @Input() id: number;
   @Input() active: boolean;
-  @Input() content: {};
+  @Input() content: tabContent;
 
 
 

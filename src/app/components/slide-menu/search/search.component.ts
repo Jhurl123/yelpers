@@ -18,4 +18,8 @@ export class SearchComponent implements OnInit {
 
     this.inputOpen = !this.inputOpen;
   }
+
+  toggleInput(event) {
+
+  }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-tab',
@@ -18,6 +18,7 @@ export class TabComponent implements OnInit {
   @Output() toggleTab = new EventEmitter<{id: string, active: boolean}>();
 
   absurl = window.location.href;
+  iconSrcHTML: SafeHtml;
   constructor(private sanitizer:DomSanitizer) { }
 
   ngOnInit() {

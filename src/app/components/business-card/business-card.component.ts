@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
 import { DistanceService } from '@/services/distance.service';
 
+import { Business } from '@/models/business/busines.model';
 
 @Component({
   selector: 'app-business-card',
@@ -10,7 +11,7 @@ import { DistanceService } from '@/services/distance.service';
 })
 export class BusinessCardComponent implements OnInit {
 
-  @Input() business: object;
+  @Input() business: Business;
 
   constructor(
     private distanceService: DistanceService

@@ -16,6 +16,7 @@ app.use(express.static(__dirname + '../dist/index.html'));
 // Allow node to read the .env file
 dotenv.config();
 
+// was listening on port 3000 before the change
 console.log(process.env.PORT);
 app.listen(process.env.PORT, function (){
   console.log(`Server listening on port ${process.env.PORT}`);
