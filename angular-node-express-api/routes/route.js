@@ -8,9 +8,11 @@ var exports = module.exports = {};
 // server side
 router.get('/*', function(req, res) {
   console.log(path.dirname(require.main.filename))
-console.log(path.join(__dirname, '../../dist/index.html'));
+console.log(path.join(__dirname, '/dist/index.html'));
+console.log(path.join(__dirname, '../..//dist/index.html'));
+console.log(path.join(__dirname, '../dist/index.html'));
 //introduce error handling for
-res.sendFile(path.join(__dirname, '../../dist/index.html'));
+res.sendFile(path.join(__dirname, '/dist/index.html'));
 });
 
 router.post('/api/search', function (req, res) {
