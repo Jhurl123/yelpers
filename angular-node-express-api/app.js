@@ -8,6 +8,13 @@ const dotenv = require('dotenv');
 
 var app = express();
 
+// was listening on port 3000 before the change
+var port = process.env.PORT || 8080;
+app.listen(port, function (){
+  console.log(`Server listening on port ${process.env.PORT}`);
+});
+
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -35,11 +42,6 @@ app.use(express.static(__dirname + '/dist'));
 // Allow node to read the .env file
 dotenv.config();
 
-// was listening on port 3000 before the change
-var port = process.env.PORT || 8080;
-app.listen(port, function (){
-  console.log(`Server listening on port ${process.env.PORT}`);
-});
 
 app.use( routes);
 module.exports = app;
