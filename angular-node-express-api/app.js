@@ -36,8 +36,8 @@ app.use(express.static(__dirname + '/dist'));
 dotenv.config();
 
 // was listening on port 3000 before the change
-console.log(process.env.PORT);
-app.listen(process.env.PORT, function (){
+console.log(8000);
+app.listen(8000, function (){
   console.log(`Server listening on port ${process.env.PORT}`);
 });
 
