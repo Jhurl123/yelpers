@@ -7,14 +7,6 @@ var yelp = require('./controllers/yelp');
 const dotenv = require('dotenv');
 
 var app = express();
-
-// was listening on port 3000 before the change
-var port = process.env.PORT || 8080;
-app.listen(port, function (){
-  console.log(`Server listening on port ${process.env.PORT}`);
-});
-
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -42,6 +34,20 @@ app.use(express.static(__dirname + '/dist/yelpers'));
 // Allow node to read the .env file
 dotenv.config();
 
+// was listening on port 3000 before the change
+var port = process.env.PORT || 8080;
+app.listen(port, function (){
+  console.log(`Server listening on port ${process.env.PORT}`);
+});
 
-app.use( routes);
+// server side
+router.get('*', function(req, res) {
+  console.log(path.dirname(require.main.filename))
+console.log(path.join(__dirname, '/dist/index.html'));
+console.log(path.join(__dirname, '../..//dist/index.html'));
+console.log(path.join(__dirname, '../dist/index.html'));
+//introduce error handling for
+res.sendFile(path.join(__dirname, '../../dist/yelpers/index.html'));
+});
+//app.use( routes);
 module.exports = app;

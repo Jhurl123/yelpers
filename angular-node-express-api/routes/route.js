@@ -5,13 +5,6 @@ const reviewScrape = require('../scrapeReviews');
 var path = require('path');
 var exports = module.exports = {};
 
-const allowed = [
-  '.js',
-  '.css',
-  '.png',
-  '.jpg'
-];
-
 // server side
 router.get('*', function(req, res) {
   console.log(path.dirname(require.main.filename))
@@ -19,11 +12,7 @@ console.log(path.join(__dirname, '/dist/index.html'));
 console.log(path.join(__dirname, '../..//dist/index.html'));
 console.log(path.join(__dirname, '../dist/index.html'));
 //introduce error handling for
-if (allowed.filter(ext => req.url.indexOf(ext) > 0).length > 0) {
-  res.sendFile(path.resolve(`../../dist/yelpers/${req.url}`));
-} else {
-  res.sendFile(path.join(__dirname, '../../dist/yelpers/index.html'));
-}
+res.sendFile(path.join(__dirname, '../../dist/yelpers/index.html'));
 });
 
 router.post('/api/search', function (req, res) {
