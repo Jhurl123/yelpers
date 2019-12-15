@@ -31,7 +31,7 @@ const forceSSL = function() {
 // middleware
 // app.use(forceSSL());
 
-app.use(express.static(__dirname + '../dist/yelpers'));
+app.use(express.static(path.join(__dirname, '../dist/yelpers')));
 console.log(__dirname + '../dist/yelpers')
 // Allow node to read the .env file
 dotenv.config();
