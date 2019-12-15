@@ -16,7 +16,7 @@ export class TabsComponent implements OnInit {
   tabs : tab[] = [
     {
       id: 1,
-      iconSrc: this.svgObject.default['utensils'],
+      iconSrc: this.svgObject['utensils'],
       iconAlt: "Utensils Icon",
       text: "Stuff Your Face",
       content:  {
@@ -32,7 +32,7 @@ export class TabsComponent implements OnInit {
     },
     {
       id: 2,
-      iconSrc: this.svgObject.default['wrench'],
+      iconSrc: this.svgObject['wrench'],
       iconAlt: "Wrench Icon",
       text: "Fix Your Home",
       content: {
@@ -48,7 +48,7 @@ export class TabsComponent implements OnInit {
     },
     {
       id: 3,
-      iconSrc: this.svgObject.default['bed'],
+      iconSrc: this.svgObject['bed'],
       iconAlt: "Bed Icon",
       text: "Rest Your Body",
       content: {
