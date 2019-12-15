@@ -24,7 +24,7 @@ console.log(path.join(__dirname, '../dist/index.html'));
 // } else {
 //   res.sendFile(path.join(__dirname, 'client/dist/client/index.html'));
 // }
-res.sendFile(path.join(__dirname, '../../dist/yelpersindex.html'));
+res.sendFile(path.join(__dirname, '../../dist/yelpers/index.html'));
 });
 
 router.post('/api/search', function (req, res) {
