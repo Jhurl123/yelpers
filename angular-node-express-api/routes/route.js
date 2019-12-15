@@ -18,13 +18,12 @@ router.get('*', function(req, res) {
 console.log(path.join(__dirname, '/dist/index.html'));
 console.log(path.join(__dirname, '../..//dist/index.html'));
 console.log(path.join(__dirname, '../dist/index.html'));
-//introduce error handling for
-// if (allowed.filter(ext => req.url.indexOf(ext) > 0).length > 0) {
-//   res.sendFile(path.resolve(`client/dist/${req.url}`));
-// } else {
-//   res.sendFile(path.join(__dirname, 'client/dist/client/index.html'));
-// }
-res.sendFile(path.join(__dirname, '../../dist/yelpers/index.html'));
+
+if (allowed.filter(ext => req.url.indexOf(ext) > 0).length > 0) {
+  res.sendFile(path.resolve(`client/dist/yelpers/${req.url}`));
+} else {
+  res.sendFile(path.join(__dirname, 'client/dist/yelpers/index.html'));
+}
 });
 
 router.post('/api/search', function (req, res) {
