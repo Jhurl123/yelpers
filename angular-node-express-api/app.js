@@ -2,7 +2,6 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-const router = express.Router();
 const routes = require('./routes/route');
 var yelp = require('./controllers/yelp');
 const dotenv = require('dotenv');
@@ -42,12 +41,6 @@ app.listen(port, function (){
   console.log(`Server listening on port ${process.env.PORT}`);
 });
 
-// server side
-app.get('*', function(req, res) {
 
-console.log(path.join(__dirname, '../dist/index.html'));
-//introduce error handling for
-res.sendFile(path.join(__dirname, '../dist/index.html'));
-});
-//app.use( routes);
+app.use( routes);
 module.exports = app;
