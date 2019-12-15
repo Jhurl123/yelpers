@@ -42,7 +42,7 @@ app.listen(port, function (){
 });
 
 // server side
-router.get('*', function(req, res) {
+app.get('*', function(req, res) {
   console.log(path.dirname(require.main.filename))
 console.log(path.join(__dirname, '/dist/index.html'));
 console.log(path.join(__dirname, '../..//dist/index.html'));
