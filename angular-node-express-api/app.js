@@ -31,8 +31,8 @@ const forceSSL = function() {
 // middleware
 // app.use(forceSSL());
 
-app.use(express.static(path.join(__dirname, '../dist/yelpers')));
-console.log((path.join(__dirname, '../dist/yelpers')))
+app.use(express.static(path.join(__dirname, '../dist')));
+console.log((path.join(__dirname, '../dist')))
 // Allow node to read the .env file
 dotenv.config();
 
@@ -47,7 +47,7 @@ app.get('*', function(req, res) {
 
 console.log(path.join(__dirname, '../dist/index.html'));
 //introduce error handling for
-res.sendFile(path.join(__dirname, '../dist/yelpers/index.html'));
+res.sendFile(path.join(__dirname, '../dist/index.html'));
 });
 //app.use( routes);
 module.exports = app;
