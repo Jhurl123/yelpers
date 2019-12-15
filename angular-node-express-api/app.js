@@ -2,6 +2,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+const router = express.Router();
 const routes = require('./routes/route');
 var yelp = require('./controllers/yelp');
 const dotenv = require('dotenv');
