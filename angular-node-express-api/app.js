@@ -32,6 +32,7 @@ const forceSSL = function() {
 // app.use(forceSSL());
 
 app.use(express.static(__dirname + '../dist/yelpers'));
+console.log(__dirname + '../dist/yelpers')
 // Allow node to read the .env file
 dotenv.config();
 
@@ -43,9 +44,7 @@ app.listen(port, function (){
 
 // server side
 app.get('*', function(req, res) {
-  console.log(path.dirname(require.main.filename))
-console.log(path.join(__dirname, '/dist/index.html'));
-console.log(path.join(__dirname, '../..//dist/index.html'));
+
 console.log(path.join(__dirname, '../dist/index.html'));
 //introduce error handling for
 res.sendFile(path.join(__dirname, '../dist/yelpers/index.html'));
