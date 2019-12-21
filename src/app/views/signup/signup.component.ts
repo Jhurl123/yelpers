@@ -7,8 +7,10 @@ import { UserService} from '@/services/user.service';
 import { AuthenticationService } from '@/services/authentication.service';
 
 @Component({
+  selector: 'app-signup-form',
   templateUrl: 'signup.component.html',
- })
+  styleUrls: ['./signup.component.scss']
+})
 export class SignupComponent implements OnInit {
     registerForm: FormGroup;
     loading = false;
@@ -30,7 +32,7 @@ export class SignupComponent implements OnInit {
         this.registerForm = this.formBuilder.group({
             firstName: ['', Validators.required],
             lastName: ['', Validators.required],
-            username: ['', Validators.required],
+            emailAddress: ['', Validators.required],
             password: ['', [Validators.required, Validators.minLength(6)]]
         });
         console.log(this.loading);

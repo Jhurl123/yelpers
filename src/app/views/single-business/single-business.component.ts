@@ -24,7 +24,7 @@ export class SingleBusinessComponent implements OnInit {
   hours: Array<{}> = [];
 
   // Review Notes for api key
-  apiUrl: string = 'https://www.google.com/maps/embed/v1/place?key=AIzaSyA-O-hGRxxv9Hli_zGc4OqzaiCFYT0f1d8=';
+  apiUrl: string = 'https://www.google.com/maps/embed/v1/place?key=AIzaSyA-O-hGRxxv9Hli_zGc4OqzaiCFYT0f1d8&q=';
 
   weekDays:  Array<{}> = [
     { day: 0, day_name: 'Sun.', closed: false },
@@ -113,8 +113,6 @@ export class SingleBusinessComponent implements OnInit {
   // Format hour response
   formatHours(hours) {
 
-    console.log(this.weekDays)
-    console.log(hours)
     hours.forEach( day => {
 
       var schedule = day;
@@ -141,7 +139,6 @@ export class SingleBusinessComponent implements OnInit {
 
         if(schedule.day === hours[i]['day']) {
           schedule['day_name'] = hours[i]['day_name']
-          console.log(schedule)
           break;
         }
       }
@@ -177,8 +174,6 @@ export class SingleBusinessComponent implements OnInit {
 
     });
 
-    console.log(this.hours)
-
   }
 
   convertTime24to12(time12h: string) {
@@ -194,7 +189,6 @@ export class SingleBusinessComponent implements OnInit {
     }
 
     hourNum -= 12;
-    console.log(`${hourNum}:${minutes}`)
     return `${hourNum}:${minutes}`;
   }
 
@@ -219,7 +213,6 @@ export class SingleBusinessComponent implements OnInit {
     location.forEach( location => {
       queryString += location.replace(/ /g, '+') + ",";
     })
-    console.log(queryString)
 
     return queryString;
   }

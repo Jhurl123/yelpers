@@ -1,16 +1,17 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, RouterModule } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
 import { AuthenticationService } from '@/services/authentication.service';
 import { UserService } from '@/services/user.service';
 
-
-@Component({ templateUrl: 'login.component.html' })
+@Component({
+  selector: 'app-login-form',
+  templateUrl: 'login.component.html',
+  styleUrls: ['./login.component.scss']
+})
 export class LoginComponent implements OnInit {
-
-    @Output() login = new EventEmitter<boolean>();
 
     loginForm: FormGroup;
     loading = false;
@@ -32,7 +33,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
         this.loginForm = this.formBuilder.group({
-            username: ['', Validators.required],
+            emailAddress: ['', Validators.required],
             password: ['', Validators.required]
         });
 
@@ -53,11 +54,10 @@ export class LoginComponent implements OnInit {
         }
 
         this.loading = true;
-        this.authenticationService.login(this.f.username.value, this.f.password.value)
+        this.authenticationService.login(this.f.emailAddress.value, this.f.password.value)
             .pipe(first())
             .subscribe(
                 data => {
-                    this.login.emit(true);
                     this.router.navigate([this.returnUrl]);
                 },
                 error => {

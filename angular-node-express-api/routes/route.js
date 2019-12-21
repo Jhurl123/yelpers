@@ -3,6 +3,7 @@ const router = express.Router();
 const yelp = require('../controllers/yelp');
 const reviewScrape = require('../scrapeReviews');
 var path = require('path');
+var pool = require('../database/queries');
 var exports = module.exports = {};
 
 // server side
@@ -11,6 +12,7 @@ router.get('*', function(req, res) {
 
   //introduce error handling for
   res.sendFile(path.join(__dirname, '../dist/index.html'));
+
 });
 
 router.post('/api/search', function (req, res) {
@@ -22,6 +24,7 @@ router.post('/api/random-nearby', function(req, res) {
 });
 
 router.post('/api/single', function( req, res) {
+  pool.test();
   yelp.getSingle(req, res);
 });
 

@@ -29,10 +29,10 @@ export class AuthenticationService {
         return this.currentUserSubject.value;
     }
 
-    login(username, password) {
+    login(emailAddress, password) {
       this.loggedIn = true;
       console.log(this.loggedIn);
-        return this.http.post<any>(`${this.config.apiUrl}/users/authenticate`, { username, password })
+        return this.http.post<any>(`${this.config.apiUrl}/users/authenticate`, { emailAddress, password })
             .pipe(map(user => {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 this.isLoggedIn.emit(true);

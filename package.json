@@ -36,6 +36,7 @@
     "ngx-lightbox": "^2.1.1",
     "ngx-pagination": "^4.1.0",
     "npm-run-all": "^4.1.5",
+    "pg": "^7.15.0",
     "puppeteer": "^2.0.0",
     "request": "^2.88.0",
     "request-promise": "^4.2.5",
