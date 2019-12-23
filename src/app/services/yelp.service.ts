@@ -28,6 +28,8 @@ export class YelpService {
   public getRestaurants(searchObject: any) {
     let config = `/api/search`;
 
+    console.log("sdfsdf");
+
     return this.http.post(config, searchObject, this.httpOptions)
     .pipe(
       catchError(this.handleError)

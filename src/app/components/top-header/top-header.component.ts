@@ -49,7 +49,7 @@ export class TopHeaderComponent implements OnInit {
 
   // Determing if user is logged in to toggle button display
   checkLoginStatus() {
-    this.authService.isLoggedIn.subscribe((result) => {
+    this.authService.currentUser.subscribe((result) => {
       this.loggedIn = !this.loggedIn;
     });
   }

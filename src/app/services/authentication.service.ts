@@ -31,15 +31,18 @@ export class AuthenticationService {
 
     login(emailAddress, password) {
       this.loggedIn = true;
-      console.log(this.loggedIn);
-        return this.http.post<any>(`${this.config.apiUrl}/users/authenticate`, { emailAddress, password })
-            .pipe(map(user => {
-                // store user details and jwt token in local storage to keep user logged in between page refreshes
-                this.isLoggedIn.emit(true);
-                localStorage.setItem('currentUser', JSON.stringify(user));
-                this.currentUserSubject.next(user);
-                return user;
-            }));
+      let config = '/api/login';
+
+      console.log(emailAddress)
+
+      return this.http.post<any>(config, { emailAddress, password })
+          .pipe(map(user => {
+              this.loggedIn = true;
+              // store user details and jwt token in local storage to keep user logged in between page refreshes
+              localStorage.setItem('currentUser', JSON.stringify(user));
+              this.currentUserSubject.next(user);
+              return user;
+          }));
     }
 
     logout() {

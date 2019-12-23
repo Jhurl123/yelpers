@@ -48,6 +48,7 @@ export class LoginComponent implements OnInit {
     onSubmit() {
         this.submitted = true;
 
+        console.log("Form is resubmitted")
         // stop here if form is invalid
         if (this.loginForm.invalid) {
             return;
@@ -55,14 +56,15 @@ export class LoginComponent implements OnInit {
 
         this.loading = true;
         this.authenticationService.login(this.f.emailAddress.value, this.f.password.value)
-            .pipe(first())
-            .subscribe(
-                data => {
-                    this.router.navigate([this.returnUrl]);
-                },
-                error => {
-                    console.log(error);
-                    this.loading = false;
-                });
+          .subscribe(
+              data => {
+                console.log(data)
+                //Remove this until auth is figured out
+                this.router.navigate([this.returnUrl]);
+              },
+              error => {
+                  console.log(error);
+                  this.loading = false;
+              });
     }
 }

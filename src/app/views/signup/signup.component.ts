@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
+import { confirmPasswordValidator } from '@/validators/confirmPassword.validator';
+
 import { UserService} from '@/services/user.service';
 import { AuthenticationService } from '@/services/authentication.service';
 
@@ -33,13 +35,16 @@ export class SignupComponent implements OnInit {
             firstName: ['', Validators.required],
             lastName: ['', Validators.required],
             emailAddress: ['', Validators.required],
-            password: ['', [Validators.required, Validators.minLength(6)]]
+            passwords: this.formBuilder.group({
+              password: ['', [Validators.required, Validators.minLength(6)]],
+              confirmPassword: ['', [Validators.required]],
+          }, {validator: confirmPasswordValidator}),
         });
         console.log(this.loading);
     }
 
-    // convenience getter for easy access to form fields
     get f() { return this.registerForm.controls; }
+    get passwords() { return this.registerForm.get('passwords') as FormGroup; }
 
     onSubmit() {
         this.submitted = true;

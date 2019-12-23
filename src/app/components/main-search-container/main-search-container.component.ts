@@ -40,12 +40,14 @@ export class MainSearchContainerComponent implements OnInit {
 
       if( Object.entries(param).length > 0 ) {
 
-        let searchObject = {
-          SearchTerms: param.query,
-          Location: param.location
-        }
+        if(param.query && param.location) {
+          let searchObject = {
+            SearchTerms: param.query,
+            Location: param.location
+          }
 
-        this.getBusinesses(searchObject);
+          this.getBusinesses(searchObject);
+        }
       }
     });
 
@@ -88,6 +90,7 @@ export class MainSearchContainerComponent implements OnInit {
 
   getBusinesses(searchObject) {
 
+    console.log("This is where it gets called")
     this.yelpService.getRestaurants(searchObject).subscribe((result) => {
 
 
