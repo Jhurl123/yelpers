@@ -12,14 +12,11 @@ export class AuthenticationService {
     @Output() isLoggedIn = new EventEmitter<boolean>();
     public loggedIn: boolean = false;
     public currentUser: Observable<User>;
-    config = {
-      'apiUrl' : 'http://localhost:4000'
-    }
-
 
     constructor(private http: HttpClient) {
         this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
         if(this.currentUserValue) {
+          console.log(this.currentUserValue);
           this.loggedIn = true;
         }
         this.currentUser = this.currentUserSubject.asObservable();
@@ -30,18 +27,24 @@ export class AuthenticationService {
     }
 
     login(emailAddress, password) {
-      this.loggedIn = true;
-      let config = '/api/login';
 
-      console.log(emailAddress)
+      let config = '/api/login';
 
       return this.http.post<any>(config, { emailAddress, password })
           .pipe(map(user => {
+
+            console.log(user)
+            if(typeof user.response != 'undefined') {
+              return user
+            }
+            else {
               this.loggedIn = true;
+              console.log(user.response);
               // store user details and jwt token in local storage to keep user logged in between page refreshes
               localStorage.setItem('currentUser', JSON.stringify(user));
               this.currentUserSubject.next(user);
               return user;
+              }
           }));
     }
 

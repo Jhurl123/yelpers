@@ -4,7 +4,6 @@
   &_container {
     max-width: 480px;
     margin: 0 auto;
-    padding-top: 5em;
 
     @media (max-width: 768px) {
       padding: 3em 20px 0 20px;
@@ -38,4 +37,14 @@
     transition: box-shadow 0.5s, border-color 0.25s ease-in-out;
   }
 
+  .form-group button {
+    margin-top: 1.5em;
+  }
+
+}
+
+::ng-deep {
+  dp-date-picker {
+    width: 100%;
+  }
 }

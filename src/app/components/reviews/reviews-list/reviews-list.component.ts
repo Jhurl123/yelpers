@@ -14,13 +14,15 @@ import { Review } from '@/models/review/review.model';
 export class ReviewsListComponent implements OnInit {
 
   @Input('id') id: string;
+  @Input('reviews') reviews: Review[];
 
-  reviews: Review[] = [];
+  // Outline of component
+
 
   constructor( private yelpService: YelpService) { }
 
   ngOnInit() {
-
+    console.log(this.reviews)
   }
 
 }

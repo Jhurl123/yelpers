@@ -17,6 +17,8 @@ export class LoginComponent implements OnInit {
     loading = false;
     submitted = false;
     returnUrl: string;
+    alertType: string;
+    alertText: string;
 
     constructor(
         private formBuilder: FormBuilder,
@@ -33,13 +35,17 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
         this.loginForm = this.formBuilder.group({
-            emailAddress: ['', Validators.required],
+            emailAddress: ['', [Validators.required, Validators.email]],
             password: ['', Validators.required]
         });
 
-        console.log(JSON.parse(localStorage.getItem('users')));
         // get return url from route parameters or default to '/'
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+        console.log(this.route.snapshot)
+
+        if( this.returnUrl.indexOf('search-results')) {
+          this.returnUrl = '/home';
+        }
     }
 
     // convenience getter for easy access to form fields
@@ -48,19 +54,22 @@ export class LoginComponent implements OnInit {
     onSubmit() {
         this.submitted = true;
 
-        console.log("Form is resubmitted")
         // stop here if form is invalid
         if (this.loginForm.invalid) {
             return;
         }
 
-        this.loading = true;
         this.authenticationService.login(this.f.emailAddress.value, this.f.password.value)
           .subscribe(
               data => {
-                console.log(data)
-                //Remove this until auth is figured out
-                this.router.navigate([this.returnUrl]);
+
+                if(typeof data.response != 'undefined') {
+                  this.alertType = 'failure';
+                  this.alertText = data.message;
+                }
+                else {
+                  this.router.navigate([this.returnUrl]);
+                }
               },
               error => {
                   console.log(error);

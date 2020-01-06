@@ -33,13 +33,16 @@ router.post('/api/single-category', function( req, res) {
 
 router.post('/api/reviews', function( req, res) {
 
-  reviewScrape.scrapeReviews(req, res)
-  // yelp.getReviews(req, res);
+  //reviewScrape.scrapeReviews(req, res)
+   yelp.getReviews(req, res);
 });
 
 router.post('/api/login', function ( req, res) {
-
   pool.loginCheck(req, res);
+})
+
+router.post('/api/signup', function(req, res) {
+  pool.createUser(req, res);
 })
 
 

@@ -8,6 +8,7 @@ import { Lightbox } from 'ngx-lightbox';
 
 import { Business } from '@/models/business/busines.model';
 import { Review } from '@/models/review/review.model';
+import { UserReview } from '@/models/review/userReview.model';
 import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 
 @Component({

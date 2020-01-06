@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
 import { confirmPasswordValidator } from '@/validators/confirmPassword.validator';
+import { passwordFormatValidator } from '@/validators/formatPassword.validator';
 
 import { UserService} from '@/services/user.service';
 import { AuthenticationService } from '@/services/authentication.service';
@@ -17,6 +18,9 @@ export class SignupComponent implements OnInit {
     registerForm: FormGroup;
     loading = false;
     submitted = false;
+    datePickerConfig: any = {
+        format: 'DD-MM-YYYY'
+    };
 
     constructor(
         private formBuilder: FormBuilder,
@@ -32,15 +36,15 @@ export class SignupComponent implements OnInit {
 
     ngOnInit() {
         this.registerForm = this.formBuilder.group({
-            firstName: ['', Validators.required],
-            lastName: ['', Validators.required],
-            emailAddress: ['', Validators.required],
+            firstName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]],
+            lastName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]],
+            emailAddress: ['', [Validators.required, Validators.email]],
+            birthDate: '',
             passwords: this.formBuilder.group({
               password: ['', [Validators.required, Validators.minLength(6)]],
               confirmPassword: ['', [Validators.required]],
-          }, {validator: confirmPasswordValidator}),
+          }, {validator: [confirmPasswordValidator, passwordFormatValidator] }),
         });
-        console.log(this.loading);
     }
 
     get f() { return this.registerForm.controls; }
@@ -55,12 +59,23 @@ export class SignupComponent implements OnInit {
         }
 
         this.loading = true;
-        this.userService.register(this.registerForm.value)
+        this.userService.registerUser(this.registerForm.value)
             .pipe(first())
             .subscribe(
                 data => {
-                    alert("registration Successful");
+
+                  console.log(data)
+
+                  if(data) {
+
+                    alert("Registration Successful");
                     this.router.navigate(['/login']);
+                  }
+                  else {
+                    alert("That email already exists");
+                  }
+                    // This is here to stop buttonb from being disabled while testing user registration functionality
+                    this.loading = false;
                 },
                 error => {
                     alert(error);

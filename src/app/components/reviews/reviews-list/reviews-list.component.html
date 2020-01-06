@@ -1,1 +1,11 @@
-<p>reviews-list works!</p>
+<div class="c-review-list">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="c-review" *ngFor="let review of reviews.reviews">
+          {{ review.text }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

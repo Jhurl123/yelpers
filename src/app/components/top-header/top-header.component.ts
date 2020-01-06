@@ -28,7 +28,8 @@ export class TopHeaderComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-
+    console.log(this.loggedIn)
+    console.log(this.authService.currentUserValue);
     if (this.authService.currentUserValue) {
       this.loggedIn = this.authService.loggedIn;
     }
@@ -41,6 +42,8 @@ export class TopHeaderComponent implements OnInit {
         this.returnUrl = this.router.url;
       });
 
+      console.log(this.loggedIn)
+
   }
 
   ngOnChanges() {
@@ -49,8 +52,12 @@ export class TopHeaderComponent implements OnInit {
 
   // Determing if user is logged in to toggle button display
   checkLoginStatus() {
+    // TODO This must be refactore dto something more intelligent
     this.authService.currentUser.subscribe((result) => {
-      this.loggedIn = !this.loggedIn;
+      console.log(result)
+      if(result) {
+        this.loggedIn = !this.loggedIn;
+      }
     });
   }
 

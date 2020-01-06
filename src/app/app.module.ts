@@ -5,7 +5,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { JwtInterceptor } from '@/helpers/jwt.interceptor';
 import { ErrorInterceptor } from '@/helpers/error.interceptor';
-import { fakeBackendProvider } from './helpers/fake-backend';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -51,6 +50,8 @@ import { SlideshowModule } from 'ng-simple-slideshow';
 import { LightboxModule } from 'ngx-lightbox';
 import { ReviewsListComponent } from './components/reviews/reviews-list/reviews-list.component';
 import { ReviewComponent } from './components/reviews/review/review.component';
+import {DpDatePickerModule} from 'ng2-date-picker';
+import { AlertComponent } from './components/alert/alert.component';
 
 
 @NgModule({
@@ -87,7 +88,8 @@ import { ReviewComponent } from './components/reviews/review/review.component';
     SingleBusinessComponent,
     ImageSliderComponent,
     ReviewsListComponent,
-    ReviewComponent
+    ReviewComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
@@ -97,14 +99,13 @@ import { ReviewComponent } from './components/reviews/review/review.component';
     RatingModule,
     NgxPaginationModule,
     SlideshowModule,
-    LightboxModule
+    LightboxModule,
+    DpDatePickerModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    DataService,
-    // provider used to create fake backend
-    fakeBackendProvider
+    DataService
   ],
   bootstrap: [AppComponent]
 })
