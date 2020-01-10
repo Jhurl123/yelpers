@@ -1,6 +1,7 @@
 const Pool       = require('pg').Pool;
 const JWT        = require('jsonwebtoken');
 const bcrypt     = require('bcrypt');
+const xss        = require('xss');
 const saltRounds = 10;
 var exports  = module.exports = {};
 
@@ -23,12 +24,18 @@ pool.on('error', (err, client) => {
 // Function that confirms user information submitted in the login inputs
 exports.loginCheck = function(request, response) {
 
+  // TODO include XSS library to prevent XSS
+
   // user entered data from the login form
   let emailAddress = request.body.emailAddress;
+
   let pwd = request.body.password;
+  console.log(pwd)
+  console.log(xss(pwd))
+
 
   let userQuery = 'SELECT id, email, password FROM users WHERE email = $1 LIMIT 1';
-  let values = [emailAddress];
+  let values    = [emailAddress];
 
   // query the users info to ensure login
   pool.query(userQuery, values, (err, res) => {
@@ -56,6 +63,8 @@ exports.createUser = function (request, response) {
   let password = userInfo.passwords.password;
   let insertQuery = 'INSERT INTO users(first_name, last_name, email, birth_date, password) VALUES ($1, $2, $3, $4, $5)';
   let testQuery   = 'SELECT email FROM users WHERE email = $1';
+
+  // TODO include XSS library to prevent XSS
 
   bcrypt.hash(password, saltRounds, function(err, hash) {
 

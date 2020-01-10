@@ -60,10 +60,11 @@ export class MainSearchContainerComponent implements OnInit {
 
   onSubmit(form) {
 
+
     this.query = form.get('SearchTerms').value.replace(/<[^>]+>/g, '');
     this.location = form.get('Location').value.replace(/<[^>]+>/g, '');
 
-    let query = this.query,
+    let query = this.query.trim(),
         location = this.location;
 
 

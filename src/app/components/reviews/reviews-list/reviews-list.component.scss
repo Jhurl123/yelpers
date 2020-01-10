@@ -1,0 +1,27 @@
+@import '../../../../styles/variables';
+
+.c-review-list {
+
+  padding: 2rem 0;
+
+
+
+  &_container {
+    margin: 0 auto;
+    max-width: 768px;
+
+    @media screen and (max-width: 768px) {
+      padding: 0 1rem;
+    }
+  }
+
+
+  &_header {
+    color: $primary;
+    margin-bottom: 2rem;
+
+    @media screen and (max-width: 768px) {
+      margin-bottom: .75rem;
+    }
+  }
+}

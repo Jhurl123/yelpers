@@ -159,9 +159,11 @@ export class SingleBusinessComponent implements OnInit {
       }
 
       if(schedule.end[0] == 0 && schedule.end !== "Not Specified") {
+        console.log(schedule.end);
         schedule.end = this.addColon(schedule.end, 2);
       }
       else if(schedule.end !== "Not Specified") {
+
         schedule.end = this.addColon(schedule.end, 1);
       }
 
@@ -179,7 +181,6 @@ export class SingleBusinessComponent implements OnInit {
 
   convertTime24to12(time12h: string) {
     const time = time12h;
-
     let hours = time.substr(0,2);
     let minutes = time.substr(2,3);
 
@@ -190,19 +191,27 @@ export class SingleBusinessComponent implements OnInit {
     }
 
     hourNum -= 12;
-    return `${hourNum}:${minutes}`;
+    let hourString:string = '';
+    if(hourNum < 10) {
+      hourString = '0' + hourNum.toString();
+    }
+    else {
+      hourString = hourNum.toString();
+    }
+
+    return `${hourString}${minutes}`;
   }
 
   addColon(start: string, index: number) {
     if( index === 2) {
       let formattedString = start.substring(1, start.length);
+      console.log(formattedString)
       start = formattedString[0] + ':' + formattedString.substring(1);
     }
     else {
-
-      start = start.substring(0, 1) + ':' + start.substring(index +1);
+      start = start.substring(0, 2) + ':' + start.substring(index + 1);
     }
-
+    console.log(start)
       return start;
   }
 

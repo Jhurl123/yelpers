@@ -1,7 +1,8 @@
 // Type created to match what the db needs to submit to create review
 export interface UserReview {
-  user_id: string;
+  id: string;
+  user_name: string;
   business_id: string;
-  review_text: string;
+  text: string;
   rating: string;
 }

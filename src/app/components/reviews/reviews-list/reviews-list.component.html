@@ -1,11 +1,8 @@
-<div class="c-review-list">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="c-review" *ngFor="let review of reviews.reviews">
-          {{ review.text }}
-        </div>
-      </div>
+<div class="c-review-list" *ngIf="reviews">
+  <div class="col-xs-12 c-review-list_container">
+    <h2 class="c-review-list_header">Reviews</h2>
+    <div class="c-review" *ngFor="let review of reviews?.reviews">
+      <app-review [review]="review"></app-review>
     </div>
   </div>
 </div>
