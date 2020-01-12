@@ -77,8 +77,8 @@ export class SingleBusinessComponent implements OnInit {
       }
 
       // Get Reviews
-      this.yelpService.getReviews(id, result.url).subscribe((result: Review[]) => {
-        this.reviews = result;
+      this.yelpService.getReviews(id, result.url).subscribe((result) => {
+        this.reviews = result['reviews'];
 
       });
       this.business = result;

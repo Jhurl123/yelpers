@@ -7,7 +7,6 @@ var userDB = require('../database/users-db');
 var exports = module.exports = {};
 
 // server side
-// server side
 router.get('*', (req, res) => {
 
   //introduce error handling for
