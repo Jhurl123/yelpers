@@ -1,9 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-
-import { ViewportSizingService } from "@/services/viewport-sizing/viewport-sizing.service";
 import { AuthenticationService } from '@/services/authentication.service';
-` `
+
 @Component({
   selector: 'app-top-header',
   templateUrl: './top-header.component.html',
@@ -21,15 +19,12 @@ export class TopHeaderComponent implements OnInit {
 
 
   constructor(
-    private sizing: ViewportSizingService,
     private authService: AuthenticationService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
 
   ngOnInit() {
-    console.log(this.loggedIn)
-    console.log(this.authService.currentUserValue);
     if (this.authService.currentUserValue) {
       this.loggedIn = this.authService.loggedIn;
     }
@@ -42,7 +37,7 @@ export class TopHeaderComponent implements OnInit {
         this.returnUrl = this.router.url;
       });
 
-      console.log(this.loggedIn)
+
 
   }
 
@@ -54,7 +49,7 @@ export class TopHeaderComponent implements OnInit {
   checkLoginStatus() {
     // TODO This must be refactore dto something more intelligent
     this.authService.currentUser.subscribe((result) => {
-      console.log(result)
+
       if(result) {
         this.loggedIn = !this.loggedIn;
       }

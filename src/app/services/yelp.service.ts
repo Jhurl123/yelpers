@@ -28,8 +28,6 @@ export class YelpService {
   public getRestaurants(searchObject: any) {
     let config = `/api/search`;
 
-    console.log("sdfsdf");
-
     return this.http.post(config, searchObject, this.httpOptions)
     .pipe(
       catchError(this.handleError)
@@ -78,7 +76,7 @@ export class YelpService {
   }
 
   public getReviews(id, url) {
-    let config = '/api/reviews';
+    let config = '/api/scrape-reviews';
 
     let reviewObject = {
       id: id,

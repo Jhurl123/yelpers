@@ -35,13 +35,13 @@ import { TabsSectionComponent } from './components/tabs/tabs-section/tabs-sectio
 import { TabsBodyComponent } from './components/tabs/tabs-body/tabs-body.component';
 import { TabComponent } from './components/tabs/tab/tab.component';
 import { TwoColumnContentComponent } from './components/two-column-content/two-column-content.component';
-
-
-import { YelpService } from './services/yelp.service';
-import { DataService } from './services/data/data.service';
-import { CssSpinnerComponent } from './components/css-spinner/css-spinner.component';
-import { SingleBusinessComponent } from './views/single-business/single-business.component';
 import { ImageSliderComponent } from './components/image-slider/image-slider.component';
+import { SingleBusinessComponent } from './views/single-business/single-business.component';
+import { CssSpinnerComponent } from './components/css-spinner/css-spinner.component';
+
+// Import Providers
+import { DataService } from './services/data/data.service';
+import { AuthenticationService } from './services/authentication.service';
 
 // Dependencies
 import { RatingModule } from 'ng-starrating';
@@ -50,8 +50,9 @@ import { SlideshowModule } from 'ng-simple-slideshow';
 import { LightboxModule } from 'ngx-lightbox';
 import { ReviewsListComponent } from './components/reviews/reviews-list/reviews-list.component';
 import { ReviewComponent } from './components/reviews/review/review.component';
-import {DpDatePickerModule} from 'ng2-date-picker';
+import { DpDatePickerModule } from 'ng2-date-picker';
 import { AlertComponent } from './components/alert/alert.component';
+import { ReviewInputComponent } from './reviews/review-input/review-input.component';
 
 
 @NgModule({
@@ -89,7 +90,8 @@ import { AlertComponent } from './components/alert/alert.component';
     ImageSliderComponent,
     ReviewsListComponent,
     ReviewComponent,
-    AlertComponent
+    AlertComponent,
+    ReviewInputComponent
   ],
   imports: [
     BrowserModule,
@@ -105,7 +107,8 @@ import { AlertComponent } from './components/alert/alert.component';
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    DataService
+    DataService,
+    AuthenticationService
   ],
   bootstrap: [AppComponent]
 })

@@ -91,7 +91,6 @@ export class MainSearchContainerComponent implements OnInit {
 
   getBusinesses(searchObject) {
 
-    console.log("This is where it gets called")
     this.yelpService.getRestaurants(searchObject).subscribe((result) => {
 
 

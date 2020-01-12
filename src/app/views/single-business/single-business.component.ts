@@ -57,7 +57,7 @@ export class SingleBusinessComponent implements OnInit {
     // Set photos for slideshow and modal
     this.yelpService.getSingle(id).subscribe((result: Business) => {
 
-      console.log(result);
+
 
       if(result.hasOwnProperty('hours')) {
         this.formatHours(result.hours[0].open);
@@ -79,7 +79,7 @@ export class SingleBusinessComponent implements OnInit {
       // Get Reviews
       this.yelpService.getReviews(id, result.url).subscribe((result: Review[]) => {
         this.reviews = result;
-        console.log(this.reviews)
+
       });
       this.business = result;
     });
@@ -159,7 +159,7 @@ export class SingleBusinessComponent implements OnInit {
       }
 
       if(schedule.end[0] == 0 && schedule.end !== "Not Specified") {
-        console.log(schedule.end);
+
         schedule.end = this.addColon(schedule.end, 2);
       }
       else if(schedule.end !== "Not Specified") {
@@ -205,13 +205,13 @@ export class SingleBusinessComponent implements OnInit {
   addColon(start: string, index: number) {
     if( index === 2) {
       let formattedString = start.substring(1, start.length);
-      console.log(formattedString)
+
       start = formattedString[0] + ':' + formattedString.substring(1);
     }
     else {
       start = start.substring(0, 2) + ':' + start.substring(index + 1);
     }
-    console.log(start)
+
       return start;
   }
 
