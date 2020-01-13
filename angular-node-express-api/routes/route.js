@@ -10,7 +10,7 @@ var exports = module.exports = {};
 router.get('*', (req, res) => {
 
   //introduce error handling for
-  res.sendFile(path.join(__dirname, '../dist/index.html'));
+  res.sendFile(path.join(__dirname, '../../dist/index.html'));
 
 });
 
