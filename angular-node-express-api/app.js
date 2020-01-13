@@ -37,7 +37,7 @@ dotenv.config();
 // was listening on port 3000 before the change\
 //Change port back to port
 var port = process.env.PORT || 8080;
-app.listen(3000, function (){
+app.listen(port, function (){
   console.log(`Server listening on port ${process.env.PORT}`);
 });
 
