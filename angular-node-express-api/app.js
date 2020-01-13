@@ -30,7 +30,7 @@ const forceSSL = function() {
 // app.use(forceSSL());
 
 // Reenable when pushing to Heroku
-// app.use(express.static(path.join(__dirname, '../dist')));
+app.use(express.static(path.join(__dirname, '../dist')));
 
 // Allow node to read the .env file
 dotenv.config();
