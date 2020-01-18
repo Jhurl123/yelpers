@@ -1,7 +1,7 @@
 require('dotenv').config();
 
 module.exports = {
-  "migrationDirectory": "migrations",
+  "migrationDirectory": "./angular-node-express-api/migrations/",
   "driver": "pg",
   "host": process.env.PROD_DB_HOST,
   "port": process.env.PROD_DB_PORT,
