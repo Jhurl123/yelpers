@@ -11,8 +11,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "heroku-prebuild": "npm run migrate-production",
     "migrate-production": "postgrator --config postgrator-production-config.js",
-    "postinstall:": "ng build --aot --prod npm run migrate-production",
+    "postinstall:": "ng build --aot --prod",
     "migrate": "postgrator --config postgrator-config.js"
   },
   "engines": {

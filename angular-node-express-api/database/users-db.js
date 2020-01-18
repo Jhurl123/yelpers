@@ -7,11 +7,11 @@ const saltRounds = 10;
 var exports  = module.exports = {};
 
 const pool = new Pool({
-  user: process.env.LOCAL_DB_USER,
-  host: process.env.LOCAL_DB_HOST,
-  database: process.env.LOCAL_DB_NAME,
-  password: process.env.LOCAL_DB_PASS,
-  port: process.env.LOCAL_DB_PORT
+  user: process.env.PROD_DB_USER,
+  host: process.env.PRODL_DB_HOST,
+  database: process.env.PROD_DB_NAME,
+  password: process.env.PROD_DB_PASS,
+  port: process.env.PROD_DB_PORT
 });
 
 // Test
