@@ -57,12 +57,18 @@ export class SingleBusinessComponent implements OnInit {
     // Set photos for slideshow and modal
     this.yelpService.getSingle(id).subscribe((result: Business) => {
 
-
-
+      console.log(result)
       if(result.hasOwnProperty('hours')) {
-        this.formatHours(result.hours[0].open);
-      }
+        result.hours[0].open.forEach((day) => {
 
+          day.start    = this.convert24Hours(day.start)
+          day.end      = this.convert24Hours(day.end)
+          day.day_name = this.weekDays[day.day]['day_name'];
+          console.log(day)
+          this.hours.push(day)
+        });
+        console.log(this.hours)
+      }
       else {
         this.hours = null;
       }
@@ -91,15 +97,13 @@ export class SingleBusinessComponent implements OnInit {
   formatSlideshow(photos) {
 
     let modalArray: any[] = [];
-    photos.forEach( (photo, index) => {
-      let slide = {
-        url: photo,
-        src: photo,
-        thumb: photo,
-        clickAction: ()=> { this.popModal(index)}
-      }
-
-      modalArray.push(slide)
+    modalArray = photos.map( (photo, index) => {
+      return ({
+          url: photo,
+          src: photo,
+          thumb: photo,
+          clickAction: ()=> this.popModal(index)
+      })
     });
 
     return modalArray;
@@ -111,114 +115,20 @@ export class SingleBusinessComponent implements OnInit {
     this.lightbox.open(this.imgArray, index);
   }
 
-  // Format hour response
-  formatHours(hours) {
+  convert24Hours(time) {
 
-    hours.forEach( day => {
+    time = [time.slice(0, 2), ':', time.slice(2)].join('');
+    const timeString12hr = new Date('1970-01-01T' + time + 'Z')
+    .toLocaleTimeString(undefined,
+      {timeZone:'UTC',hour12:true,hour:'numeric',minute:'numeric'}
+    );
 
-      var schedule = day;
-
-      // schedule.start           = schedule.start === '0000' ? 'Not Specified' : schedule.start;
-      // schedule.end             = schedule.end === '0000' ? 'Not Specified' : schedule.end;
-
-      if(schedule.start === "0000") {
-        schedule.start = "Not Specified";
-      }
-      else {
-        schedule['start_mod'] = schedule.start < 1200 ? 'am' : 'pm';
-      }
-
-      if(schedule.end === "0000") {
-        schedule.end = "Not Specified"
-      }
-      else {
-        schedule['end_mod'] = schedule.end < 1200 ? 'am' : 'pm';
-      }
-
-      for(let i = 0; i < this.weekDays.length; i ++ ) {
-        let hours = this.weekDays;
-
-        if(schedule.day === hours[i]['day']) {
-          schedule['day_name'] = hours[i]['day_name']
-          break;
-        }
-      }
-
-      if(parseInt(schedule.end, 10) > 1200) {
-        schedule['end'] = this.convertTime24to12(schedule.end);
-      }
-      else {
-        schedule['end'] = schedule.end;
-      }
-
-      if(schedule.start[0] == 0) {
-        schedule.start = this.addColon(schedule.start, 2);
-      }
-      else {
-        schedule.start = this.addColon(schedule.start, 1);
-      }
-
-      if(schedule.end[0] == 0 && schedule.end !== "Not Specified") {
-
-        schedule.end = this.addColon(schedule.end, 2);
-      }
-      else if(schedule.end !== "Not Specified") {
-
-        schedule.end = this.addColon(schedule.end, 1);
-      }
-
-      schedule['start'] = schedule.start;
-
-      // if(i === hours.length -1) {
-      //   schedule['closed'] = true;
-      // }
-
-      this.hours.push(schedule);
-
-    });
-
-  }
-
-  convertTime24to12(time12h: string) {
-    const time = time12h;
-    let hours = time.substr(0,2);
-    let minutes = time.substr(2,3);
-
-    let hourNum: number = parseInt(hours, 10);
-
-    if (hours === '12') {
-      hours = '00';
-    }
-
-    hourNum -= 12;
-    let hourString:string = '';
-    if(hourNum < 10) {
-      hourString = '0' + hourNum.toString();
-    }
-    else {
-      hourString = hourNum.toString();
-    }
-
-    return `${hourString}${minutes}`;
-  }
-
-  addColon(start: string, index: number) {
-    if( index === 2) {
-      let formattedString = start.substring(1, start.length);
-
-      start = formattedString[0] + ':' + formattedString.substring(1);
-    }
-    else {
-      start = start.substring(0, 2) + ':' + start.substring(index + 1);
-    }
-
-      return start;
+    return timeString12hr
   }
 
   // Formats address for Google Maps API query string
   // Params: location Array
   formatLocation(location) {
-
     let queryString: string = '';
     location.forEach( location => {
       queryString += location.replace(/ /g, '+') + ",";
@@ -226,6 +136,4 @@ export class SingleBusinessComponent implements OnInit {
 
     return queryString;
   }
-
-
 }

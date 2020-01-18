@@ -2,16 +2,16 @@ const Pool       = require('pg').Pool;
 const JWT        = require('jsonwebtoken');
 const bcrypt     = require('bcrypt');
 const xss        = require('xss');
+require('dotenv').config();
 const saltRounds = 10;
 var exports  = module.exports = {};
 
-// TODO Insert these into the .env file to obscure from view
 const pool = new Pool({
-  user: 'admin',
-  host: 'localhost',
-  database: 'yelpers',
-  password: 'test',
-  port: 5432,
+  user: process.env.LOCAL_DB_USER,
+  host: process.env.LOCAL_DB_HOST,
+  database: process.env.LOCAL_DB_NAME,
+  password: process.env.LOCAL_DB_PASS,
+  port: process.env.LOCAL_DB_PORT
 });
 
 // Test
@@ -31,9 +31,6 @@ exports.loginCheck = function(request, response) {
   let emailAddress = request.body.emailAddress;
 
   let pwd = request.body.password;
-  console.log(pwd)
-  console.log(xss(pwd))
-
 
   let userQuery = 'SELECT id, email, password FROM users WHERE email = $1 LIMIT 1';
   let values    = [emailAddress];
@@ -72,10 +69,10 @@ exports.createUser = function (request, response) {
     // insert the hashed passsword into the user object
     userInfo.passwords = hash;
     let values = Object.values(userInfo);
+
     // if string is empty, replace with null
     values = values.map(x => x === '' ? null : x);
 
-    // TODO check if the user with the email already exists, then call the function to insert the user if it doesn't
     pool.query(testQuery, [userInfo.emailAddress], async (err, res) => {
 
       if(err) {
@@ -106,7 +103,6 @@ exports.createUser = function (request, response) {
         })
       }
   })
-
 
 
 }

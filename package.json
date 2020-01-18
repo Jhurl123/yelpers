@@ -11,7 +11,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall:": "ng build --aot --prod"
+    "migrate-production": "postgrator --config postgrator-production-config.js",
+    "postinstall:": "ng build --aot --prod npm run migrate-production",
+    "migrate": "postgrator --config postgrator-config.js"
   },
   "engines": {
     "node": "10.13.0",
@@ -65,6 +67,7 @@
     "karma-coverage-istanbul-reporter": "~2.0.1",
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^1.5.1",
+    "postgrator-cli": "^3.3.0",
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",

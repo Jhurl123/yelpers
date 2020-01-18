@@ -10,6 +10,9 @@ var exports = module.exports = {};
 router.get('*', (req, res) => {
 
   //introduce error handling for
+  // This is the correct directory for serving in production res.sendFile(path.join(__dirname, '../../dist/index.html'));
+
+  // This is the file for development
   res.sendFile(path.join(__dirname, '../../dist/index.html'));
 
 });
