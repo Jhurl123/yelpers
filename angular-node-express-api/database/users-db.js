@@ -11,7 +11,8 @@ const pool = new Pool({
   host: process.env.PRODL_DB_HOST,
   database: process.env.PROD_DB_NAME,
   password: process.env.PROD_DB_PASS,
-  port: process.env.PROD_DB_PORT
+  port: process.env.PROD_DB_PORT,
+
 });
 
 // Test
