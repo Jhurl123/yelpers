@@ -6,10 +6,20 @@ require('dotenv').config();
 const saltRounds = 10;
 var exports  = module.exports = {};
 
-const pool = new Pool({
-connectionString: process.env.DATABASE_URL
-});
+// const pool = new Pool({
+//   connectionString: process.env.DATABASE_URL
+// });
 
+const prefix = (process.env.NODE_ENV === 'production') ? 'PROD' : 'LOCAL';
+const pool = new Pool({
+  connectionString: (process.env.NODE_ENV === 'production') ? process.env.DATABASE_URL : '',
+  host: process.env[`${prefix}_DB_HOST`],
+  user: process.env[`${prefix}_DB_USER`],
+  password: process.env[`${prefix}_DB_PASS`],
+  port: process.env[`${prefix}_DB_PORT`],
+  database: process.env[`${prefix}_DB_NAME`]
+
+});
 // Test
 // the pool will emit an error on behalf of any idle clients
 // it contains if a backend error or network partition happens
