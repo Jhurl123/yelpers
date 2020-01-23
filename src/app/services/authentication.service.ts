@@ -28,7 +28,7 @@ export class AuthenticationService {
 
     login(emailAddress, password) {
 
-      let config = '/api/login';
+      let config = '/api/account/login';
 
       return this.http.post<any>(config, { emailAddress, password })
           .pipe(map(user => {

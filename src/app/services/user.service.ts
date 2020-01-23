@@ -17,7 +17,7 @@ export class UserService {
   }
 
   registerUser(userForm: User) {
-    let config = "/api/signup";
+    let config = "/api/account/signup";
 
     console.log(userForm);
     return this.http.post(config, userForm)

@@ -26,7 +26,7 @@ export class YelpService {
   }
 
   public getRestaurants(searchObject: any) {
-    let config = `/api/search`;
+    let config = `/api/yelp/search`;
 
     return this.http.post(config, searchObject, this.httpOptions)
     .pipe(
@@ -35,7 +35,7 @@ export class YelpService {
   }
 
   public getNearby(position) {
-    let config = '/api/random-nearby';
+    let config = '/api/yelp/random-nearby';
 
     let searchObject = {
       latitude: position.coords.latitude,
@@ -49,7 +49,7 @@ export class YelpService {
   }
 
   public getSingle(id) {
-    let config = '/api/single';
+    let config = '/api/yelp/single';
 
     let idObject = {
       id: id
@@ -63,7 +63,7 @@ export class YelpService {
 
   // TODO fix this method to accept multiple strings ie. Categories
   public getSingleCategory(id) {
-    let config = '/api/single';
+    let config = '/api/yelp/single';
 
     let idObject = {
       id: id
@@ -76,7 +76,7 @@ export class YelpService {
   }
 
   public getReviews(id, url) {
-    let config = '/api/scrape-reviews';
+    let config = '/api/yelp/scrape-reviews';
 
     let reviewObject = {
       id: id,

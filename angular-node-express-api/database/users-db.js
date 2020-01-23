@@ -1,42 +1,17 @@
-const Pool       = require('pg').Pool;
 const JWT        = require('jsonwebtoken');
 const bcrypt     = require('bcrypt');
 const xss        = require('xss');
+const pool       = require('./connect-db');
 require('dotenv').config();
 const saltRounds = 10;
-var exports  = module.exports = {};
-
-// const pool = new Pool({
-//   connectionString: process.env.DATABASE_URL
-// });
-
-const prefix = (process.env.NODE_ENV === 'production') ? 'PROD' : 'LOCAL';
-const pool = new Pool({
-  connectionString: (process.env.NODE_ENV === 'production') ? process.env.DATABASE_URL : '',
-  host: process.env[`${prefix}_DB_HOST`],
-  user: process.env[`${prefix}_DB_USER`],
-  password: process.env[`${prefix}_DB_PASS`],
-  port: process.env[`${prefix}_DB_PORT`],
-  database: process.env[`${prefix}_DB_NAME`]
-
-});
-// Test
-// the pool will emit an error on behalf of any idle clients
-// it contains if a backend error or network partition happens
-pool.on('error', (err, client) => {
-  console.error('Unexpected error on idle client', err)
-  process.exit(-1)
-})
+var exports      = module.exports = {};
 
 // Function that confirms user information submitted in the login inputs
 exports.loginCheck = function(request, response) {
 
-  // TODO include XSS library to prevent XSS
-
   // user entered data from the login form
-  let emailAddress = request.body.emailAddress;
-
-  let pwd = request.body.password;
+  let emailAddress = xss(request.body.emailAddress);
+  let pwd          = xss(request.body.password);
 
   let userQuery = 'SELECT id, email, password FROM users WHERE email = $1 LIMIT 1';
   let values    = [emailAddress];
@@ -47,7 +22,6 @@ exports.loginCheck = function(request, response) {
       console.log(err.stack);
     }
     else {
-
       if( res.rows[0] ) {
         var returnValue = res.rows[0];
         // Compare user entered password with hash from  the db
@@ -63,12 +37,10 @@ exports.loginCheck = function(request, response) {
 }
 
 exports.createUser = function (request, response) {
-  let userInfo = request.body;
-  let password = userInfo.passwords.password;
+  let userInfo = xss(request.body);
+  let password = xss(userInfo.passwords.password);
   let insertQuery = 'INSERT INTO users(first_name, last_name, email, birth_date, password) VALUES ($1, $2, $3, $4, $5)';
   let testQuery   = 'SELECT email FROM users WHERE email = $1';
-
-  // TODO include XSS library to prevent XSS
 
   bcrypt.hash(password, saltRounds, function(err, hash) {
 
