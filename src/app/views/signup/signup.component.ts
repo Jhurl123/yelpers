@@ -64,8 +64,6 @@ export class SignupComponent implements OnInit {
             .subscribe(
                 data => {
 
-                  console.log(data)
-
                   if(data) {
 
                     alert("Registration Successful");

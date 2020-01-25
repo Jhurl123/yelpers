@@ -12,14 +12,12 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   private handleError(error: any ='', context: any = '') {
-    console.log(error);
     return throwError(error);
   }
 
   registerUser(userForm: User) {
     let config = "/api/account/signup";
 
-    console.log(userForm);
     return this.http.post(config, userForm)
     .pipe(
       catchError(this.handleError)

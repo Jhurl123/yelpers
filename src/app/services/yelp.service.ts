@@ -21,7 +21,6 @@ export class YelpService {
   ) { }
 
   private handleError(error: any ='', context: any = '') {
-    console.log(error);
     return throwError(error);
   }
 

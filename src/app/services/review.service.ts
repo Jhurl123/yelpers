@@ -24,7 +24,6 @@ export class ReviewService {
   }
 
   private handleError(error: any ='', context: any = '') {
-    console.log(error);
     return throwError(error);
   }
 
@@ -34,9 +33,8 @@ export class ReviewService {
   // Query reviews from the database - Yelp service gets the yelp reviews
   public postReview(review: UserReview) {
     let config = '/api/reviews/create';
+
     if (this.currentUser && this.currentUser.token) {
-      console.log(review);
-      console.log(this.currentUser);
       return this.http.post(config, review)
       .pipe(
         catchError(this.handleError)

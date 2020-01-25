@@ -35,8 +35,6 @@ export class ReviewInputComponent implements OnInit {
 
     this.currentUser = this.authService.currentUserValue;
 
-    console.log(this.currentUser)
-
     this.reviewForm = this.formBuilder.group({
       reviewText: ['', Validators.required]
     });
@@ -68,7 +66,6 @@ export class ReviewInputComponent implements OnInit {
     }
 
     if(this.reviewForm.get('reviewText').errors) {
-      console.log("Form still has errors");
       this.setAlert(false, "Please enter some text for your review")
       return;
     }
@@ -79,8 +76,6 @@ export class ReviewInputComponent implements OnInit {
       rating: this.reviewRating,
       user: JSON.parse(localStorage.getItem('currentUser'))
     })
-
-    console.log(this.userReview)
 
     this.reviewService.postReview(this.userReview)
     .subscribe(result => {

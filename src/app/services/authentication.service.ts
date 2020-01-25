@@ -16,7 +16,6 @@ export class AuthenticationService {
     constructor(private http: HttpClient) {
         this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
         if(this.currentUserValue) {
-          console.log(this.currentUserValue);
           this.loggedIn = true;
         }
         this.currentUser = this.currentUserSubject.asObservable();
@@ -33,7 +32,6 @@ export class AuthenticationService {
       return this.http.post<any>(config, { emailAddress, password })
           .pipe(map(user => {
 
-            console.log(user)
             if(typeof user.response != 'undefined') {
               return user
             }

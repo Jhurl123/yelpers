@@ -60,7 +60,6 @@ exports.createUser = function (request, response) {
         let rows = res.rows[0];
 
         if(rows) {
-          console.log("this user already exists!");
           response.send(false);
         }
         else {

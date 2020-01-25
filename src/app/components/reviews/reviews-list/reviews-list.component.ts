@@ -25,10 +25,4 @@ export class ReviewsListComponent implements OnInit {
     console.log(this.reviews)
   }
 
-  ngAfterViewInit() {
-    setTimeout(()=> {
-      console.log(this.reviews);
-    }, 500);
-  }
-
 }

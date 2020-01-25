@@ -28,7 +28,6 @@ exports.prepareReview = (req, res) => {
   review.user = review.user.id;
   review.text = xss(review.text)
 
-  console.log( verified );
   if(verified.data === 'foobar') {
     insertReview(review)
   }
@@ -44,13 +43,17 @@ var insertReview = (review) => {
   let { business_id, text, rating, user } = review;
   let reviewArray = [user, business_id, text, rating];
 
-  console.log(reviewArray)
   // let insertQuery = 'INSERT INTO users(first_name, last_name, email, birth_date, password) VALUES ($1, $2, $3, $4, $5)';
   let statement = 'INSERT INTO reviews(user_id, business_id, review_text, rating) VALUES ($1, $2, $3, $4)';
 
   pool.query(statement, reviewArray, (err, res) => {
     console.log(res)
-    console.log( err );
+    if(res.rowCount == 1) {
+      console.log("This shit is inserted boyyy");
+    }
+    if(err) {
+      res.send(err.error);
+    }
   })
 }
 
