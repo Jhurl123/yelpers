@@ -8,8 +8,6 @@ import { Lightbox } from 'ngx-lightbox';
 
 import { Business } from '@/models/business/busines.model';
 import { Review } from '@/models/review/review.model';
-import { UserReview } from '@/models/review/userReview.model';
-import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 
 @Component({
   selector: 'app-single-business',
@@ -57,17 +55,16 @@ export class SingleBusinessComponent implements OnInit {
     // Set photos for slideshow and modal
     this.yelpService.getSingle(id).subscribe((result: Business) => {
 
-      console.log(result)
       if(result.hasOwnProperty('hours')) {
         result.hours[0].open.forEach((day) => {
 
           day.start    = this.convert24Hours(day.start)
           day.end      = this.convert24Hours(day.end)
           day.day_name = this.weekDays[day.day]['day_name'];
-          console.log(day)
+
           this.hours.push(day)
         });
-        console.log(this.hours)
+
       }
       else {
         this.hours = null;
@@ -76,6 +73,8 @@ export class SingleBusinessComponent implements OnInit {
       if(result.hasOwnProperty('photos')) {
         this.imgArray =  this.formatSlideshow(result.photos);
       }
+
+
 
       if(result.hasOwnProperty('location')) {
           let mapLocation = this.apiUrl.concat(this.formatLocation(result.location.display_address));
@@ -95,6 +94,14 @@ export class SingleBusinessComponent implements OnInit {
 
   // Format photos to be usable by slideshow
   formatSlideshow(photos) {
+
+    if(photos.length === 0) {
+      let photo = '../../../assets/images/image-placeholder.jpg';
+      return ([{
+        url: photo,
+        src: photo
+      }])
+    }
 
     let modalArray: any[] = [];
     modalArray = photos.map( (photo, index) => {

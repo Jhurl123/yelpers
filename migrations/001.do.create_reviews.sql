@@ -3,5 +3,5 @@ CREATE TABLE reviews (
     business_id VARCHAR(100) NOT NULL,
     review_text VARCHAR(2500),
     rating DECIMAL(5,2),
-    tine_created timestamp
+    time_created timestamp
 );

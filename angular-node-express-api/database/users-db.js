@@ -98,9 +98,8 @@ var compareCallback = function(returnValue, response, err, res)  {
 
       // TODO Store secret key in environment variable
       let token = JWT.sign({
-        exp: Math.floor(Date.now() / 1000) + (60 * 60),
         data: 'foobar'
-      }, 'secret');
+      }, process.env.JWT_SECRET);
 
       returnValue.token = token;
       response.send(returnValue);

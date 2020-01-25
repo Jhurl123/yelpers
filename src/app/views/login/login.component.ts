@@ -41,11 +41,7 @@ export class LoginComponent implements OnInit {
 
         // get return url from route parameters or default to '/'
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-        console.log(this.route.snapshot)
 
-        if( this.returnUrl.indexOf('search-results')) {
-          this.returnUrl = '/home';
-        }
     }
 
     // convenience getter for easy access to form fields
@@ -69,6 +65,7 @@ export class LoginComponent implements OnInit {
                 }
                 else {
                   this.router.navigate([this.returnUrl]);
+
                 }
               },
               error => {

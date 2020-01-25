@@ -580,7 +580,7 @@ module.exports = "<p>two-column-content works!</p>\n"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"c-input\">\n  <form [formGroup]=\"reviewForm\" (ngSubmit)=\"onSubmit()\">\n    <h4 class=\"c-input_header\">Write A Review </h4>\n    <div class=\"c-input_rating-container\">\n      <star-rating\n        value=\"{{ reviewRating }}\"\n        checkedcolor=\"#FEC011\"\n        uncheckedcolor=\"#e7e2e2\"\n        size=\"24px\"\n        readonly=\"false\"\n        (rate)=\"onRate($event)\"\n      ></star-rating>\n      <span> - Select your rating</span>\n    </div>\n    <textarea\n      formControlName=\"reviewText\"\n      placeholder=\"Tell other consumers about your experience!\"\n      rows=\"8\"></textarea>\n    <app-alert [hidden]=\"submitSuccess\" [alertType]=\"alertType\" [alertText]=\"alertText\"></app-alert>\n    <button class=\"button alt\" type=\"submit\">Submit</button>\n  </form>\n</div>\n"
+module.exports = "<div class=\"c-input\" *ngIf=\"currentUser\">\n  <form [formGroup]=\"reviewForm\" (ngSubmit)=\"onSubmit()\">\n    <h4 class=\"c-input_header\">Write A Review </h4>\n    <div class=\"c-input_rating-container\">\n      <star-rating\n        value=\"{{ reviewRating }}\"\n        checkedcolor=\"#FEC011\"\n        uncheckedcolor=\"#e7e2e2\"\n        size=\"24px\"\n        readonly=\"false\"\n        (rate)=\"onRate($event)\"\n      ></star-rating>\n      <span> - Select your rating</span>\n    </div>\n    <textarea\n      formControlName=\"reviewText\"\n      placeholder=\"Tell other consumers about your experience!\"\n      rows=\"8\"></textarea>\n    <app-alert [hidden]=\"submitSuccess\" [alertType]=\"alertType\" [alertText]=\"alertText\"></app-alert>\n    <button class=\"button alt\" type=\"submit\">Submit</button>\n  </form>\n</div>\n"
 
 /***/ }),
 
@@ -2534,14 +2534,18 @@ var tslib_1 = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.j
 var core_1 = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 var forms_1 = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 var review_service_1 = __webpack_require__(/*! ../../services/review.service */ "./src/app/services/review.service.ts");
+var authentication_service_1 = __webpack_require__(/*! ../../services/authentication.service */ "./src/app/services/authentication.service.ts");
 var ReviewInputComponent = /** @class */ (function () {
-    function ReviewInputComponent(formBuilder, reviewService) {
+    function ReviewInputComponent(formBuilder, reviewService, authService) {
         this.formBuilder = formBuilder;
         this.reviewService = reviewService;
+        this.authService = authService;
         this.submitSuccess = false;
         this.alertType = false;
     }
     ReviewInputComponent.prototype.ngOnInit = function () {
+        this.currentUser = this.authService.currentUserValue;
+        console.log(this.currentUser);
         this.reviewForm = this.formBuilder.group({
             reviewText: ['', forms_1.Validators.required],
             reviewRating: ['', forms_1.Validators.required]
@@ -2550,8 +2554,8 @@ var ReviewInputComponent = /** @class */ (function () {
     ReviewInputComponent.prototype.onRate = function (event) {
         this.reviewRating = event.newValue;
     };
-    // formControlNAme cannpt be used on a component, so I will read the value of it
-    // as a prop on the component and set its value dynamically in this file
+    ReviewInputComponent.prototype.addJWT = function () {
+    };
     ReviewInputComponent.prototype.onSubmit = function () {
         this.reviewForm.controls['reviewRating'].setValue(this.reviewRating);
         console.log(this.reviewForm.value);
@@ -2562,7 +2566,8 @@ var ReviewInputComponent = /** @class */ (function () {
     };
     ReviewInputComponent.ctorParameters = function () { return [
         { type: forms_1.FormBuilder },
-        { type: review_service_1.ReviewService }
+        { type: review_service_1.ReviewService },
+        { type: authentication_service_1.AuthenticationService }
     ]; };
     ReviewInputComponent = tslib_1.__decorate([
         core_1.Component({
@@ -2765,7 +2770,7 @@ var ReviewService = /** @class */ (function () {
     // Error handling
     // Query reviews from the database - Yelp service gets the yelp reviews
     ReviewService.prototype.postReview = function (review) {
-        var config = '/api/post-review';
+        var config = '/api/reviews/create';
         console.log('postReview Ran');
         if (this.currentUser && this.currentUser.token) {
             console.log(review);

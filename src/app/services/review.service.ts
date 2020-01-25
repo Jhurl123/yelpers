@@ -4,7 +4,8 @@ import { throwError, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 import { AuthenticationService } from './authentication.service';
-import { UserReview } from '../models/review/userReview.model';
+import { UserReview } from '../models/review/user-review.model';
+
 import { User } from '../models/user/user';
 
 @Injectable({
@@ -32,10 +33,7 @@ export class ReviewService {
   // Error handling
   // Query reviews from the database - Yelp service gets the yelp reviews
   public postReview(review: UserReview) {
-    let config = '/api/post-review';
-
-    console.log('postReview Ran')
-
+    let config = '/api/reviews/create';
     if (this.currentUser && this.currentUser.token) {
       console.log(review);
       console.log(this.currentUser);

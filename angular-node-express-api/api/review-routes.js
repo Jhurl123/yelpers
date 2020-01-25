@@ -5,7 +5,7 @@ const reviewsDB = require('../database/reviews-db');
 // api/reviews/
 router.post('/create' , (req, res) => {
 
-  reviewsDB.insertReview(req, res);
+  reviewsDB.prepareReview(req, res);
 
 })
 
