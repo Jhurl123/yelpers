@@ -11,17 +11,6 @@ var exports      = module.exports = {};
 // Insert the review
 // Send error if error
 exports.prepareReview = (req, res) => {
-  /*
-
-  {
-    business_id: "iLbC7CRoNRmgLGoZ2WDeLA",
-    text: "fsdfsd",
-    rating: "3",
-    user: {…}}
-    user: id: 4email: "sgtbaker99@gmail.com"
-    password: "$2b$10$Ub0sf2uve2v1qsD1uSlmu.C4X6no9TuVypzz1kAhzG3j827mX87lO"
-    token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1Nzk5MTM1OTYsImRhdGEiOiJmb29iYXIiLCJpYXQiOjE1Nzk5MDk5OTZ9.Gl0aUhteVwurncVvCI8m_L_5gcxI8yOwFNJ0_ynFqNE"__proto__: Object__proto__: Object
-*/
 
   let review = req.body;
   let verified = JWT.verify(review.user.token, process.env.JWT_SECRET );
@@ -37,6 +26,13 @@ exports.prepareReview = (req, res) => {
 
 }
 
+exports.getAllReviews = (req, res) => {
+
+  let { business_id } = req.body;
+  getAllReviews(business_id, res);
+
+}
+
 // Params - review object
 var insertReview = (review, response) => {
 
@@ -49,11 +45,30 @@ var insertReview = (review, response) => {
   pool.query(statement, reviewArray, (err, res) => {
     console.log(res)
     if(res.rowCount == 1) {
-      console.log("This shit is inserted boyyy");
       response.send(review)
     }
     if(err) {
       response.send(err.error);
+    }
+  })
+}
+
+var getAllReviews = (id, response) => {
+  console.log(id)
+
+  let query = 'SELECT * FROM reviews WHERE business_id = $1';
+
+  pool.query(query, [id], (err, res) => {
+
+    if( err ) {
+      console.log(err);
+    }
+
+    if(res.rows.length > 0) {
+      response.send(res.rows);
+    }
+    else {
+      response.send(err);
     }
   })
 }

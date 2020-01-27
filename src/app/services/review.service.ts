@@ -27,10 +27,7 @@ export class ReviewService {
     return throwError(error);
   }
 
-  // What reveiw service needs to do
-  // Post reviews = Need to pass the JWT along with the request so that it can be validated by the server
-  // Error handling
-  // Query reviews from the database - Yelp service gets the yelp reviews
+  // Hit the route to insert review to database
   public postReview(review: UserReview) {
     let config = '/api/reviews/create';
 
@@ -42,6 +39,17 @@ export class ReviewService {
     } else {
       return of();
     }
+  }
+
+  public getUserReviews(business_id: string) {
+    let config = '/api/reviews/getAll';
+
+    console.log(config)
+
+    return this.http.post(config, {business_id} )
+    .pipe(
+      catchError(this.handleError)
+    );
   }
 
 }

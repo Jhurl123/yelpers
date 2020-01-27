@@ -35,14 +35,13 @@ export class ReviewComponent implements OnInit {
   formatReviewUser() {
     let { user } = this.review;
     if ( user.first_name && user.last_name ) {
-      this.review.user.name = user.first_name + ' ' + user.last_name.slice(0,1);
+      this.review.user.name = user.first_name + ' ' + user.last_name.slice(0,1) + '.';
     }
 
   }
 
   addCurrentTime() {
-
     let time = new Date();
-
+    this.review.time_created = time;
   }
 }

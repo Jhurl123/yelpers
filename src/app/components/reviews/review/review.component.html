@@ -10,7 +10,7 @@
     </div>
     <div class="c-review_body">
       <star-rating value=" {{review.rating}}" checkedcolor="#FEC011" uncheckedcolor="#e7e2e2" size="24px"  readonly="true"></star-rating>
-      <span>{{ review.time_created }}</span>
+      <span>{{ review.time_created | date }}</span>
       <div class="c-review_text">
         {{ review.text }}
       </div>

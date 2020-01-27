@@ -23,8 +23,6 @@ app.listen(port, function (){
   console.log(`Server listening on port ${process.env.PORT}`);
 });
 
-// the pool will emit an error on behalf of any idle clients
-// it contains if a backend error or network partition happens
 app.use('/api/yelp', yelpRouter );
 app.use('/api/account', accountRouter);
 app.use('/api/reviews', reviewRouter);
