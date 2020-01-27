@@ -29,7 +29,7 @@ exports.prepareReview = (req, res) => {
   review.text = xss(review.text)
 
   if(verified.data === 'foobar') {
-    insertReview(review)
+    insertReview(review, res)
   }
   else {
     res.send('500 Error boiz');
@@ -38,7 +38,7 @@ exports.prepareReview = (req, res) => {
 }
 
 // Params - review object
-var insertReview = (review) => {
+var insertReview = (review, response) => {
 
   let { business_id, text, rating, user } = review;
   let reviewArray = [user, business_id, text, rating];
@@ -50,9 +50,10 @@ var insertReview = (review) => {
     console.log(res)
     if(res.rowCount == 1) {
       console.log("This shit is inserted boyyy");
+      response.send(review)
     }
     if(err) {
-      res.send(err.error);
+      response.send(err.error);
     }
   })
 }

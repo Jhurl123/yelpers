@@ -5,7 +5,7 @@
       <app-review [review]="review"></app-review>
     </div>
     <div class="c-reviews-list_input">
-      <app-review-input></app-review-input>
+      <app-review-input (newReview)="addReview($event)"></app-review-input>
     </div>
   </div>
 </div>

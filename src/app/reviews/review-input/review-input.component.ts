@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { StarRatingComponent } from 'ng-starrating';
 import { ActivatedRoute, ParamMap } from '@angular/router';
@@ -15,6 +15,8 @@ import { UserReview } from '@/models/review/user-review.model';
   styleUrls: ['./review-input.component.scss']
 })
 export class ReviewInputComponent implements OnInit {
+
+  @Output() newReview = new EventEmitter<{review: UserReview}>();
 
   reviewForm: FormGroup;
   reviewRating: string;
@@ -72,7 +74,7 @@ export class ReviewInputComponent implements OnInit {
 
     this.userReview = new UserReview({
       business_id: this.businessId,
-      text: this.reviewForm.get('reviewText').value,
+      text: this.reviewForm.get('reviewText').value.trim(),
       rating: this.reviewRating,
       user: JSON.parse(localStorage.getItem('currentUser'))
     })
@@ -80,9 +82,18 @@ export class ReviewInputComponent implements OnInit {
     this.reviewService.postReview(this.userReview)
     .subscribe(result => {
       this.setAlert(true,'');
-      console.log(result)
+      console.log("This is a success")
+      this.addReview(result);
+
     })
 
+  }
+
+  addReview(review) {
+    console.log(review)
+    this.newReview.emit({
+      review: review
+    });
   }
 
 }

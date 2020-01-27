@@ -13,7 +13,7 @@ exports.loginCheck = function(request, response) {
   let emailAddress = xss(request.body.emailAddress);
   let pwd          = xss(request.body.password);
 
-  let userQuery = 'SELECT id, email, password FROM users WHERE email = $1 LIMIT 1';
+  let userQuery = 'SELECT id, first_name, last_name, email, password FROM users WHERE email = $1 LIMIT 1';
   let values    = [emailAddress];
 
   // query the users info to ensure login

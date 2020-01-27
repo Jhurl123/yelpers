@@ -22,7 +22,11 @@ export class ReviewsListComponent implements OnInit {
   constructor( private yelpService: YelpService) { }
 
   ngOnInit() {
-    console.log(this.reviews)
   }
 
+  addReview(newReview) {
+    let { review } = newReview
+    review.user = JSON.parse(localStorage.getItem('currentUser'));
+    this.reviews.push(review)
+  }
 }
