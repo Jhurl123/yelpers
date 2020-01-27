@@ -46,7 +46,7 @@ export class ReviewService {
 
     console.log(config)
 
-    return this.http.post(config, {business_id} )
+    return this.http.post(config, {business_id})
     .pipe(
       catchError(this.handleError)
     );

@@ -16,7 +16,7 @@ export class UserService {
   }
 
   registerUser(userForm: User) {
-    let config = "/api/account/signup";
+    let config = "/api/user/signup";
 
     return this.http.post(config, userForm)
     .pipe(
@@ -24,5 +24,16 @@ export class UserService {
     )
 
   }
+
+  getuser(user_id: string) {
+    let config = 'api/user/getUser';
+
+    return this.http.post(config, {user_id})
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
+
+
 }
 

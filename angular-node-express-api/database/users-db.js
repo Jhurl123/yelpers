@@ -84,6 +84,30 @@ exports.createUser = function (request, response) {
 
 }
 
+exports.getUser = (request, response) => {
+  let { user_id } = request.body;
+
+  console.log(user_id  + " Is the user id")
+
+  querySingleUser(user_id, response);
+
+}
+
+var querySingleUser = (id, response) => {
+
+  // if (!id) return;
+  let query = 'SELECT * FROM users WHERE id = $1 LIMIT 1';
+
+  pool.query(query, [id], (err, res) => {
+
+    if(res.rows.length > 0) {
+      response.send(res.rows[0])
+    }
+    else {
+      response.send(err)
+    }
+  })
+}
 // TODO Make a delete user function
 
 // Function to send message based on result of callback

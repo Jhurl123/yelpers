@@ -12,7 +12,12 @@
       <star-rating value=" {{review.rating}}" checkedcolor="#FEC011" uncheckedcolor="#e7e2e2" size="24px"  readonly="true"></star-rating>
       <span>{{ review.time_created | date }}</span>
       <div class="c-review_text">
-        {{ review.text }}
+        <ng-template [ngIf]="review.text" [ngIfElse]="user_review">
+          {{ review.text }}
+        </ng-template>
+        <ng-template #user_review>
+          {{ review.review_text }}
+        </ng-template>
       </div>
     </div>
   </div>

@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 const routes = require('./api/route');
 const yelpRouter = require('./api/yelp-routes');
-const accountRouter = require('./api/account-routes');
+const userRouter = require('./api/user-routes');
 const reviewRouter = require('./api/review-routes');
 const dotenv = require('dotenv').config();
 
@@ -24,7 +24,7 @@ app.listen(port, function (){
 });
 
 app.use('/api/yelp', yelpRouter );
-app.use('/api/account', accountRouter);
+app.use('/api/user', userRouter);
 app.use('/api/reviews', reviewRouter);
 app.use( routes);
 
