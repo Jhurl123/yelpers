@@ -58,7 +58,6 @@ export class SearchResultsComponent implements OnInit {
 
       this.showSpinner = true;
       if( result === null ) {
-        console.log("this is null");
         this.noResults = true;
         this.showSpinner = false;
       }
@@ -73,8 +72,6 @@ export class SearchResultsComponent implements OnInit {
   }
 
   pageChanged(event) {
-    console.log(event)
-    console.log(this.p)
     this.p = event;
   }
 

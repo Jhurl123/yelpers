@@ -45,6 +45,7 @@ exports.scrapeReviews = function(req, res) {
 function extractRating(ratingObject) {
   let ariaLabel = $(ratingObject).attr('aria-label')
 
-
-  return ariaLabel.substr(0,1);
+  if(ariaLabel) {
+    return ariaLabel.substr(0,1);
+  }
 }

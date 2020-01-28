@@ -3,23 +3,37 @@ import { HttpClient } from '@angular/common/http';
 
 import { User } from '@/models/user/user';
 
+import { throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+
+
 @Injectable({ providedIn: 'root' })
 export class UserService {
-    constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  config = {
-      'apiUrl' : 'http://localhost:4200'
-    }
+  private handleError(error: any ='', context: any = '') {
+    return throwError(error);
+  }
 
-    getAll() {
-        return this.http.get<User[]>(`${this.config.apiUrl}/users`);
-    }
+  registerUser(userForm: User) {
+    let config = "/api/user/signup";
 
-    register(user: User) {
-        return this.http.post(`${this.config.apiUrl}/users/register`, user);
-    }
+    return this.http.post(config, userForm)
+    .pipe(
+      catchError(this.handleError)
+    )
 
-    delete(id: number) {
-        return this.http.delete(`${this.config.apiUrl}/users/${id}`);
-    }
+  }
+
+  getuser(user_id: string) {
+    let config = 'api/user/getUser';
+
+    return this.http.post(config, {user_id})
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
+
+
 }
+

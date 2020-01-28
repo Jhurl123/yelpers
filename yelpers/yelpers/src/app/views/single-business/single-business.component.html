@@ -33,13 +33,13 @@
 
     <div class="columns medium-6 small-12 v-single_info">
       <div class="columns small-12">
-        <h5 class="v-single_hours-head">
+        <h5 class="v-single_hours-head" *ngIf="hours">
           Hours
         </h5>
         <h5
           class="v-single_open"
-          [ngClass]="{'is_open': business.hours?.is_open_now }"
-          [innerHTML]="business.hours?.is_open_now ? '- Open' : '- Closed'"
+          [ngClass]="{'is_open': business.hours[0]?.is_open_now }"
+          [innerHTML]="business.hours[0]?.is_open_now ? '- Open' : '- Closed'"
           *ngIf="hours"
         >
         </h5>
@@ -106,7 +106,7 @@
       <div class="columns small-12">
         <div class="v-single_reviews-container">
 
-          <app-reviews-list [id]="business.id"></app-reviews-list>
+          <app-reviews-list [id]="business.id" [reviews]="reviews"></app-reviews-list>
         </div>
       </div>
     </div>

@@ -13,7 +13,8 @@
   color: green;
   transform: translateX(-100%);
   z-index: 1000;
-
+  height: 100vh;
+  overflow-y: auto;
   &--open {
     transform: translateX(0%);
   }

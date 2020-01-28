@@ -40,12 +40,14 @@ export class MainSearchContainerComponent implements OnInit {
 
       if( Object.entries(param).length > 0 ) {
 
-        let searchObject = {
-          SearchTerms: param.query,
-          Location: param.location
-        }
+        if(param.query && param.location) {
+          let searchObject = {
+            SearchTerms: param.query,
+            Location: param.location
+          }
 
-        this.getBusinesses(searchObject);
+          this.getBusinesses(searchObject);
+        }
       }
     });
 
@@ -58,10 +60,11 @@ export class MainSearchContainerComponent implements OnInit {
 
   onSubmit(form) {
 
+
     this.query = form.get('SearchTerms').value.replace(/<[^>]+>/g, '');
     this.location = form.get('Location').value.replace(/<[^>]+>/g, '');
 
-    let query = this.query,
+    let query = this.query.trim(),
         location = this.location;
 
 

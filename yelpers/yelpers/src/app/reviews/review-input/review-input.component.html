@@ -1,0 +1,35 @@
+<div class="c-input" *ngIf="currentUser; else notLoggedIn">
+  <form [formGroup]="reviewForm" (ngSubmit)="onSubmit()">
+    <h4 class="c-input_header">Write A Review </h4>
+    <div class="c-input_rating-container">
+      <star-rating
+        value="{{ reviewRating }}"
+        checkedcolor="#FEC011"
+        uncheckedcolor="#e7e2e2"
+        size="24px"
+        readonly="false"
+        (rate)="onRate($event)"
+      ></star-rating>
+      <span> - Select your rating</span>
+    </div>
+    <textarea
+      formControlName="reviewText"
+      name="reviewText"
+      id="reviewText"
+      placeholder="Tell other consumers about your experience!"
+      rows="8"></textarea>
+
+    <app-alert [hidden]="submitFailure" [alertType]="submitFailure" [alertText]="alertText"></app-alert>
+
+    <button class="button alt" type="submit">Submit</button>
+  </form>
+</div>
+<ng-template #notLoggedIn>
+  <h4>
+    Please
+    <a routerLink="/login" [queryParams]="{returnUrl: '/business/' + businessId }">
+      Log in
+    </a>
+    to post a comment
+  </h4>
+</ng-template>
