@@ -1,0 +1,33 @@
+@import '../../../styles/variables';
+
+.c-input {
+  textarea {
+    -webkit-box-shadow: inset 2px 2px 2px 0px #dddddd;
+    -moz-box-shadow: inset 2px 2px 2px 0px #dddddd;
+    box-shadow: inset 2px 2px 2px 0px #dddddd;
+    font-size: 1.15rem;
+    width: 100%;
+    margin-top: .75rem;
+  }
+
+  h4 {
+    color: $primary;
+    font-size: 1.6em;
+  }
+
+  ::ng-deep {
+    star-rating > div {
+      display: inline;
+    }
+  }
+
+  &_rating-container {
+    display: flex;
+    align-items: center;
+
+    span {
+      font-size: 14px;
+      color: $primary;
+    }
+  }
+}

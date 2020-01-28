@@ -1,0 +1,67 @@
+@import '../../../styles/variables';
+
+.c-search-input {
+
+  height: 100%;
+
+  @media screen and (max-width: 768px) {
+    margin-bottom: 1em;
+
+  }
+
+  &_inner {
+    background-color: $white;
+    display: flex;
+    justify-content: flex-start;
+    max-height: 40px;
+    border-radius: 4px;
+
+    div {
+      width: 100%;
+    }
+  }
+
+  input {
+    background: none;
+    border: none;
+    box-shadow: none;
+    font-size: 1em;
+    padding: 0;
+    padding-left: .85rem;
+    color: #757373e8;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  label {
+    width: 25%;
+    display: flex;
+    font-size: 1em;
+    align-items: center;
+    justify-content: center;
+    color: #757373e8;
+    position: relative;
+    line-height: 1.6;
+    padding-left: .55rem;
+    padding-right: .55rem;
+
+    &:after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 20%;
+      bottom: 20%;
+      background: #757373e8;
+      width: 1px;
+    }
+
+    @media screen and (max-width: 1200px) {
+       font-size: .8em;
+    }
+
+    @media screen and (max-width: 768px) {
+      font-size: .8em;
+    }
+
+  }
+}

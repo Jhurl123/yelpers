@@ -1,0 +1,37 @@
+@import '../../../styles/variables';
+
+.c-slide-menu {
+
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  background-color: red;
+  transition: all .8s ease-in-out;
+  color: green;
+  transform: translateX(-100%);
+  z-index: 1000;
+  height: 100vh;
+  overflow-y: auto;
+  &--open {
+    transform: translateX(0%);
+  }
+
+  &_inner {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 1em 2em;
+
+  }
+
+  &_close {
+    color: $white;
+    cursor: pointer;
+    font-size: 22px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+}
