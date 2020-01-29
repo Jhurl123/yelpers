@@ -74,18 +74,11 @@ export class SingleBusinessComponent implements OnInit {
         this.imgArray =  this.formatSlideshow(result.photos);
       }
 
-
-
       if(result.hasOwnProperty('location')) {
           let mapLocation = this.apiUrl.concat(this.formatLocation(result.location.display_address));
           result['map_location'] = this.sanitizer.bypassSecurityTrustResourceUrl(mapLocation);
       }
 
-      // Get Reviews
-      this.yelpService.getReviews(id, result.url).subscribe((result) => {
-        this.reviews = result['reviews'];
-
-      });
       this.business = result;
     });
 

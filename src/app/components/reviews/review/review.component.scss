@@ -13,9 +13,11 @@
   }
 
   &_image {
-
+    max-height: 75px;
     max-width: 75px;
     margin-bottom: .25rem;
+    object-fit: cover;
+    vertical-align: middle;
     width: 100%;
 
     &-container {

@@ -8,6 +8,7 @@ import { UserService } from '@/services/user.service';
 
 // Import Models
 import { Review } from '@/models/review/review.model';
+import { UserReview } from '@/models/review/user-review.model';
 
 @Component({
   selector: 'app-reviews-list',
@@ -17,43 +18,37 @@ import { Review } from '@/models/review/review.model';
 export class ReviewsListComponent implements OnInit {
 
   @Input('id') id: string;
-  @Input('reviews') reviews: Review[] = [];
+  @Input('url') url: string;
 
-  // Outline of component
-
+  reviews: Review[] = [];
 
   constructor(
     private reviewService: ReviewService,
-    private userService: UserService
+    private userService: UserService,
+    private yelpService: YelpService
   ) { }
 
   ngOnInit() {
-
-
+    this.getReviews()
   }
 
   ngOnChanges() {
     this.getAllUserReviews();
   }
 
+  getReviews() {
+    // Get Reviews
+    this.yelpService.getReviews(this.id, this.url).subscribe((result) => {
+      this.reviews = result['reviews'];
+    });
+  }
+
   addReview(newReview) {
     let { review } = newReview;
-
     review.user = JSON.parse(localStorage.getItem('currentUser'));
     this.reviews.push(review)
 
   }
-
-  // example from nate
-  // async getCommunityName(communityID) {
-  //   const data = await this.communitiesService.getCommunity(communityID).toPromise()
-  //   return data.body
-  // }
-
-  // called wihin loop like
-
-  // this.getCommunityName(job.CommunityID)
-  //   .then((res: Community) => {
 
   getAllUserReviews() {
     console.log(this.reviews)
@@ -63,28 +58,21 @@ export class ReviewsListComponent implements OnInit {
         if( Array.isArray(result)) {
           if(result.length > 0) {
 
-            // Need to create a user route to query user by the id in the review
-            // Service
-            // route in user-routes
-            // User DB query to get the user , then return
-            // Deal with the async functionality here
+            const getUserFromReview = async (result) => {
 
-            let formattedReviews = result.map(review => {
-              console.log(review)
-              this.getReviewUser(review.user_id).then(res => {
-                console.log(res);
-                review.user = res;
-
-                if(this.reviews) {
-                  this.reviews.push(review)
-                }
+              let formattedReviews = result.map(review => {
+                return this.getReviewUser(review.user_id).then(res => {
+                  review.user = res;
+                  return review
+                })
               })
 
-              if( this.reviews ) {
-                console.log(this.reviews)
-              }
-            })
+              return Promise.all(formattedReviews);
+            }
 
+            if(this.reviews) {
+              getUserFromReview(result).then(this.addUsertoReview);
+            }
 
           }
         }
@@ -98,10 +86,16 @@ export class ReviewsListComponent implements OnInit {
     return data;
   }
 
+  // Sort the revuews, then add them to the list
+   addUsertoReview = (result) => {
+    result.sort(this.sortReviewsByDate);
+    this.reviews.push(...result);
+  }
 
-
-
-  add
-
+  sortReviewsByDate = (a,b) => {
+    var c = new Date(a['time_created']);
+    var d = new Date(b['time_created']);
+    return c.getTime()-d.getTime();
+  }
 
 }

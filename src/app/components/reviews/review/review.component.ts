@@ -23,16 +23,19 @@ export class ReviewComponent implements OnInit {
     if( !isReview ) {
 
       this.formatReviewUser();
-      this.addCurrentTime();
+      // this.addCurrentTime();
     }
 
   }
 
+  // Redo this to only include the review that just got created
+  // Grab by last index?
   isReviewType(review): boolean {
     return 'id' in review;
   }
 
   formatReviewUser() {
+
     let { user } = this.review;
     if ( user.first_name && user.last_name ) {
       this.review.user.name = user.first_name + ' ' + user.last_name.slice(0,1) + '.';
