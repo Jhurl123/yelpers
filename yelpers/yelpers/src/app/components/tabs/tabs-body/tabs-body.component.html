@@ -1,0 +1,36 @@
+<section class="c-tabs-body" [hidden]="!active">
+  <div class="c-tabs-body_inner row">
+    <ng-template [ngIf]="id % 2 !== 0" [ngIfElse]="evenBlock">
+      <div class="columns large-4 medium-6 small-12">
+        <h4>{{ content.headerText }}</h4>
+        <p>{{ content.bodyText  }}</p>
+        <div class="c-tabs-body_link-container">
+          <a class="c-tabs-body_link" [routerLink]="content.linkRoute">
+            {{ content.linkText }}
+          </a>
+        </div>
+      </div>
+      <div class="columns large-8 medium-6 small-12">
+        <div class="c-tabs-body_img">
+          <img src="{{ content.imageSrc }}"/>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template #evenBlock>
+        <div class="columns large-8 medium-6 small-12">
+          <div class="c-tabs-body_img even">
+            <img src="{{ content.imageSrc }}"/>
+          </div>
+        </div>
+        <div class="columns large-4 medium-6 small-12">
+          <h4>{{ content.headerText }}</h4>
+          <p>{{ content.bodyText }}</p>
+          <div class="c-tabs-body_link-container">
+            <a class="c-tabs-body_link" [routerLink]="content.linkRoute">
+              {{ content.linkText }}
+            </a>
+          </div>
+        </div>
+    </ng-template>
+  </div>
+</section>

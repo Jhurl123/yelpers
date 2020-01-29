@@ -1,0 +1,24 @@
+<div class="c-review">
+  <div class="c-review_inner">
+    <div class="c-review_image-container">
+      <a routerLink="/user/:id">
+        <img class="c-review_image" src="../../../../assets/images/user-placeholder.png">
+      </a>
+      <div class="c-review_user-name">
+        <a routerLink="/user/:id">{{ review.user.name}}</a>
+      </div>
+    </div>
+    <div class="c-review_body">
+      <star-rating value=" {{review.rating}}" checkedcolor="#FEC011" uncheckedcolor="#e7e2e2" size="24px"  readonly="true"></star-rating>
+      <span>{{ review.time_created | date }}</span>
+      <div class="c-review_text">
+        <ng-template [ngIf]="review.text" [ngIfElse]="user_review">
+          {{ review.text }}
+        </ng-template>
+        <ng-template #user_review>
+          {{ review.review_text }}
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>

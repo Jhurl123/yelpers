@@ -1,0 +1,19 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<section class="c-app_container">
+
+  <app-top-header [mobileSize]="mobileSize" (toggleMenu)="toggleButton($event)"></app-top-header>
+  <app-main-search-container></app-main-search-container>
+  <app-slide-menu
+    class="mobile-nav"
+    [openMenu]="openMenu"
+    [mobileSize]="mobileSize"
+    (closeMenu)=toggleButton($event)
+  >
+  </app-slide-menu>
+  <router-outlet></router-outlet>
+</section>
+
+
+
+
+
