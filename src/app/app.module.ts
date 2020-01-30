@@ -38,6 +38,7 @@ import { TwoColumnContentComponent } from './components/two-column-content/two-c
 import { ImageSliderComponent } from './components/image-slider/image-slider.component';
 import { SingleBusinessComponent } from './views/single-business/single-business.component';
 import { CssSpinnerComponent } from './components/css-spinner/css-spinner.component';
+import { ReviewInputComponent } from './components/reviews/review-input/review-input.component';
 
 // Import Providers
 import { DataService } from './services/data/data.service';
@@ -52,7 +53,6 @@ import { ReviewsListComponent } from './components/reviews/reviews-list/reviews-
 import { ReviewComponent } from './components/reviews/review/review.component';
 import { DpDatePickerModule } from 'ng2-date-picker';
 import { AlertComponent } from './components/alert/alert.component';
-import { ReviewInputComponent } from './reviews/review-input/review-input.component';
 
 
 @NgModule({

@@ -29,7 +29,7 @@ export class ReviewsListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getReviews()
+    this.getReviews();
   }
 
   ngOnChanges() {
@@ -39,7 +39,7 @@ export class ReviewsListComponent implements OnInit {
   getReviews() {
     // Get Reviews
     this.yelpService.getReviews(this.id, this.url).subscribe((result) => {
-      this.reviews = result['reviews'];
+      this.reviews.push(...result['reviews']);
     });
   }
 
@@ -51,34 +51,31 @@ export class ReviewsListComponent implements OnInit {
   }
 
   getAllUserReviews() {
-    console.log(this.reviews)
     this.reviewService.getUserReviews(this.id)
     .subscribe( result => {
 
         if( Array.isArray(result)) {
           if(result.length > 0) {
-
-            const getUserFromReview = async (result) => {
-
-              let formattedReviews = result.map(review => {
-                return this.getReviewUser(review.user_id).then(res => {
-                  review.user = res;
-                  return review
-                })
-              })
-
-              return Promise.all(formattedReviews);
-            }
-
+            this.getUserFromReview(result)
             if(this.reviews) {
-              getUserFromReview(result).then(this.addUsertoReview);
+              this.getUserFromReview(result).then(this.addUsertoReview);
             }
-
           }
+
         }
 
-
     });
+  }
+
+  async getUserFromReview(result)   {
+    let formattedReviews = result.map(review => {
+      return this.getReviewUser(review.user_id).then(res => {
+        review.user = res;
+        return review
+      })
+    })
+
+    return Promise.all(formattedReviews);
   }
 
   async getReviewUser(user_id) {
@@ -88,8 +85,9 @@ export class ReviewsListComponent implements OnInit {
 
   // Sort the revuews, then add them to the list
    addUsertoReview = (result) => {
-    result.sort(this.sortReviewsByDate);
-    this.reviews.push(...result);
+     this.reviews.push(...result);
+     this.reviews.sort(this.sortReviewsByDate);
+     this.reviews.reverse();
   }
 
   sortReviewsByDate = (a,b) => {
