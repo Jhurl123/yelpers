@@ -53,6 +53,7 @@ import { ReviewsListComponent } from './components/reviews/reviews-list/reviews-
 import { ReviewComponent } from './components/reviews/review/review.component';
 import { DpDatePickerModule } from 'ng2-date-picker';
 import { AlertComponent } from './components/alert/alert.component';
+import { UserCardComponent } from './components/user-card/user-card.component';
 
 
 @NgModule({
@@ -91,7 +92,8 @@ import { AlertComponent } from './components/alert/alert.component';
     ReviewsListComponent,
     ReviewComponent,
     AlertComponent,
-    ReviewInputComponent
+    ReviewInputComponent,
+    UserCardComponent
   ],
   imports: [
     BrowserModule,
