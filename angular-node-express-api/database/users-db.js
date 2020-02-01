@@ -96,7 +96,7 @@ exports.getUser = (request, response) => {
 var querySingleUser = (id, response) => {
 
   // if (!id) return;
-  let query = 'SELECT * FROM users WHERE id = $1 LIMIT 1';
+  let query = 'SELECT id, password FROM users WHERE id = $1 LIMIT 1';
 
   pool.query(query, [id], (err, res) => {
 
@@ -125,6 +125,7 @@ var compareCallback = function(returnValue, response, err, res)  {
       }, process.env.JWT_SECRET);
 
       returnValue.token = token;
+      returnValue.password = '';
       response.send(returnValue);
     }
     else {

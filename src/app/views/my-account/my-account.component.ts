@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
+import { UserService } from '@/services/user.service';
+
+import { User } from '@/models/user/user';
+
 @Component({
   selector: 'app-my-account',
   templateUrl: './my-account.component.html',
@@ -7,9 +11,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyAccountComponent implements OnInit {
 
-  constructor() { }
+  user: User;
+
+  constructor(
+    private userService: UserService
+  ) { }
 
   ngOnInit() {
+    this.user = JSON.parse(localStorage.getItem('currentUser'));
   }
+
+
+
 
 }

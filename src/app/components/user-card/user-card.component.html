@@ -1,8 +1,42 @@
 <div class="c-card">
   <div class="c-card_photo">
-    <img src="../../../assets/images/user-placeholder.png">
+    <img src="../../../assets/images/user-placeholder-big.png">
   </div>
   <div class="c-card_info">
+    <div class="row">
+      <div class="columns small-6 c-card_info-container">
+        <div class="c-card_info-label">
+          <h4>Name</h4>
+        </div>
+        <div class="c-card_info-data" *ngIf="user">
+          {{ user.first_name + ' ' + user.last_name }}
+        </div>
+      </div>
+      <div class="columns small-6 c-card_info-container">
+        <div class="c-card_info-label">
+         <h4>Join Date</h4>
+        </div>
+        <div class="c-card_info-data" *ngIf="user">
+          {{ user.time_created }}
+        </div>
+      </div>
+      <div class="columns small-6 c-card_info-container">
+        <div class="c-card_info-label">
+          <h4>Email</h4>
+        </div>
+        <div class="c-card_info-data" *ngIf="user">
+          {{ user.email }}
+        </div>
+      </div>
+      <div class="columns small-6 c-card_info-container">
+        <div class="c-card_info-label">
+          <h4>Birth Date</h4>
+        </div>
+        <div class="c-card_info-data" *ngIf="user && user.birth_date">
+          {{ user.birth_date }}
+        </div>
+      </div>
+    </div>
 
   </div>
 </div>

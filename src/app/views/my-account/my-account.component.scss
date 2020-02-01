@@ -1,0 +1,16 @@
+@import '../../../styles/variables';
+
+.v-account {
+
+  padding: 3rem 0;
+
+  &_container {
+    margin: 0 auto;
+    max-width: 768px;
+
+    h1 {
+      color: $primary;
+      padding-bottom: 7rem;
+    }
+  }
+}

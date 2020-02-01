@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+
+import { User } from '@/models/user/user';
 
 @Component({
   selector: 'app-user-card',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserCardComponent implements OnInit {
 
+  @Input('user') User: User
+
   constructor() { }
 
   ngOnInit() {
   }
+
+  // Info to include in the user card
+  // First and last name
+  // Email
+  // Birth DAte (optional)
+  // Join Date
+  // Number of Reviews
+
 
 }
