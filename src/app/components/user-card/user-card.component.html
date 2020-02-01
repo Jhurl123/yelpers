@@ -4,38 +4,47 @@
   </div>
   <div class="c-card_info">
     <div class="row">
-      <div class="columns small-6 c-card_info-container">
+      <div class="columns small-12 c-card_info-container"  *ngIf="user">
         <div class="c-card_info-label">
           <h4>Name</h4>
         </div>
-        <div class="c-card_info-data" *ngIf="user">
+        <div class="c-card_info-data">
           {{ user.first_name + ' ' + user.last_name }}
         </div>
       </div>
-      <div class="columns small-6 c-card_info-container">
+      <div class="columns small-12 c-card_info-container" *ngIf="user?.created_date">
         <div class="c-card_info-label">
          <h4>Join Date</h4>
         </div>
-        <div class="c-card_info-data" *ngIf="user">
-          {{ user.time_created }}
+        <div class="c-card_info-data">
+          {{ user.created_date | date }}
         </div>
       </div>
-      <div class="columns small-6 c-card_info-container">
+      <div class="columns small-12 c-card_info-container" *ngIf="user?.email">
         <div class="c-card_info-label">
           <h4>Email</h4>
         </div>
-        <div class="c-card_info-data" *ngIf="user">
+        <div class="c-card_info-data">
           {{ user.email }}
         </div>
       </div>
-      <div class="columns small-6 c-card_info-container">
+      <div class="columns small-12 c-card_info-container" *ngIf="user?.birth_date">
         <div class="c-card_info-label">
           <h4>Birth Date</h4>
         </div>
-        <div class="c-card_info-data" *ngIf="user && user.birth_date">
-          {{ user.birth_date }}
+        <div class="c-card_info-data">
+          {{ user?.birth_date }}
         </div>
       </div>
+      <div class="columns small-12 c-card_info-container"  *ngIf="numReviews">
+        <div class="c-card_info-label">
+          <h4># of Reviews</h4>
+        </div>
+        <div class="c-card_info-data">
+          {{ numReviews }}
+        </div>
+      </div>
+
     </div>
 
   </div>

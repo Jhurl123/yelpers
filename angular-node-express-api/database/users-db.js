@@ -96,7 +96,7 @@ exports.getUser = (request, response) => {
 var querySingleUser = (id, response) => {
 
   // if (!id) return;
-  let query = 'SELECT id, password FROM users WHERE id = $1 LIMIT 1';
+  let query = 'SELECT first_name, last_name, email, birth_date, created_date FROM users WHERE id = $1 LIMIT 1';
 
   pool.query(query, [id], (err, res) => {
 

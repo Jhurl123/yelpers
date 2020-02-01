@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
+import { UserService } from '@/services/user.service';
+
 import { User } from '@/models/user/user';
 
 @Component({
@@ -9,11 +11,15 @@ import { User } from '@/models/user/user';
 })
 export class UserCardComponent implements OnInit {
 
-  @Input('user') User: User
+  user: any
 
-  constructor() { }
+  constructor(
+    private userService: UserService
+  ) { }
 
   ngOnInit() {
+    let { id } = JSON.parse(localStorage.getItem('currentUser'));
+    this.getUser(id)
   }
 
   // Info to include in the user card
@@ -22,6 +28,16 @@ export class UserCardComponent implements OnInit {
   // Birth DAte (optional)
   // Join Date
   // Number of Reviews
+
+  getUser = (id) => {
+
+    this.userService.getUser(id)
+    .subscribe( result => {
+
+      console.log(result)
+      this.user = result;
+    });
+  }
 
 
 }

@@ -79,7 +79,7 @@ export class ReviewsListComponent implements OnInit {
   }
 
   async getReviewUser(user_id) {
-    const data = await this.userService.getuser(user_id).toPromise();
+    const data = await this.userService.getUser(user_id).toPromise();
     return data;
   }
 

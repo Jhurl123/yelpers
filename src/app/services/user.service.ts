@@ -25,7 +25,7 @@ export class UserService {
 
   }
 
-  getuser(user_id: string) {
+  getUser(user_id: string) {
     let config = 'api/user/getUser';
 
     return this.http.post(config, {user_id})
