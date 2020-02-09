@@ -19,8 +19,12 @@ export class ReviewsListComponent implements OnInit {
 
   @Input('id') id: string;
   @Input('url') url: string;
+  @Input('reviewType') reviewType: string;
 
   reviews: Review[] = [];
+  formattedReviews: any = [];
+  placeholderArray: number[]  = [0,1,2];
+  p: number = 1;
 
   constructor(
     private reviewService: ReviewService,
@@ -29,14 +33,21 @@ export class ReviewsListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getReviews();
+    if(this.reviewType === "business") {
+      this.getAllUserReviews()
+      this.getReviews();
+    }
+    else {
+      this.getReviewsAttachedToUser();
+    }
   }
 
   ngOnChanges() {
-    this.getAllUserReviews();
+    this.getAllUserReviews()
   }
 
   getReviews() {
+
     // Get Reviews
     this.yelpService.getReviews(this.id, this.url).subscribe((result) => {
       this.reviews.push(...result['reviews']);
@@ -46,27 +57,52 @@ export class ReviewsListComponent implements OnInit {
   addReview(newReview) {
     let { review } = newReview;
     review.user = JSON.parse(localStorage.getItem('currentUser'));
-    this.reviews.push(review)
+    this.reviews.unshift(review)
 
   }
 
+  //Get user reviews attached to a business
   getAllUserReviews() {
+
     this.reviewService.getUserReviews(this.id)
     .subscribe( result => {
+      console.log(result)
 
         if( Array.isArray(result)) {
           if(result.length > 0) {
-            this.getUserFromReview(result)
+            //Add the user object to reviews
+            // this.getUserFromReview(result)
+
             if(this.reviews) {
+              //Add the user object to reviews
               this.getUserFromReview(result).then(this.addUsertoReview);
             }
           }
 
         }
+        else {
+          console.log(result)
+          //display the reviews if no users are found
+          this.formattedReviews = this.reviews
+        }
 
     });
   }
 
+  // NEed to tadd the user reviews to the reviews as above
+  getReviewsAttachedToUser() {
+
+    this.reviewService.getReviewsAttachedToUser(this.id)
+    .subscribe(result => {
+
+      if(this.reviews) {
+        //Add the user object to reviews
+        this.getUserFromReview(result).then(this.addUsertoReview);
+      }
+    })
+  }
+
+  // ADding the user object to the reviews returned from database
   async getUserFromReview(result)   {
     let formattedReviews = result.map(review => {
       return this.getReviewUser(review.user_id).then(res => {
@@ -88,6 +124,7 @@ export class ReviewsListComponent implements OnInit {
      this.reviews.push(...result);
      this.reviews.sort(this.sortReviewsByDate);
      this.reviews.reverse();
+     this.formattedReviews = this.reviews
   }
 
   sortReviewsByDate = (a,b) => {
@@ -96,4 +133,7 @@ export class ReviewsListComponent implements OnInit {
     return c.getTime()-d.getTime();
   }
 
+  pageChanged(event) {
+    this.p = event;
+  }
 }

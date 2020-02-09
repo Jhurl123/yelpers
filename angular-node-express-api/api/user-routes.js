@@ -14,4 +14,12 @@ router.post('/getUser', (req, res) => {
   userDB.getUser(req, res);
 })
 
+router.patch('/editUser', (req, res) => {
+  userDB.editUser(req, res);
+})
+
+router.post('/getNumReviews', (req, res) => {
+  userDB.getNumReviews(req, res);
+})
+
 module.exports = router;

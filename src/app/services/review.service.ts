@@ -41,12 +41,24 @@ export class ReviewService {
     }
   }
 
+  // Get the reviews attached to a business
   public getUserReviews(business_id: string) {
     let config = '/api/reviews/getAll';
 
     console.log(config)
 
     return this.http.post(config, {business_id})
+    .pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  public getReviewsAttachedToUser(user_id: string) {
+    let config = '/api/reviews/getByUser';
+
+    console.log(config)
+
+    return this.http.post(config, {user_id})
     .pipe(
       catchError(this.handleError)
     );

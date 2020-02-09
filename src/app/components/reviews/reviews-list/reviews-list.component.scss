@@ -21,4 +21,22 @@
       margin-bottom: .75rem;
     }
   }
+
+  &_pagination {
+    margin: 0 auto;
+
+    &::ng-deep {
+
+      .ngx-pagination {
+        color: red;
+        text-align: center;
+
+        .current {
+          color: #ffffff;
+          background-color: $primary;
+        }
+
+      }
+    }
+  }
 }

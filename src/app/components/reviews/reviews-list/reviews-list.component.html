@@ -1,10 +1,30 @@
-<div class="c-review-list" *ngIf="reviews">
+<div class="c-review-list">
   <div class="col-xs-12 c-review-list_container">
     <h2 class="c-review-list_header">Reviews</h2>
-    <div class="c-reviews-list_review" *ngFor="let review of reviews">
-      <app-review [review]="review"></app-review>
-    </div>
-    <div class="c-reviews-list_input">
+    <ng-template [ngIf]="formattedReviews.length >0" [ngIfElse]="reviewPlaceholders">
+      <div
+        class="c-reviews-list_review"
+        *ngFor="let review of formattedReviews  | paginate: { itemsPerPage: 5, currentPage: p, id: 'reviews_pagination' }"
+      >
+        <app-review [review]="review"></app-review>
+      </div>
+    </ng-template>
+    <ng-template #reviewPlaceholders >
+        <app-review-placeholder *ngFor="let item of placeholderArray"></app-review-placeholder>
+    </ng-template>
+    <pagination-controls
+      id="reviews_pagination"
+      class="c-review-list_pagination"
+      (pageChange)="pageChanged($event)"
+      directionLinks="true"
+      responsive="true"
+      previousLabel="Previous"
+      nextLabel="Next"
+      screenReaderPaginationLabel="Pagination"
+      screenReaderPageLabel="page"
+      screenReaderCurrentLabel="You're on page">
+    </pagination-controls>
+    <div class="c-reviews-list_input" *ngIf="reviewType === 'business'">
       <app-review-input (newReview)="addReview($event)"></app-review-input>
     </div>
   </div>

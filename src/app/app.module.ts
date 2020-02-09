@@ -54,6 +54,8 @@ import { ReviewComponent } from './components/reviews/review/review.component';
 import { DpDatePickerModule } from 'ng2-date-picker';
 import { AlertComponent } from './components/alert/alert.component';
 import { UserCardComponent } from './components/user-card/user-card.component';
+import { NgxSmartModalModule  } from 'ngx-smart-modal';
+import { ReviewPlaceholderComponent } from './components/reviews/review-placeholder/review-placeholder.component';
 
 
 @NgModule({
@@ -93,7 +95,8 @@ import { UserCardComponent } from './components/user-card/user-card.component';
     ReviewComponent,
     AlertComponent,
     ReviewInputComponent,
-    UserCardComponent
+    UserCardComponent,
+    ReviewPlaceholderComponent
   ],
   imports: [
     BrowserModule,
@@ -104,7 +107,8 @@ import { UserCardComponent } from './components/user-card/user-card.component';
     NgxPaginationModule,
     SlideshowModule,
     LightboxModule,
-    DpDatePickerModule
+    DpDatePickerModule,
+    NgxSmartModalModule.forRoot()
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

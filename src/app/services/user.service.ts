@@ -34,6 +34,25 @@ export class UserService {
     )
   }
 
+  editUser(userObject) {
+    let config = 'api/user/editUser';
+
+    console.log(userObject);
+    return this.http.patch(config, userObject)
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  getNumReviews(userID: string) {
+    let config = 'api/user/getNumReviews';
+
+    return this.http.post(config, {userID})
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
+
 
 }
 

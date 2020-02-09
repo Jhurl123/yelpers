@@ -14,4 +14,9 @@ router.post('/getAll', (req, res) => {
   reviewsDB.getAllReviews(req, res);
 });
 
+router.post('/getByUser', (req, res) => {
+
+  reviewsDB.getReviewsByUser(req, res);
+});
+
 module.exports = router;

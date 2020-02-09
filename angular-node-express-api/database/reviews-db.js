@@ -33,8 +33,15 @@ exports.getAllReviews = (req, res) => {
 
 }
 
+exports.getReviewsByUser = (req, res) => {
+
+  const { user_id } = req.body;
+
+  getReviewsByUsers(user_id).then(result => res.send(result ));
+}
+
 // Params - review object
-var insertReview = (review, response) => {
+const insertReview = (review, response) => {
 
   let { business_id, text, rating, user } = review;
   let reviewArray = [user, business_id, text, rating];
@@ -53,8 +60,7 @@ var insertReview = (review, response) => {
   })
 }
 
-var getAllReviews = (id, response) => {
-  console.log(id)
+const getAllReviews = (id, response) => {
 
   let query = 'SELECT * FROM reviews WHERE business_id = $1';
 
@@ -70,6 +76,27 @@ var getAllReviews = (id, response) => {
     else {
       response.send(err);
     }
+  })
+}
+
+const getReviewsByUsers = (user_id) => {
+
+  console.log( user_id );
+  const query = 'SELECT * FROM reviews WHERE user_id = $1';
+
+  return new Promise(function(resolve, reject){
+    pool.query(query, [user_id], (err, res) => {
+      // Name query has been successful, ned toi handle errors
+      if(err) {
+        reject(err);
+      }
+      else {
+        console.log( res.rows);
+        resolve(res.rows);
+
+      }
+
+    })
   })
 }
 

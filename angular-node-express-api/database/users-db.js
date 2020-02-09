@@ -87,16 +87,85 @@ exports.createUser = function (request, response) {
 exports.getUser = (request, response) => {
   let { user_id } = request.body;
 
-  console.log(user_id  + " Is the user id")
-
   querySingleUser(user_id, response);
+
+}
+
+// Function to allow editing a user row in the table
+exports.editUser = (request, response) => {
+
+  let {queryString,values} = editUserquery(request.body);
+  try {
+    updateUser(queryString, values).then(result => response.send(true))
+  }
+  catch(error) {
+    console.log( error );
+  }
+
+
+}
+
+// Get the number of reviews attached to the users
+exports.getNumReviews = (request, response) => {
+
+  const { userID } = request.body;
+
+  const query = 'SELECT COUNT(*) FROM reviews WHERE user_id = $1';
+
+  pool.query(query, [userID], (err, res) => {
+
+    if(err) {
+      console.log(err)
+      response.send(err);
+    }
+    else {
+      const count = res.rows[0].count;
+      if(count) {
+        response.send(count);
+      }
+    }
+    console.log( res );
+  })
+}
+
+var editUserquery = (valuesObject) => {
+
+  let values = Object.values(valuesObject);
+  let keys = Object.keys(valuesObject);
+  let { id } = valuesObject;
+
+  values =  values.filter((value, index) => keys[index] !== 'id')
+  let statements = values.map((value,index) => keys[index] + '= $' + (index + 1))
+
+  return {
+      queryString: `UPDATE users SET ${statements.join(', ')} WHERE id = ${id}`,
+      values: values
+  };
+}
+
+
+updateUser =  async (queryString, values) => {
+  // Handle errors here
+  var response;
+  return new Promise(function(resolve, reject){
+    pool.query(queryString, values, (err, res) => {
+      // Name query has been successful, ned toi handle errors
+      if(err) {
+        reject(err);
+      }
+      else {
+        resolve(res.rowCount);
+      }
+
+    })
+  })
 
 }
 
 var querySingleUser = (id, response) => {
 
   // if (!id) return;
-  let query = 'SELECT first_name, last_name, email, birth_date, created_date FROM users WHERE id = $1 LIMIT 1';
+  let query = 'SELECT id, first_name, last_name, email, birth_date, created_date FROM users WHERE id = $1 LIMIT 1';
 
   pool.query(query, [id], (err, res) => {
 

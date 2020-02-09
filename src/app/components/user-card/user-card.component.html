@@ -10,6 +10,7 @@
         </div>
         <div class="c-card_info-data">
           {{ user.first_name + ' ' + user.last_name }}
+          <img class="c-card_info-edit" (click)="openModal('name')" src="assets/images/edit-regular.svg" />
         </div>
       </div>
       <div class="columns small-12 c-card_info-container" *ngIf="user?.created_date">
@@ -26,6 +27,7 @@
         </div>
         <div class="c-card_info-data">
           {{ user.email }}
+          <img class="c-card_info-edit" (click)="openModal('email')" src="assets/images/edit-regular.svg" />
         </div>
       </div>
       <div class="columns small-12 c-card_info-container" *ngIf="user?.birth_date">
@@ -36,12 +38,12 @@
           {{ user?.birth_date }}
         </div>
       </div>
-      <div class="columns small-12 c-card_info-container"  *ngIf="numReviews">
+      <div class="columns small-12 c-card_info-container"  *ngIf="user?.numReviews">
         <div class="c-card_info-label">
           <h4># of Reviews</h4>
         </div>
         <div class="c-card_info-data">
-          {{ numReviews }}
+          {{ user?.numReviews }}
         </div>
       </div>
 
@@ -49,3 +51,59 @@
 
   </div>
 </div>
+<ngx-smart-modal #myModal identifier="myModal">
+  <h1>Edit Information</h1>
+
+  <form [formGroup]="infoForm" (ngSubmit)="modalSubmit()">
+
+    <div class="form-group" *ngIf="infoForm?.controls['first_name'];else emailBlock">
+      <div *ngIf="infoForm.invalid && (infoForm.touched || infoForm.dirty)">
+        <app-alert [alertType]="fail" [alertText]="'Name fields are required'"></app-alert>
+      </div>
+      <label for="first_name">First Name</label>
+      <input
+        formControlName="first_name"
+        required
+        name="first_name"
+        id="first_name"
+        type="text"
+      />
+      <label for="last_name">Last Name</label>
+      <input
+        formControlName="last_name"
+        required
+        id="last_name"
+        name="last_name"
+        type="text"
+      />
+    </div>
+    <ng-template #emailBlock>
+      <div class="form-group" *ngIf="infoForm?.controls['email']">
+        <div *ngIf="infoForm.invalid && (infoForm.touched || infoForm.dirty)">
+          <app-alert
+            *ngIf="infoForm?.controls['email'].errors.required"
+            [alertType]="fail"
+            [alertText]="'Email fields are required'"
+          ></app-alert>
+          <app-alert
+          *ngIf="infoForm?.controls['email'].errors.email"
+          [alertType]="fail"
+          [alertText]="'Please use a valid email format'"
+        ></app-alert>
+        </div>
+        <label for="email">Email Address</label>
+        <input
+          formControlName="email"
+          id="email"
+          name="email"
+          type="email"
+        />
+      </div>
+    </ng-template>
+
+    <button class="button alt" type="submit" [disabled]="!infoForm.valid || infoForm.pristine">
+      Submit
+    </button>
+  </form>
+
+</ngx-smart-modal>

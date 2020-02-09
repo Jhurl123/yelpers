@@ -14,7 +14,12 @@
   transition: all .3s ease-in-out;
   width: 100%;
 
+  @media screen and (max-width: 786px) {
+    max-width: 100%;
+  }
+
   &_photo {
+
     height: 155px;
     left: 50%;
     position: absolute;
@@ -29,6 +34,7 @@
       box-shadow: rgba(0, 0, 0, 0.25) 0px 2px 8px !important;
       width: 100%;
     }
+
   }
 
   &_info {
@@ -66,12 +72,23 @@
     }
 
     &-data {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
       display: inline-block;
       font-size: 1.2rem;
+      width: 100%;
+    }
+
+    &-edit {
+
+      cursor: pointer;
+      float: right;
+      height: 20px;
+      width: 20px;
+
     }
   }
 
+  button[disabled] {
+    background-color: #d7d5d5;
+  }
 }
+
