@@ -39,20 +39,18 @@ export class UserCardComponent implements OnInit {
 
     this.userService.getUser(id)
     .subscribe( result => {
-      console.log(result);
+
       this.user = result;
     });
 
     this.userService.getNumReviews(id).subscribe(result =>  {
-      console.log(result)
-      if(this.user) {
+
         this.user.numReviews = result
-      }
+
     });
   }
 
   openModal(field) {
-    console.log(field);
     this.nameControls = {
       first_name: [this.user.first_name, Validators.required],
       last_name: [this.user.last_name, Validators.required]
@@ -63,8 +61,6 @@ export class UserCardComponent implements OnInit {
     }
 
     let fieldGroup = (field === 'name') ? this.nameControls : this.emailControls;
-
-    console.log(fieldGroup);
 
     this.infoForm = this.formBuilder.group(fieldGroup);
 
@@ -78,8 +74,6 @@ export class UserCardComponent implements OnInit {
 
     this.userService.editUser(userObject)
     .subscribe( result => {
-
-      console.log(result);
       Object.assign(this.user, this.infoForm.value)
       // Close the modal
       this.modalService.close('myModal');

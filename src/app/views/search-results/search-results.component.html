@@ -6,7 +6,7 @@
       </div>
       <div class="row">
         <div
-          class="columns medium-4 small-12 v-search_card"
+          class="columns large-4 medium-6 small-12 v-search_card"
           *ngFor="let business of businesses | paginate: { itemsPerPage: 12, currentPage: p, id: 'some_id' }"
         >
           <app-business-card [business]="business">

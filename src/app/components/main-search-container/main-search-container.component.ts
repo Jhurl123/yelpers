@@ -80,8 +80,8 @@ export class MainSearchContainerComponent implements OnInit {
       this.validationError = "";
 
       let searchObject = {
-        SearchTerms: query.trim(),
-        Location: location.trim()
+        SearchTerms: query.trim().replace(' ', '-'),
+        Location: location.trim().replace(' ', '-')
       };
 
       this.getBusinesses(searchObject);
@@ -95,7 +95,7 @@ export class MainSearchContainerComponent implements OnInit {
 
 
       this.result = result['businesses'];
-
+console.log(this.result);
       this.dataService.setBusinesses(result['businesses'], searchObject);
     });
 

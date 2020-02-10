@@ -50,8 +50,9 @@ const insertReview = (review, response) => {
   let statement = 'INSERT INTO reviews(user_id, business_id, review_text, rating) VALUES ($1, $2, $3, $4)';
 
   pool.query(statement, reviewArray, (err, res) => {
-    console.log(res)
     if(res.rowCount == 1) {
+
+      review.time_created = Date.now();
       response.send(review)
     }
     if(err) {

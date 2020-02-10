@@ -37,7 +37,6 @@ export class UserService {
   editUser(userObject) {
     let config = 'api/user/editUser';
 
-    console.log(userObject);
     return this.http.patch(config, userObject)
     .pipe(
       catchError(this.handleError)

@@ -11,7 +11,7 @@ import { DataService } from '@/services/data/data.service';
 })
 export class SearchResultsComponent implements OnInit {
 
-  p:number = 1;
+  p: number = 1;
   location: string;
   query: string;
   noResults: boolean = false;
@@ -57,6 +57,7 @@ export class SearchResultsComponent implements OnInit {
     this.dataService.businesses.subscribe((result: any[]) => {
 
       this.showSpinner = true;
+      this.noResults = false;
       if( result === null ) {
         this.noResults = true;
         this.showSpinner = false;

@@ -83,7 +83,7 @@ export class ReviewInputComponent implements OnInit {
     this.reviewService.postReview(this.userReview)
     .subscribe(result => {
       this.setAlert(true,'');
-
+      console.log(result);
       this.formSubmitted = true;
       this.addReview(result);
 

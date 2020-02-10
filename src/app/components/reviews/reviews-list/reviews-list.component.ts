@@ -35,23 +35,24 @@ export class ReviewsListComponent implements OnInit {
   ngOnInit() {
     if(this.reviewType === "business") {
       this.getAllUserReviews()
-      this.getReviews();
+      this.getYelpReviews();
     }
     else {
       this.getReviewsAttachedToUser();
     }
   }
 
-  ngOnChanges() {
-    this.getAllUserReviews()
-  }
+  // ngOnChanges() {
+  //   this.getAllUserReviews()
+  // }
 
-  getReviews() {
+  getYelpReviews() {
 
     // Get Reviews
     this.yelpService.getReviews(this.id, this.url).subscribe((result) => {
       this.reviews.push(...result['reviews']);
     });
+
   }
 
   addReview(newReview) {
@@ -66,7 +67,6 @@ export class ReviewsListComponent implements OnInit {
 
     this.reviewService.getUserReviews(this.id)
     .subscribe( result => {
-      console.log(result)
 
         if( Array.isArray(result)) {
           if(result.length > 0) {
@@ -81,7 +81,6 @@ export class ReviewsListComponent implements OnInit {
 
         }
         else {
-          console.log(result)
           //display the reviews if no users are found
           this.formattedReviews = this.reviews
         }

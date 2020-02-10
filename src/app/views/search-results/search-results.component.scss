@@ -16,10 +16,11 @@
 
   &_spinner_container {
     display: flex;
-    justify-content: center;
-    width: 100vw;
-    margin-top: 10em;
     flex-direction: column;
+    justify-content: center;
+    margin-top: 10em;
+    text-align: center;
+    width: 100vw;
   }
 
   &_pagination {

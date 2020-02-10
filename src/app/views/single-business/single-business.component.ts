@@ -26,13 +26,13 @@ export class SingleBusinessComponent implements OnInit {
   apiUrl: string = 'https://www.google.com/maps/embed/v1/place?key=AIzaSyA-O-hGRxxv9Hli_zGc4OqzaiCFYT0f1d8&q=';
 
   weekDays:  Array<{}> = [
-    { day: 0, day_name: 'Sun.', closed: false },
-    { day: 1, day_name: 'Mon.', closed: false },
-    { day: 2, day_name: 'Tue.', closed: false },
-    { day: 3, day_name: 'Wed.', closed: false },
-    { day: 4, day_name: 'Thu.', closed: false },
-    { day: 5, day_name: 'Fri.', closed: false },
-    { day: 6, day_name: 'Sat.', closed: false },
+    { day: 0, day_name: 'Mon.', closed: false },
+    { day: 1, day_name: 'Tue.', closed: false },
+    { day: 2, day_name: 'Wed.', closed: false },
+    { day: 3, day_name: 'Thu.', closed: false },
+    { day: 4, day_name: 'Fri.', closed: false },
+    { day: 5, day_name: 'Sat.', closed: false },
+    { day: 6, day_name: 'Sun.', closed: false },
   ];
 
   constructor(
@@ -55,6 +55,7 @@ export class SingleBusinessComponent implements OnInit {
     // Set photos for slideshow and modal
     this.yelpService.getSingle(id).subscribe((result: Business) => {
 
+      console.log(result);
       if(result.hasOwnProperty('hours')) {
         result.hours[0].open.forEach((day) => {
 
