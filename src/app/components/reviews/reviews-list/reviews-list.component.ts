@@ -41,7 +41,6 @@ export class ReviewsListComponent implements OnInit {
       this.getReviewsAttachedToUser();
     }
 
-    // this.router
   }
 
   ngOnChanges() {
@@ -72,8 +71,6 @@ export class ReviewsListComponent implements OnInit {
 
         if( Array.isArray(result)) {
           if(result.length > 0) {
-            //Add the user object to reviews
-            // this.getUserFromReview(result)
 
             if(this.reviews) {
               //Add the user object to reviews

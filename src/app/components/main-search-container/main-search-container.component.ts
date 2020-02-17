@@ -30,13 +30,14 @@ export class MainSearchContainerComponent implements OnInit {
 
   ngOnInit() {
 
+    // Build the search form
     this.searchForm = this.formBuilder.group({
       SearchTerms: ['', Validators.required],
       Location: ['', Validators.required],
     });
 
+    // Determine if the link being accessed has query params
     this.route.queryParams.subscribe(param => {
-
 
       if( Object.entries(param).length > 0 ) {
 
@@ -54,19 +55,17 @@ export class MainSearchContainerComponent implements OnInit {
   }
 
   toggleOpen() {
-
     this.isOpen = !this.isOpen;
   }
 
   onSubmit(form) {
 
-
+    // Remove any script tags
     this.query = form.get('SearchTerms').value.replace(/<[^>]+>/g, '');
     this.location = form.get('Location').value.replace(/<[^>]+>/g, '');
 
     let query = this.query.trim(),
         location = this.location;
-
 
     if( !form.valid) {
       if( !query ) {
@@ -79,6 +78,7 @@ export class MainSearchContainerComponent implements OnInit {
     else {
       this.validationError = "";
 
+      // Format the arguments
       let searchObject = {
         SearchTerms: query.trim().replace(' ', '-'),
         Location: location.trim().replace(' ', '-')
@@ -89,13 +89,12 @@ export class MainSearchContainerComponent implements OnInit {
     }
   }
 
+  // Run the service to get businesses
   getBusinesses(searchObject) {
 
     this.yelpService.getRestaurants(searchObject).subscribe((result) => {
 
-
       this.result = result['businesses'];
-console.log(this.result);
       this.dataService.setBusinesses(result['businesses'], searchObject);
     });
 

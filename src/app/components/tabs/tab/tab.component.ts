@@ -22,12 +22,11 @@ export class TabComponent implements OnInit {
   constructor(private sanitizer:DomSanitizer) { }
 
   ngOnInit() {
-
     this['iconSrcHTML'] = this.sanitizer.bypassSecurityTrustHtml(this.iconSrc);
   }
 
+  // Emit the event that changes the active state
   activateTab() {
-
     if( this.active == false ) {
 
       this.toggleTab.emit({

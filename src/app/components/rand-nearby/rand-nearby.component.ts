@@ -16,6 +16,7 @@ export class RandNearbyComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    // TODO If geolocator isn't enabled, select random businesses?
     this.position = navigator.geolocation.getCurrentPosition(this.success, this.error);
   }
 
@@ -27,7 +28,7 @@ export class RandNearbyComponent implements OnInit {
   }
 
   error(error) {
-    console.log(error);
+
   }
 
 }

@@ -1,8 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Review } from '@/models/review/review.model';
-import { UserReview } from '@/models/review/user-review.model';
-
-import { ReviewService } from '../../../services/review.service';
 
 @Component({
   selector: 'app-review',
@@ -12,30 +8,23 @@ import { ReviewService } from '../../../services/review.service';
 export class ReviewComponent implements OnInit {
 
   @Input('review') review;
-  constructor(
-    private reviewService: ReviewService
-  ) { }
+  constructor() { }
 
   ngOnInit() {
-    console.log(this.review);
 
     let isReview = this.isReviewType(this.review);
     if( !isReview ) {
 
       this.formatReviewUser();
-      // this.addCurrentTime();
     }
 
   }
 
-  // Redo this to only include the review that just got created
-  // Grab by last index?
   isReviewType(review): boolean {
     return 'id' in review;
   }
 
   formatReviewUser() {
-
     let { user } = this.review;
     if ( user.first_name && user.last_name ) {
       this.review.user.name = user.first_name + ' ' + user.last_name.slice(0,1) + '.';

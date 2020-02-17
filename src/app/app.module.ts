@@ -33,7 +33,6 @@ import { TabsComponent } from './components/tabs/tabs.component';
 import { TabsSectionComponent } from './components/tabs/tabs-section/tabs-section.component';
 import { TabsBodyComponent } from './components/tabs/tabs-body/tabs-body.component';
 import { TabComponent } from './components/tabs/tab/tab.component';
-import { TwoColumnContentComponent } from './components/two-column-content/two-column-content.component';
 import { SingleBusinessComponent } from './views/single-business/single-business.component';
 import { CssSpinnerComponent } from './components/css-spinner/css-spinner.component';
 import { ReviewInputComponent } from './components/reviews/review-input/review-input.component';
@@ -44,7 +43,7 @@ import { AuthenticationService } from './services/authentication.service';
 
 // Dependencies
 import { RatingModule } from 'ng-starrating';
-import { NgxPaginationModule } from 'ngx-pagination'; // <-- import the module
+import { NgxPaginationModule } from 'ngx-pagination';
 import { SlideshowModule } from 'ng-simple-slideshow';
 import { LightboxModule } from 'ngx-lightbox';
 import { ReviewsListComponent } from './components/reviews/reviews-list/reviews-list.component';
@@ -54,6 +53,7 @@ import { AlertComponent } from './components/alert/alert.component';
 import { UserCardComponent } from './components/user-card/user-card.component';
 import { NgxSmartModalModule  } from 'ngx-smart-modal';
 import { ReviewPlaceholderComponent } from './components/reviews/review-placeholder/review-placeholder.component';
+import { SearchPlaceholderComponent } from './components/search-placeholder/search-placeholder.component';
 
 
 @NgModule({
@@ -84,7 +84,6 @@ import { ReviewPlaceholderComponent } from './components/reviews/review-placehol
     TabsSectionComponent,
     TabsBodyComponent,
     TabComponent,
-    TwoColumnContentComponent,
     CssSpinnerComponent,
     SingleBusinessComponent,
     ReviewsListComponent,
@@ -92,7 +91,8 @@ import { ReviewPlaceholderComponent } from './components/reviews/review-placehol
     AlertComponent,
     ReviewInputComponent,
     UserCardComponent,
-    ReviewPlaceholderComponent
+    ReviewPlaceholderComponent,
+    SearchPlaceholderComponent
   ],
   imports: [
     BrowserModule,

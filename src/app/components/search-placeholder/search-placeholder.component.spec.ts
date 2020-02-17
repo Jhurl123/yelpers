@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TwoColumnContentComponent } from './two-column-content.component';
+import { SearchPlaceholderComponent } from './search-placeholder.component';
 
-describe('TwoColumnContentComponent', () => {
-  let component: TwoColumnContentComponent;
-  let fixture: ComponentFixture<TwoColumnContentComponent>;
+describe('SearchPlaceholderComponent', () => {
+  let component: SearchPlaceholderComponent;
+  let fixture: ComponentFixture<SearchPlaceholderComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TwoColumnContentComponent ]
+      declarations: [ SearchPlaceholderComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TwoColumnContentComponent);
+    fixture = TestBed.createComponent(SearchPlaceholderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
