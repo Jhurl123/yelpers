@@ -24,7 +24,6 @@ import { ThingsToDoComponent } from './views/things-to-do/things-to-do.component
 import { HomeServicesComponent } from './views/home-services/home-services.component';
 import { MainSearchContainerComponent } from './components/main-search-container/main-search-container.component';
 import { MainSearchInputComponent } from './components/main-search-input/main-search-input.component';
-import { CategoriesSelectComponent } from './components/categories-select/categories-select.component';
 import { LocationSelectComponent } from './components/location-select/location-select.component';
 import { HeroImageComponent } from './components/hero-image/hero-image.component';
 import { RandNearbyComponent } from './components/rand-nearby/rand-nearby.component';
@@ -35,7 +34,6 @@ import { TabsSectionComponent } from './components/tabs/tabs-section/tabs-sectio
 import { TabsBodyComponent } from './components/tabs/tabs-body/tabs-body.component';
 import { TabComponent } from './components/tabs/tab/tab.component';
 import { TwoColumnContentComponent } from './components/two-column-content/two-column-content.component';
-import { ImageSliderComponent } from './components/image-slider/image-slider.component';
 import { SingleBusinessComponent } from './views/single-business/single-business.component';
 import { CssSpinnerComponent } from './components/css-spinner/css-spinner.component';
 import { ReviewInputComponent } from './components/reviews/review-input/review-input.component';
@@ -77,7 +75,6 @@ import { ReviewPlaceholderComponent } from './components/reviews/review-placehol
     HomeServicesComponent,
     MainSearchContainerComponent,
     MainSearchInputComponent,
-    CategoriesSelectComponent,
     LocationSelectComponent,
     HeroImageComponent,
     RandNearbyComponent,
@@ -90,7 +87,6 @@ import { ReviewPlaceholderComponent } from './components/reviews/review-placehol
     TwoColumnContentComponent,
     CssSpinnerComponent,
     SingleBusinessComponent,
-    ImageSliderComponent,
     ReviewsListComponent,
     ReviewComponent,
     AlertComponent,

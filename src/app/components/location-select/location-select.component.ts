@@ -18,10 +18,4 @@ export class LocationSelectComponent implements OnInit {
 
   }
 
-  success(pos) {
-  }
-
-  error(error) {
-    console.log(error);
-  }
 }

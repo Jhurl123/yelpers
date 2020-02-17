@@ -22,7 +22,6 @@ export class BusinessCardComponent implements OnInit {
     this.business['miles'] = this.distanceService.convertMeterstoMiles(this.business['distance']);
 
     this.buildAddress();
-    this.buildCategory();
 
     if(this.business['image_url'] == "" ) {
       this.business['image_url'] = "../../../assets/images/placeholder-image.jpg";
@@ -39,13 +38,6 @@ export class BusinessCardComponent implements OnInit {
 
     address = address.filter(Boolean);
     this.business['address'] = address;
-
-  }
-
-  buildCategory() {
-    let categories: string[] =[];
-
-
 
   }
 
