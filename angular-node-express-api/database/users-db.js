@@ -4,6 +4,7 @@ const xss        = require('xss');
 const pool       = require('./connect-db');
 require('dotenv').config();
 const saltRounds = 10;
+const util = require('util')
 var exports      = module.exports = {};
 
 // Function that confirms user information submitted in the login inputs
@@ -20,6 +21,9 @@ exports.loginCheck = function(request, response) {
   pool.query(userQuery, values, (err, res) => {
     if(err) {
       console.log(err.stack);
+      response.status(409).json({
+        message: 'Something went wrong!',
+      })
     }
     else {
       if( res.rows[0] ) {
@@ -36,8 +40,8 @@ exports.loginCheck = function(request, response) {
   })
 }
 
-exports.createUser = function (request, response) {
-  let userInfo = xss(request.body);
+exports.createUser = function (request, response, next) {
+  let userInfo = request.body;
   let password = xss(userInfo.passwords.password);
   let insertQuery = 'INSERT INTO users(first_name, last_name, email, birth_date, password) VALUES ($1, $2, $3, $4, $5)';
   let testQuery   = 'SELECT email FROM users WHERE email = $1';
@@ -46,21 +50,27 @@ exports.createUser = function (request, response) {
 
     // insert the hashed passsword into the user object
     userInfo.passwords = hash;
-    let values = Object.values(userInfo);
+    let values = Object.values(userInfo).map(result => xss(result));
 
-    // if string is empty, replace with null
+    // if string is empty, replace th null
     values = values.map(x => x === '' ? null : x);
 
     pool.query(testQuery, [userInfo.emailAddress], async (err, res) => {
 
       if(err) {
-        console.log(err)
+        console.log( err );
+        response.status(409).json({
+          message: 'Something went wrong!',
+        })
       }
       else {
         let rows = res.rows[0];
 
         if(rows) {
-          response.send(false);
+          response.status(409).json({
+            message: 'A user with this email already exists!',
+          })
+
         }
         else {
           await insertUser();
@@ -73,9 +83,12 @@ exports.createUser = function (request, response) {
           pool.query(insertQuery, values, (err, res) => {
           if(err) {
             console.log(err);
+            response.status(409).json({
+              message: 'Sorry, something went wrong!'
+            })
           }
           else {
-            response.send(true);
+            response.send(res);
           }
         })
       }
@@ -96,10 +109,19 @@ exports.editUser = (request, response) => {
 
   let {queryString,values} = editUserquery(request.body);
   try {
-    updateUser(queryString, values).then(result => response.send(true))
+    updateUser(queryString, values).then( result => {
+      response.send(true)
+    },
+    reason => {
+      response.status(409).json({
+        message: 'Something went wrong!',
+      })
+    });
   }
   catch(error) {
-    console.log( error );
+    response.status(409).json({
+      message: 'Something went wrong!',
+    })
   }
 
 
@@ -115,8 +137,9 @@ exports.getNumReviews = (request, response) => {
   pool.query(query, [userID], (err, res) => {
 
     if(err) {
-      console.log(err)
-      response.send(err);
+      response.status(409).json({
+        message: 'Something went wrong!',
+      })
     }
     else {
       const count = res.rows[0].count;
@@ -149,7 +172,7 @@ updateUser =  async (queryString, values) => {
   var response;
   return new Promise(function(resolve, reject){
     pool.query(queryString, values, (err, res) => {
-      // Name query has been successful, ned toi handle errors
+      // Errors handled in calling function
       if(err) {
         reject(err);
       }
@@ -173,7 +196,9 @@ var querySingleUser = (id, response) => {
       response.send(res.rows[0])
     }
     else {
-      response.send(err)
+      response.status(409).json({
+        message: 'Something went wrong!',
+      })
     }
   })
 }
@@ -183,12 +208,13 @@ var querySingleUser = (id, response) => {
 // Params: User Object, Response From route, Error message on comparison, result of the comparison:boolean
 var compareCallback = function(returnValue, response, err, res)  {
   if(err) {
-    console.log(err);
+    response.status(409).json({
+      message: 'Something went wrong!',
+    })
   }
   else {
     if(res) {
 
-      // TODO Store secret key in environment variable
       let token = JWT.sign({
         data: 'foobar'
       }, process.env.JWT_SECRET);

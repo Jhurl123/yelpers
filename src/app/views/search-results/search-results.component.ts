@@ -58,12 +58,14 @@ export class SearchResultsComponent implements OnInit {
 
       this.showSpinner = true;
       this.noResults = false;
+
       if( result === null ) {
         this.noResults = true;
         this.showSpinner = false;
       }
 
       else if(result.length > 0) {
+        this.p = 1;
         this.businesses = result;
         this.showSpinner = false;
       }

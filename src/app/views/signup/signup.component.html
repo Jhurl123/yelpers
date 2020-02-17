@@ -1,6 +1,7 @@
 <div class="row l-content-container c-signup">
   <div class="columns small-12">
     <div class="c-signup_container">
+      <app-alert [alertType]="alertType" [alertText]="alertText"></app-alert>
       <h2>Sign Up</h2>
       <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
           <div class="form-group">

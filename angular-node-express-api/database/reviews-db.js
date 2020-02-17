@@ -6,10 +6,7 @@ require('dotenv').config();
 
 var exports      = module.exports = {};
 
-// Sanitize the input by the user.
-// Validate the JWT
-// Insert the review
-// Send error if error
+// Format the data before it is sent to the database
 exports.prepareReview = (req, res) => {
 
   let review = req.body;
@@ -21,7 +18,9 @@ exports.prepareReview = (req, res) => {
     insertReview(review, res)
   }
   else {
-    res.send('500 Error boiz');
+    response.status(409).json({
+      message: 'Please log in again!',
+    })
   }
 
 }
@@ -43,6 +42,7 @@ exports.getReviewsByUser = (req, res) => {
 // Params - review object
 const insertReview = (review, response) => {
 
+  console.log( review );
   let { business_id, text, rating, user } = review;
   let reviewArray = [user, business_id, text, rating];
 
@@ -56,7 +56,9 @@ const insertReview = (review, response) => {
       response.send(review)
     }
     if(err) {
-      response.send(err.error);
+      response.status(409).json({
+        message: 'Something went wrong!',
+      })
     }
   })
 }
@@ -68,7 +70,9 @@ const getAllReviews = (id, response) => {
   pool.query(query, [id], (err, res) => {
 
     if( err ) {
-      console.log(err);
+      response.status(409).json({
+        message: 'Couldn\'t get the reviews',
+      })
     }
 
     if(res.rows.length > 0) {

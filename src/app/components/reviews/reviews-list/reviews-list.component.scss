@@ -4,6 +4,10 @@
 
   padding: 2rem 0;
 
+  &.user-account {
+    padding: 0;
+  }
+
   &_container {
     margin: 0 auto;
     max-width: 768px;
@@ -37,6 +41,17 @@
         }
 
       }
+    }
+  }
+}
+
+::ng-deep {
+  ngx-smart-modal {
+    .modal-header {
+      color: $primary;
+    }
+    .nsm-dialog-btn-close {
+      padding: .5em;
     }
   }
 }

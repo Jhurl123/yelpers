@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ɵConsole } from '@angular/core';
-
+import { Router, NavigationStart } from '@angular/router';
 
 // Import Services
 import { YelpService } from '@/services/yelp.service';
@@ -8,7 +8,6 @@ import { UserService } from '@/services/user.service';
 
 // Import Models
 import { Review } from '@/models/review/review.model';
-import { UserReview } from '@/models/review/user-review.model';
 
 @Component({
   selector: 'app-reviews-list',
@@ -29,7 +28,8 @@ export class ReviewsListComponent implements OnInit {
   constructor(
     private reviewService: ReviewService,
     private userService: UserService,
-    private yelpService: YelpService
+    private yelpService: YelpService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -40,11 +40,13 @@ export class ReviewsListComponent implements OnInit {
     else {
       this.getReviewsAttachedToUser();
     }
+
+    // this.router
   }
 
-  // ngOnChanges() {
-  //   this.getAllUserReviews()
-  // }
+  ngOnChanges() {
+    this.getAllUserReviews()
+  }
 
   getYelpReviews() {
 

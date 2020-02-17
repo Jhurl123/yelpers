@@ -18,6 +18,8 @@ export class SignupComponent implements OnInit {
     registerForm: FormGroup;
     loading = false;
     submitted = false;
+    alertText: string;
+    alertType: boolean = false;
     datePickerConfig: any = {
         format: 'DD-MM-YYYY'
     };
@@ -60,24 +62,23 @@ export class SignupComponent implements OnInit {
 
         this.loading = true;
         this.userService.registerUser(this.registerForm.value)
-            .pipe(first())
             .subscribe(
-                data => {
+              data => {
 
-                  if(data) {
+                console.log(data);
+                if(data) {
 
-                    alert("Registration Successful");
-                    this.router.navigate(['/login']);
-                  }
-                  else {
-                    alert("That email already exists");
-                  }
-                    // This is here to stop buttonb from being disabled while testing user registration functionality
-                    this.loading = false;
-                },
-                error => {
-                    alert(error);
-                    this.loading = false;
-                });
+                  alert("Registration Successful");
+                  this.router.navigate(['/login']);
+                }
+                // This is here to stop buttonb from being disabled while testing user registration functionality
+                this.loading = false;
+              },
+              error => {
+                  this.alertType = false;
+                  this.alertText = error;
+                  this.loading = false;
+              }
+            );
     }
 }

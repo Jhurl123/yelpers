@@ -2,7 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import {FormBuilder, ReactiveFormsModule, FormArray, FormGroup, Validators, NgForm} from '@angular/forms';
 
 import { UserService } from '@/services/user.service';
-import { NgxSmartModalService } from 'ngx-smart-modal';
+import { NgxSmartModalService, NgxSmartModalComponent } from 'ngx-smart-modal';
+
 
 @Component({
   selector: 'app-user-card',
@@ -15,6 +16,8 @@ export class UserCardComponent implements OnInit {
   infoForm: FormGroup
   nameControls: any
   emailControls: any
+  alertText: string
+  alertType: string
 
   constructor(
     private userService: UserService,
@@ -35,6 +38,12 @@ export class UserCardComponent implements OnInit {
     this.infoForm = this.formBuilder.group({});
   }
 
+  clearMessages() {
+
+      this.alertType = 'failure';
+      this.alertText = '';
+  }
+
   getUser = (id) => {
 
     this.userService.getUser(id)
@@ -45,7 +54,9 @@ export class UserCardComponent implements OnInit {
 
     this.userService.getNumReviews(id).subscribe(result =>  {
 
+      if(this.user) {
         this.user.numReviews = result
+      }
 
     });
   }
@@ -76,11 +87,13 @@ export class UserCardComponent implements OnInit {
     .subscribe( result => {
       Object.assign(this.user, this.infoForm.value)
       // Close the modal
-      this.modalService.close('myModal');
+      // this.modalService.close('myModal');
+      this.alertType = 'success';
+      this.alertText = "Account Information successfully updated!";``
 
-    },(err) => {
-
-
+    },(error) => {
+      this.alertType = 'failure';
+      this.alertText = error;
     })
   }
 

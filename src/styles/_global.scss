@@ -36,3 +36,15 @@ button.hollow {
   border: 1px solid $primary;
   border-radius: 6px;
 }
+
+button.button[disabled] {
+  background-color: $primary;
+}
+
+button.button[disabled]:hover {
+  background-color: $primary;
+}
+
+button.button:hover {
+  background-color: darken($primary, 5%);
+}

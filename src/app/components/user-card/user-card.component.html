@@ -1,48 +1,48 @@
-<div class="c-card">
-  <div class="c-card_photo">
+<div class="c-user-card">
+  <div class="c-user-card_photo">
     <img src="../../../assets/images/user-placeholder-big.png">
   </div>
-  <div class="c-card_info">
+  <div class="c-user-card_info">
     <div class="row">
-      <div class="columns small-12 c-card_info-container"  *ngIf="user">
-        <div class="c-card_info-label">
+      <div class="columns small-12 c-user-card_info-container"  *ngIf="user">
+        <div class="c-user-card_info-label">
           <h4>Name</h4>
         </div>
-        <div class="c-card_info-data">
+        <div class="c-user-card_info-data">
           {{ user.first_name + ' ' + user.last_name }}
-          <img class="c-card_info-edit" (click)="openModal('name')" src="assets/images/edit-regular.svg" />
+          <img class="c-user-card_info-edit" (click)="openModal('name')" src="assets/images/edit-regular.svg" />
         </div>
       </div>
-      <div class="columns small-12 c-card_info-container" *ngIf="user?.created_date">
-        <div class="c-card_info-label">
+      <div class="columns small-12 c-user-card_info-container" *ngIf="user?.created_date">
+        <div class="c-user-card_info-label">
          <h4>Join Date</h4>
         </div>
-        <div class="c-card_info-data">
+        <div class="c-user-card_info-data">
           {{ user.created_date | date }}
         </div>
       </div>
-      <div class="columns small-12 c-card_info-container" *ngIf="user?.email">
-        <div class="c-card_info-label">
+      <div class="columns small-12 c-user-card_info-container" *ngIf="user?.email">
+        <div class="c-user-card_info-label">
           <h4>Email</h4>
         </div>
-        <div class="c-card_info-data">
+        <div class="c-user-card_info-data">
           {{ user.email }}
-          <img class="c-card_info-edit" (click)="openModal('email')" src="assets/images/edit-regular.svg" />
+          <img class="c-user-card_info-edit" (click)="openModal('email')" src="assets/images/edit-regular.svg" />
         </div>
       </div>
-      <div class="columns small-12 c-card_info-container" *ngIf="user?.birth_date">
-        <div class="c-card_info-label">
+      <div class="columns small-12 c-user-card_info-container" *ngIf="user?.birth_date">
+        <div class="c-user-card_info-label">
           <h4>Birth Date</h4>
         </div>
-        <div class="c-card_info-data">
-          {{ user?.birth_date }}
+        <div class="c-user-card_info-data">
+          {{ user?.birth_date |date }}
         </div>
       </div>
-      <div class="columns small-12 c-card_info-container"  *ngIf="user?.numReviews">
-        <div class="c-card_info-label">
+      <div class="columns small-12 c-user-card_info-container"  *ngIf="user?.numReviews">
+        <div class="c-user-card_info-label">
           <h4># of Reviews</h4>
         </div>
-        <div class="c-card_info-data">
+        <div class="c-user-card_info-data">
           {{ user?.numReviews }}
         </div>
       </div>
@@ -51,9 +51,9 @@
 
   </div>
 </div>
-<ngx-smart-modal #myModal identifier="myModal">
-  <h1>Edit Information</h1>
-
+<ngx-smart-modal #myModal identifier="myModal" (onClose)="clearMessages()" (onDismiss)="clearMessages()">
+  <h2 class="modal-header">Edit Information</h2>
+  <app-alert [alertType]="alertType" [alertText]="alertText"></app-alert>
   <form [formGroup]="infoForm" (ngSubmit)="modalSubmit()">
 
     <div class="form-group" *ngIf="infoForm?.controls['first_name'];else emailBlock">

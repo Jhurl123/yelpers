@@ -6,8 +6,8 @@ router.post('/login',  ( req, res) => {
   userDB.loginCheck(req, res);
 })
 
-router.post('/signup', (req, res) => {
-  userDB.createUser(req, res);
+router.post('/signup', (req, res, next) => {
+  userDB.createUser(req, res, next);
 })
 
 router.post('/getUser', (req, res) => {
