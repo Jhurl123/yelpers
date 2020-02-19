@@ -25,4 +25,10 @@ yelpRouter.post('/scrape-reviews', ( req, res) => {
   yelp.getReviews(req, res);
 });
 
+yelpRouter.post('/get-list', ( req, res) => {
+  //reviewScrape.scrapeReviews(req, res)
+  yelp.getRestaurantsFromList(req, res);
+});
+
+
 module.exports = yelpRouter;

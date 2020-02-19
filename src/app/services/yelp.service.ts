@@ -33,6 +33,15 @@ export class YelpService {
     );
   }
 
+  public getRestaurantsFromList(searchObject: any) {
+    let config = `/api/yelp/get-list`;
+
+    return this.http.post(config, searchObject, this.httpOptions)
+    .pipe(
+      catchError(this.handleError)
+    );
+  }
+
   public getNearby(position) {
     let config = '/api/yelp/random-nearby';
 

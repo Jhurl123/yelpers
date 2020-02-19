@@ -1,13 +1,22 @@
 <section class="c-rand-nearby">
-  <div class="row">
+  <div class="row" *ngIf="businesses.length > 0; else placeholderss">
     <div
       class="columns large-4 medium-6 small-12 c-rand-nearby_column"
       *ngFor="let business of businesses"
     >
-
       <app-business-card [business]="business">
 
       </app-business-card>
     </div>
   </div>
+  <ng-template #placeholderss>
+    <div class="row">
+      <div
+        class="columns large-4 medium-6 small-12 c-rand-nearby_column"
+        *ngFor="let placeholder of placeholders"
+      >
+        <app-search-placeholder></app-search-placeholder>
+      </div>
+    </div>
+  </ng-template>
 </section>

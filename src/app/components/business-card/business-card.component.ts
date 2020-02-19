@@ -19,12 +19,14 @@ export class BusinessCardComponent implements OnInit {
 
   ngOnInit() {
 
-    this.business['miles'] = this.distanceService.convertMeterstoMiles(this.business['distance']);
+    if(this.business) {
+      this.business['miles'] = this.distanceService.convertMeterstoMiles(this.business['distance']);
 
-    this.buildAddress();
+      this.buildAddress();
 
-    if(this.business['image_url'] == "" ) {
-      this.business['image_url'] = "../../../assets/images/placeholder-image.jpg";
+      if(this.business['image_url'] == "" ) {
+        this.business['image_url'] = "../../../assets/images/placeholder-image.jpg";
+      }
     }
 
   }

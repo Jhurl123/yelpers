@@ -14,6 +14,16 @@ exports.getRestaurants = function( req, res ) {
   }).pipe(res);
 };
 
+exports.getRestaurantsFromList = function( req, res ) {
+
+  let location = req.body.Location
+
+  console.log( location );
+    request.get({url:`https://api.yelp.com/v3/businesses/search?location=${location}&limit=1`, headers: headers}, function(request, response, next) {
+  }).pipe(res);
+};
+
+
 exports.getRandNearby = function( req, res ) {
   let longitude = req.body.longitude,
       latitude = req.body.latitude;
