@@ -2,12 +2,22 @@
 <div class="l-content-container">
   <div class="row">
     <div class="columns small-12">
-      <app-content-row
-        headline="Find places near you"
-        content="You don't have to go far to find places you'll never forget. Find the best restaurants to hang out and stuff your face. Check out these places near you!"
+
+      <ng-template [ngIf]="!noLocation" [ngIfElse]="location">
+        <app-content-row
+          headline="Find places near you"
+          content="You don't have to go far to find places you'll never forget. Find the best restaurants to hang out and stuff your face. Check out these places near you!"
+        >
+        </app-content-row>
+      </ng-template>
+      <ng-template #location>
+        <app-content-row
+        headline="Find places around the USA and More!"
+        content="There are so many beautiful places near and far, try to explore them all!">
       >
       </app-content-row>
-      <app-rand-nearby></app-rand-nearby>
+      </ng-template>
+      <app-rand-nearby (noLocation)="changeContent($event)"></app-rand-nearby>
       <app-tabs-section></app-tabs-section>
 
     </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { YelpService } from '@/services/yelp.service';
 
 import { data as stockCities } from '@/store/stock-cities.store';
@@ -9,6 +9,8 @@ import { data as stockCities } from '@/store/stock-cities.store';
   styleUrls: ['./rand-nearby.component.scss']
 })
 export class RandNearbyComponent implements OnInit {
+
+  @Output() noLocation = new EventEmitter<boolean>();
 
   businesses: object[] = [];
   placeholders: boolean[]= [];
@@ -21,14 +23,12 @@ export class RandNearbyComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    for(let i =0; i < 12; i++) {
-      this.placeholders.push(false)
-    }
     // TODO If geolocator isn't enabled, select random businesses
     this.position = navigator.geolocation.getCurrentPosition(this.success, this.error);
   }
 
   success = (pos) => {
+    this.populatePlaceholders(12);
     this.yelpService.getNearby(pos).subscribe((result) => {
       this.businesses = result['businesses'].slice(0, 9);
 
@@ -36,8 +36,12 @@ export class RandNearbyComponent implements OnInit {
 
   }
 
-  error(error) {
+  error = (error) => {
     if (error.code == error.PERMISSION_DENIED) {
+
+      this.noLocation.emit(false);
+
+      this.populatePlaceholders(3);
       this.no_location = true;
       this.stockCities.forEach( element => {
         console.log(element);
@@ -51,4 +55,9 @@ export class RandNearbyComponent implements OnInit {
     }
   }
 
+  populatePlaceholders(numPlaceholders: number): void {
+    for(let i =0; i < numPlaceholders; i++) {
+      this.placeholders.push(false)
+    }
+  }
 }

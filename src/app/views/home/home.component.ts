@@ -7,8 +7,10 @@ import { UserService } from '@/services/user.service';
 
 @Component({ templateUrl: 'home.component.html' })
 export class HomeComponent implements OnInit {
+
     currentUser: User;
     users = [];
+    noLocation: boolean = false;
 
     constructor(
         private authenticationService: AuthenticationService,
@@ -21,15 +23,11 @@ export class HomeComponent implements OnInit {
         // this.loadAllUsers();
     }
 
-    // deleteUser(id: number) {
-    //     this.userService.delete(id)
-    //         .pipe(first())
-    //         .subscribe(() => this.loadAllUsers());
-    // }
+    changeContent(event) {
+      console.log(event);
 
-    // private loadAllUsers() {
-    //     this.userService.getAll()
-    //         .pipe(first())
-    //         .subscribe(users => this.users = users);
-    // }
+      if(event === false) {
+        this.noLocation = true;
+      }
+    }
 }

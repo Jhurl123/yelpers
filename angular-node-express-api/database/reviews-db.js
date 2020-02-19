@@ -28,7 +28,7 @@ exports.prepareReview = (req, res) => {
 exports.getAllReviews = (req, res) => {
 
   let { business_id } = req.body;
-  getAllReviews(business_id, res);
+  getAllReviewsByUser(business_id, res);
 
 }
 
@@ -63,9 +63,10 @@ const insertReview = (review, response) => {
   })
 }
 
-const getAllReviews = (id, response) => {
+const getAllReviewsByUser = (id, response) => {
 
   let query = 'SELECT * FROM reviews WHERE business_id = $1';
+  console.log( query );
 
   pool.query(query, [id], (err, res) => {
 
@@ -76,6 +77,7 @@ const getAllReviews = (id, response) => {
     }
 
     if(res.rows.length > 0) {
+      console.log( res.rows );
       response.send(res.rows);
     }
     else {

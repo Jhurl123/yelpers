@@ -44,14 +44,16 @@ export class ReviewsListComponent implements OnInit {
   }
 
   ngOnChanges() {
-    this.getAllUserReviews()
+    // this.getAllUserReviews()
   }
 
-  getYelpReviews() {
+  // Something is happening here that adds a custom user review to the array twice
 
-    // Get Reviews
+  getYelpReviews() {
+    // Get Reviews form the Yelp API
     this.yelpService.getReviews(this.id, this.url).subscribe((result) => {
       this.reviews.push(...result['reviews']);
+      console.log(this.reviews);
     });
 
   }
@@ -68,6 +70,8 @@ export class ReviewsListComponent implements OnInit {
 
     this.reviewService.getUserReviews(this.id)
     .subscribe( result => {
+
+      console.log(result);
 
         if( Array.isArray(result)) {
           if(result.length > 0) {
