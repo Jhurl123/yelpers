@@ -3,7 +3,7 @@ const Pool       = require('pg').Pool;
 
 const prefix = (process.env.NODE_ENV === 'production') ? 'PROD' : 'LOCAL';
 const pool = new Pool({
-  connectionString: (process.env.NODE_ENV === 'production') ? process.env.DATABASE_URL : '',
+  connectionString:  process.env.DATABASE_URL,
   host: process.env[`${prefix}_DB_HOST`],
   user: process.env[`${prefix}_DB_USER`],
   password: process.env[`${prefix}_DB_PASS`],
