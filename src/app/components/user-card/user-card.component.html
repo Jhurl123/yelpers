@@ -82,7 +82,7 @@
         <div *ngIf="infoForm.invalid && (infoForm.touched || infoForm.dirty)">
           <app-alert
             *ngIf="infoForm?.controls['email'].errors.required"
-            [alertType]="fail"
+            [alertType]="'fail'"
             [alertText]="'Email fields are required'"
           ></app-alert>
           <app-alert

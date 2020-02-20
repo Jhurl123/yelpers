@@ -1,6 +1,4 @@
-<<<<<<< HEAD
-/node_modules
-=======
+
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # compiled output
@@ -49,4 +47,3 @@ testem.log
 Thumbs.db
 
 .env
->>>>>>> a0c0ed8f2ff85eed07946ad065ac63b6c936b3a0
