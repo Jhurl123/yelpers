@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { first } from 'rxjs/operators';
 
 import { confirmPasswordValidator } from '@/validators/confirmPassword.validator';
 import { passwordFormatValidator } from '@/validators/formatPassword.validator';
@@ -21,7 +20,7 @@ export class SignupComponent implements OnInit {
     alertText: string;
     alertType: boolean = false;
     datePickerConfig: any = {
-        format: 'DD-MM-YYYY'
+        format: 'MM-DD-YYYY'
     };
 
     constructor(
