@@ -80,6 +80,7 @@ export class ReviewInputComponent implements OnInit {
       user: JSON.parse(localStorage.getItem('currentUser'))
     })
 
+    console.log(this.userReview);
     this.reviewService.postReview(this.userReview)
     .subscribe(result => {
       this.setAlert(true,'');

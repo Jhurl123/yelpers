@@ -31,6 +31,8 @@ export class ReviewService {
   public postReview(review: UserReview) {
     let config = '/api/reviews/create';
 
+    console.log(review);
+    console.log(this.currentUser);
     if (this.currentUser && this.currentUser.token) {
       return this.http.post(config, review)
       .pipe(
