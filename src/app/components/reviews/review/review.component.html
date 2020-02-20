@@ -1,11 +1,9 @@
 <div class="c-review">
   <div class="c-review_inner">
     <div class="c-review_image-container">
-      <a routerLink="/user/:id">
-        <img class="c-review_image" [src]="review.user.image_url ? review.user.image_url : '../../../../assets/images/user-placeholder.png'">
-      </a>
+      <img class="c-review_image" [src]="review.user.image_url ? review.user.image_url : '../../../../assets/images/user-placeholder.png'">
       <div class="c-review_user-name">
-        <a routerLink="/user/:id">{{ review.user.name}}</a>
+        {{ review.user.name}}
       </div>
     </div>
     <div class="c-review_body">

@@ -4,14 +4,14 @@
       <div class="v-single_header">
         <h1>{{ business?.name }}</h1>
         <span class="v-single_categories" *ngFor="let category of business?.categories; let i = index">
-          <a routerLink="/">
+          <span routerLink="/">
             <ng-template [ngIf]="i != business?.categories.length - 1" [ngIfElse]="noCommablock">
                 {{ category.title }},
             </ng-template>
             <ng-template #noCommablock>
               {{ category.title }}
             </ng-template>
-          </a>
+          </span>
         </span>
         <div class="v-single_review-container">
           <star-rating value="{{ business.rating }}" checkedcolor="#FEC011" uncheckedcolor="#e7e2e2" size="24px"  readonly="true"></star-rating>

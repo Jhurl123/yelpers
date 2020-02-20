@@ -66,7 +66,6 @@ const insertReview = (review, response) => {
 const getAllReviewsByUser = (id, response) => {
 
   let query = 'SELECT * FROM reviews WHERE business_id = $1';
-  console.log( query );
 
   pool.query(query, [id], (err, res) => {
 
@@ -77,7 +76,6 @@ const getAllReviewsByUser = (id, response) => {
     }
 
     if(res.rows.length > 0) {
-      console.log( res.rows );
       response.send(res.rows);
     }
     else {
@@ -98,9 +96,7 @@ const getReviewsByUsers = (user_id) => {
         reject(err);
       }
       else {
-        console.log( res.rows);
         resolve(res.rows);
-
       }
 
     })
