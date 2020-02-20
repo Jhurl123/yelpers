@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { throwError, of } from 'rxjs';
+import { throwError, of, Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 import { AuthenticationService } from './authentication.service';
@@ -14,13 +14,15 @@ import { User } from '../models/user/user';
 export class ReviewService {
 
   httpOptions: any;
-  currentUser: User
+  currentUser: User;
 
   constructor(
     private authenticationService: AuthenticationService,
     private http: HttpClient
   ) {
-   this.currentUser = this.authenticationService.currentUserValue;
+    this.authenticationService.currentUser.subscribe(result => {
+      this.currentUser = result;
+    });
   }
 
   private handleError(error: any ='', context: any = '') {
