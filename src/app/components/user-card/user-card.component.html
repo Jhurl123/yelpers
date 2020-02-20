@@ -58,7 +58,7 @@
 
     <div class="form-group" *ngIf="infoForm?.controls['first_name'];else emailBlock">
       <div *ngIf="infoForm.invalid && (infoForm.touched || infoForm.dirty)">
-        <app-alert [alertType]="fail" [alertText]="'Name fields are required'"></app-alert>
+        <app-alert [alertType]="'fail'" [alertText]="'Name fields are required'"></app-alert>
       </div>
       <label for="first_name">First Name</label>
       <input
@@ -87,7 +87,7 @@
           ></app-alert>
           <app-alert
           *ngIf="infoForm?.controls['email'].errors.email"
-          [alertType]="fail"
+          [alertType]="'fail'"
           [alertText]="'Please use a valid email format'"
         ></app-alert>
         </div>
