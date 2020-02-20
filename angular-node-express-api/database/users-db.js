@@ -215,9 +215,12 @@ var compareCallback = function(returnValue, response, err, res)  {
   else {
     if(res) {
 
+
       let token = JWT.sign({
         data: 'foobar'
       }, process.env.JWT_SECRET);
+      console.log( process.env.JWT_SECRET );
+      console.log(token)
 
       returnValue.token = token;
       returnValue.password = '';
