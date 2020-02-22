@@ -2,7 +2,6 @@ import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from '@/services/authentication.service';
 import { User } from '@/models/user/user';
-import { runInThisContext } from 'vm';
 
 @Component({
   selector: 'app-top-header',
