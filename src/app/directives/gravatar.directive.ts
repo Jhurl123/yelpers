@@ -21,13 +21,13 @@ export class GravatarDirective {
 
     let src = this.el.nativeElement.getAttribute('src');
 
-    if(src) {
-      if(src.includes('a0a6ef17bcf1e809d8ece5be8dfdbc31')
-          || src.includes('d42a11c874a6884f43eddbe1479d1af5')) {
+    // if(src) {
+    //   if(src.includes('a0a6ef17bcf1e809d8ece5be8dfdbc31')
+    //       || src.includes('d42a11c874a6884f43eddbe1479d1af5')) {
 
-        this.renderer.setAttribute(this.el.nativeElement, 'src', '../../assets/images/user-placeholder.png');
-      }
-    }
+    //     this.renderer.setAttribute(this.el.nativeElement, 'src', '../../assets/images/user-placeholder.png');
+    //   }
+    // }
   }
 
   updateGravatar(email) {
