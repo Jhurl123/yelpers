@@ -17,7 +17,7 @@ export class TopHeaderComponent implements OnInit {
   toggle:boolean = false;
   loggedIn: boolean = false;
   returnUrl: any;
-  user: User;
+  user: {};
 
 
   constructor(
