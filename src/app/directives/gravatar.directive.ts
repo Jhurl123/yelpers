@@ -12,22 +12,19 @@ export class GravatarDirective {
       this.updateGravatar(value);
   }
 
+  user: any;
+
   constructor(
     private el: ElementRef,
     private renderer: Renderer2
-  ) { }
+  ) {
+    this.user = JSON.parse(localStorage.getItem('currentUser'));
+  }
 
   ngOnChanges() {
 
-    let src = this.el.nativeElement.getAttribute('src');
 
-    // if(src) {
-    //   if(src.includes('a0a6ef17bcf1e809d8ece5be8dfdbc31')
-    //       || src.includes('d42a11c874a6884f43eddbe1479d1af5')) {
-
-    //     this.renderer.setAttribute(this.el.nativeElement, 'src', '../../assets/images/user-placeholder.png');
-    //   }
-    // }
+    if(this.user) this.updateGravatar(this.user.email)
   }
 
   updateGravatar(email) {
