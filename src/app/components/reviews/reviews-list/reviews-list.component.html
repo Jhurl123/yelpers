@@ -8,7 +8,6 @@
       >
         <app-review [review]="review"></app-review>
       </div>
-      <ng-template #reviewPlaceholders>
         <ng-template #reviewPlaceholders >
           <ng-template [ngIf]="reviewType === 'business'" [ngIfElse]="userReviews">
             <app-review-placeholder *ngFor="let item of placeholderArray"></app-review-placeholder>
@@ -18,8 +17,6 @@
           </ng-template>
         </ng-template>
       </ng-template>
-
-    </ng-template>
     <pagination-controls
       *ngIf="formattedReviews.length >= 5"
       id="reviews_pagination"
