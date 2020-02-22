@@ -8,13 +8,13 @@
       >
         <app-review [review]="review"></app-review>
       </div>
-        <ng-template #reviewPlaceholders >
-          <ng-template [ngIf]="reviewType === 'business'" [ngIfElse]="userReviews">
-            <app-review-placeholder *ngFor="let item of placeholderArray"></app-review-placeholder>
-          </ng-template>
-          <ng-template #userReviews>
-            <h4>You don't have any reviews yet! Try searching in the bar above to get started!</h4>
-          </ng-template>
+    </ng-template>
+      <ng-template #reviewPlaceholders >
+        <ng-template [ngIf]="reviewType === 'business'" [ngIfElse]="userReviews">
+          <app-review-placeholder *ngFor="let item of placeholderArray"></app-review-placeholder>
+        </ng-template>
+        <ng-template #userReviews>
+          <h4>You don't have any reviews yet! Try searching in the bar above to get started!</h4>
         </ng-template>
       </ng-template>
     <pagination-controls
