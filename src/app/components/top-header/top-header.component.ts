@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from '@/services/authentication.service';
+import { User } from '@/models/user/user';
+import { runInThisContext } from 'vm';
 
 @Component({
   selector: 'app-top-header',
@@ -16,6 +18,7 @@ export class TopHeaderComponent implements OnInit {
   toggle:boolean = false;
   loggedIn: boolean = false;
   returnUrl: any;
+  user: User;
 
 
   constructor(
@@ -25,9 +28,8 @@ export class TopHeaderComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    if (this.authService.currentUserValue) {
-      this.loggedIn = this.authService.loggedIn;
-    }
+    this.user = JSON.parse(localStorage.getItem('currentUser'));
+    this.loggedIn = this.user ? true : false;
 
     // Allow route to be set oninit,
     // will set to '/' if done without subscription
@@ -36,8 +38,6 @@ export class TopHeaderComponent implements OnInit {
         this.returnUrl = "";
         this.returnUrl = this.router.url;
       });
-
-
 
   }
 

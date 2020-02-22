@@ -18,7 +18,7 @@ export class SignupComponent implements OnInit {
     loading = false;
     submitted = false;
     alertText: string;
-    alertType: boolean = false;
+    alertType: string;
     datePickerConfig: any = {
         format: 'MM-DD-YYYY'
     };
@@ -67,14 +67,17 @@ export class SignupComponent implements OnInit {
                 console.log(data);
                 if(data) {
 
-                  alert("Registration Successful");
-                  this.router.navigate(['/login']);
+                  this.alertType = 'success';
+                  this.alertText = "Account successfully created! Redirecting...."
+                  setTimeout(() => {
+                    this.router.navigate(['/login']);
+                  }, 1500);
                 }
                 // This is here to stop buttonb from being disabled while testing user registration functionality
                 this.loading = false;
               },
               error => {
-                  this.alertType = false;
+                  this.alertType = 'fail';
                   this.alertText = error;
                   this.loading = false;
               }

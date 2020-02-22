@@ -23,6 +23,7 @@
 
           <div class="c-header_account-controls" *ngIf="loggedIn">
             <a class="c-header_account-button" routerLink="my-account">
+              <img class="c-header_account-img" appGravatar [email]="user?.email" [size]="30">
               My Account
             </a>
             <a

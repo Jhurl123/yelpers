@@ -1,21 +1,23 @@
 <div class="c-review-list" [ngClass]="{'user-account': reviewType !== 'business'}">
   <div class="col-xs-12 c-review-list_container">
     <h2 class="c-review-list_header">Reviews</h2>
-    <ng-template [ngIf]="formattedReviews.length > 0" [ngIfElse]="reviewPlaceholders">
+    <ng-template [ngIf]="formattedReviews.length == 0" [ngIfElse]="reviewPlaceholders">
+      <ng-template #reviewPlaceholders >
+        <ng-template [ngIf]="reviewType === 'business'" [ngIfElse]="userReviews">
+          <app-review-placeholder *ngFor="let item of placeholderArray"></app-review-placeholder>
+        </ng-template>
+        <ng-template #userReviews>
+          <h4>You don't have any reviews yet! Try searching in the bar above to get started!</h4>
+        </ng-template>
+      </ng-template>
+    </ng-template>
+    <ng-template #reviewPlaceholders>
       <div
         class="c-reviews-list_review"
         *ngFor="let review of formattedReviews  | paginate: { itemsPerPage: 5, currentPage: p, id: 'reviews_pagination' }"
       >
         <app-review [review]="review"></app-review>
       </div>
-    </ng-template>
-    <ng-template #reviewPlaceholders >
-      <ng-template [ngIf]="reviewType === 'business'" [ngIfElse]="userReviews">
-        <app-review-placeholder *ngFor="let item of placeholderArray"></app-review-placeholder>
-      </ng-template>
-      <ng-template #userReviews>
-        <h4>You don't have any reviews yet! Try searching in the bar above to get started!</h4>
-      </ng-template>
     </ng-template>
     <pagination-controls
       *ngIf="formattedReviews.length >= 5"

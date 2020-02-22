@@ -23,12 +23,12 @@ export class RandNearbyComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // TODO If geolocator isn't enabled, select random businesses
+    this.populatePlaceholders(3);
     this.position = navigator.geolocation.getCurrentPosition(this.success, this.error);
   }
 
   success = (pos) => {
-    this.populatePlaceholders(12);
+    this.populatePlaceholders(9);
     this.yelpService.getNearby(pos).subscribe((result) => {
       this.businesses = result['businesses'].slice(0, 9);
 
@@ -41,8 +41,8 @@ export class RandNearbyComponent implements OnInit {
 
       this.noLocation.emit(false);
 
-      this.populatePlaceholders(3);
       this.no_location = true;
+
       this.stockCities.forEach( element => {
         console.log(element);
         let searchObject = {

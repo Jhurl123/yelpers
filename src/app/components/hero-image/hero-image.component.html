@@ -8,7 +8,7 @@
         <h1>Don't Know Where To Go?</h1>
         <h4>Yelpers finds the Best For You</h4>
         <button class="c-hero-image_button">
-          <a routerLink="/signup">
+          <a routerLink="/signup" *ngIf="!signedIn">
             Sign Up Today!
           </a>
         </button>

@@ -54,6 +54,7 @@ import { UserCardComponent } from './components/user-card/user-card.component';
 import { NgxSmartModalModule  } from 'ngx-smart-modal';
 import { ReviewPlaceholderComponent } from './components/reviews/review-placeholder/review-placeholder.component';
 import { SearchPlaceholderComponent } from './components/search-placeholder/search-placeholder.component';
+import { GravatarDirective } from './directives/gravatar.directive';
 
 
 @NgModule({
@@ -92,7 +93,8 @@ import { SearchPlaceholderComponent } from './components/search-placeholder/sear
     ReviewInputComponent,
     UserCardComponent,
     ReviewPlaceholderComponent,
-    SearchPlaceholderComponent
+    SearchPlaceholderComponent,
+    GravatarDirective
   ],
   imports: [
     BrowserModule,

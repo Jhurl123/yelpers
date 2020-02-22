@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
+import { AuthenticationService } from '@/services/authentication.service';
+
 @Component({
   selector: 'app-hero-image',
   templateUrl: './hero-image.component.html',
@@ -8,8 +10,17 @@ import { Component, OnInit, Input } from '@angular/core';
 export class HeroImageComponent implements OnInit {
 
   @Input() imageUrl: string;
+  signedIn: boolean = false;
 
-  constructor() { }
+  constructor(
+    private authenticationService: AuthenticationService
+  ) {
+    this.authenticationService.currentUser.subscribe(result => {
+
+      this.signedIn = result ? true : false;
+
+    })
+  }
 
   ngOnInit() {
   }

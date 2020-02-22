@@ -2,6 +2,7 @@
 
   background: #ffffff;
   border: 1px solid #cac5c5;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 3px 3px !important;
   border-radius: 6px;
   margin-bottom: 2rem;
   padding: .5rem;
@@ -13,6 +14,7 @@
   }
 
   &_image {
+    border-radius: 3px;
     max-height: 75px;
     max-width: 75px;
     margin-bottom: .25rem;

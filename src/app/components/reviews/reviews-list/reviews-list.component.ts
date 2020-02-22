@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ɵConsole } from '@angular/core';
+  import { Component, OnInit, Input, ɵConsole } from '@angular/core';
 import { Router, NavigationStart } from '@angular/router';
 
 // Import Services
@@ -45,6 +45,7 @@ export class ReviewsListComponent implements OnInit {
 
   ngOnChanges() {
     // this.getAllUserReviews()
+    console.log(this.formattedReviews);
   }
 
   // Something is happening here that adds a custom user review to the array twice
@@ -127,6 +128,7 @@ export class ReviewsListComponent implements OnInit {
      this.reviews.sort(this.sortReviewsByDate);
      this.reviews.reverse();
      this.formattedReviews = this.reviews
+     console.log(this.formattedReviews);
   }
 
   sortReviewsByDate = (a,b) => {

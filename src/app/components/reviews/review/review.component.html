@@ -1,7 +1,7 @@
 <div class="c-review">
   <div class="c-review_inner">
     <div class="c-review_image-container">
-      <img class="c-review_image" [src]="review.user.image_url ? review.user.image_url : '../../../../assets/images/user-placeholder.png'">
+      <img class="c-review_image" appGravatar [email]="review?.user?.email" [size]="200" [defaultSrc]="review?.user.image_url">
       <div class="c-review_user-name">
         {{ review.user.name}}
       </div>
