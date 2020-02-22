@@ -44,7 +44,7 @@ export class RandNearbyComponent implements OnInit {
       this.no_location = true;
 
       this.stockCities.forEach( element => {
-        console.log(element);
+
         let searchObject = {
           Location: element.city
         }

@@ -12,17 +12,20 @@
     margin: 0 auto;
     max-width: 768px;
 
-    @media screen and (max-width: 768px) {
-      padding: 0 1rem;
-    }
+    // @media screen and (max-width: 768px) {
+    //   padding: 0 1rem;
+    // }
   }
 
   &_header {
     color: $primary;
     margin-bottom: 1.25rem;
+    font-weight: bold;
 
     @media screen and (max-width: 768px) {
+      font-size: 2rem;
       margin-bottom: .75rem;
+      text-align: center;
     }
   }
 

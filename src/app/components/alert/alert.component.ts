@@ -11,11 +11,4 @@ export class AlertComponent implements OnInit {
   @Input('alertText') alertText: string;
   constructor() { }
 
-  ngOnInit() {
-    console.log(this.alertType);
-  }
-
-  ngOnChanges() {
-    console.log(this.alertType);
-  }
 }

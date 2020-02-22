@@ -55,7 +55,6 @@ export class SingleBusinessComponent implements OnInit {
     // Set photos for slideshow and modal
     this.yelpService.getSingle(id).subscribe((result: Business) => {
 
-      console.log(result);
       if(result.hasOwnProperty('hours')) {
         result.hours[0].open.forEach((day) => {
 

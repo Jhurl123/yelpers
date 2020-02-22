@@ -51,7 +51,6 @@ export class SignupComponent implements OnInit {
               confirmPassword: ['', [Validators.required]],
           }, {validator: [confirmPasswordValidator, passwordFormatValidator] }),
         });
-        console.log(this.today);
     }
 
     get f() { return this.registerForm.controls; }
@@ -78,7 +77,6 @@ export class SignupComponent implements OnInit {
 
         if (mm < 10) {
           fmm = '0' + mm;
-          console.log(fmm);
         }
         else {
           fmm = mm.toString();
@@ -100,7 +98,6 @@ export class SignupComponent implements OnInit {
             .subscribe(
               data => {
 
-                console.log(data);
                 if(data) {
 
                   this.alertType = 'success';

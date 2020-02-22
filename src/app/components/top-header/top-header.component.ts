@@ -30,7 +30,6 @@ export class TopHeaderComponent implements OnInit {
     this.user = JSON.parse(localStorage.getItem('currentUser'));
     this.loggedIn = this.user ? true : false;
 
-    console.log(this.user);
     // Allow route to be set oninit,
     // will set to '/' if done without subscription
     this.router.events.subscribe(
@@ -52,6 +51,7 @@ export class TopHeaderComponent implements OnInit {
 
       if(result) {
         this.loggedIn = !this.loggedIn;
+        console.log(this.loggedIn);
       }
     });
   }

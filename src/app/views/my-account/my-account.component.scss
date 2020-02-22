@@ -9,7 +9,12 @@
 
     h1 {
       color: $primary;
+      font-weight: bold;
       padding-bottom: 7rem;
+
+      @media screen and (max-width: 768px) {
+        text-align: center;
+      }
     }
   }
 }

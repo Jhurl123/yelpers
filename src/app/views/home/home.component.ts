@@ -24,8 +24,6 @@ export class HomeComponent implements OnInit {
     }
 
     changeContent(event) {
-      console.log(event);
-
       if(event === false) {
         this.noLocation = true;
       }

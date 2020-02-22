@@ -33,8 +33,6 @@ export class ReviewService {
   public postReview(review: UserReview) {
     let config = '/api/reviews/create';
 
-    console.log(review);
-    console.log(this.currentUser);
     if (this.currentUser && this.currentUser.token) {
       return this.http.post(config, review)
       .pipe(
@@ -49,8 +47,6 @@ export class ReviewService {
   public getUserReviews(business_id: string) {
     let config = '/api/reviews/getAll';
 
-    console.log(config)
-
     return this.http.post(config, {business_id})
     .pipe(
       catchError(this.handleError)
@@ -59,8 +55,6 @@ export class ReviewService {
 
   public getReviewsAttachedToUser(user_id: string) {
     let config = '/api/reviews/getByUser';
-
-    console.log(config)
 
     return this.http.post(config, {user_id})
     .pipe(

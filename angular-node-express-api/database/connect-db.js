@@ -4,7 +4,7 @@ const Pool   = require('pg').Pool;
 const prefix = (process.env.NODE_ENV === 'production') ? 'PROD' : 'LOCAL';
 // This version of the connection string messes up local db, Find true dynamic solution
 const pool = new Pool({
-  connectionString:  process.env.DATABASE_URL,
+  // connectionString:  process.env.DATABASE_URL,
   host: process.env[`${prefix}_DB_HOST`],
   user: process.env[`${prefix}_DB_USER`],
   password: process.env[`${prefix}_DB_PASS`],
