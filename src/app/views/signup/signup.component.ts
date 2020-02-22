@@ -19,8 +19,10 @@ export class SignupComponent implements OnInit {
     submitted = false;
     alertText: string;
     alertType: string;
+    today: string;
     datePickerConfig: any = {
-        format: 'MM-DD-YYYY'
+        format: 'MM-DD-YYYY',
+        maxDate: this.today
     };
 
     constructor(
@@ -33,6 +35,9 @@ export class SignupComponent implements OnInit {
         if (this.authenticationService.currentUserValue) {
             this.router.navigate(['/']);
         }
+
+        this.formatTodaysDate();
+
     }
 
     ngOnInit() {
@@ -46,10 +51,41 @@ export class SignupComponent implements OnInit {
               confirmPassword: ['', [Validators.required]],
           }, {validator: [confirmPasswordValidator, passwordFormatValidator] }),
         });
+        console.log(this.today);
     }
 
     get f() { return this.registerForm.controls; }
     get passwords() { return this.registerForm.get('passwords') as FormGroup; }
+
+    formatTodaysDate() {
+
+        const date = new Date();
+
+        // One day removed from the date so that the maxDate for
+        // date picker will be today,
+        let dd = date.getDate() -1,
+            mm = date.getMonth() + 1,
+            yyyy = date.getFullYear(),
+            fdd = '',
+            fmm = '';
+
+        if (dd < 10) {
+          fdd = '0' + dd;
+        }
+        else {
+          fdd = dd.toString();
+        }
+
+        if (mm < 10) {
+          fmm = '0' + mm;
+          console.log(fmm);
+        }
+        else {
+          fmm = mm.toString();
+        }
+
+        this.today = fmm + '/' + fdd + '/' + yyyy;
+    }
 
     onSubmit() {
         this.submitted = true;

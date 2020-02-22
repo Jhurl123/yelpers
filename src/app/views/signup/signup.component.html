@@ -31,16 +31,21 @@
               </div>
               <div *ngIf="submitted && f.emailAddress.errors" class="invalid-feedback">
                 <div *ngIf="f.emailAddress.errors.email">***Email Address is incorrect format***</div>
-            </div>
-            <div class="form-group">
-              <label for="birthDate">Birth Date (optional)</label>
-              <dp-date-picker
-                [config]="datePickerConfig"
-                formControlName="birthDate"
-                placeholder="MM-DD-YYY"
-                theme='dp-material'
-              >
-              </dp-date-picker>
+              </div>
+          </div>
+          <div class="form-group">
+            <label for="birthDate">Birth Date (optional)</label>
+            <dp-date-picker
+              [ngClass]="{ 'is-invalid': submitted && f.birthDate.errors }"
+              [config]="datePickerConfig"
+              formControlName="birthDate"
+              placeholder="MM-DD-YYY"
+              maxDate="{{today}}"
+              theme='dp-material'
+            >
+            </dp-date-picker>
+              <div *ngIf="submitted && f.birthDate.errors" class="invalid-feedback">
+              <div *ngIf="f.birthDate.errors">***Birthday can't be in the Future or Today!***</div>
             </div>
           </div>
           <div formGroupName="passwords">
