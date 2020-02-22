@@ -15,6 +15,7 @@
         </div>
       </div>
       <pagination-controls
+        *ngIf="businesses.length > 12"
         id="some_id"
         class="v-search_pagination"
         (pageChange)="pageChanged($event)"

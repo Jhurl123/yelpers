@@ -47,4 +47,10 @@
   dp-date-picker {
     width: 100%;
   }
+
+  dp-date-picker.dp-material .dp-picker-input {
+    width: 100% !important;
+    height: 2.4375rem !important;
+    font-size: 1rem !important;
+  }
 }

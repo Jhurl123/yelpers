@@ -18,7 +18,7 @@
         </ng-template>
       </ng-template>
     <pagination-controls
-      *ngIf="formattedReviews.length >= 5"
+      *ngIf="formattedReviews.length > 5"
       id="reviews_pagination"
       class="c-review-list_pagination"
       (pageChange)="pageChanged($event)"
