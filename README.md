@@ -2,7 +2,7 @@
 
 ## Details
 
-Application can be viewed here: https://yelpers-account.herokuapp.com/my-account
+Application can be viewed here: https://yelpers-account.herokuapp.com
 Please allow a moment for the dyno to spin up to serve the assets.
 
 App that leverages the Yelp Fusion API to allow the user to search for attractions or points of interest in the area that the user searchs for. The user may read and/or write reviews on the places they want to check out or the places they enjoyed (or hated).
