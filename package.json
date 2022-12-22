@@ -36,7 +36,7 @@
     "dompurify": "^2.0.7",
     "dotenv": "^8.2.0",
     "foundation-sites": "^6.6.1",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "ng-simple-slideshow": "^1.2.9",
     "ng-starrating": "^1.0.11",
     "ng2-date-picker": "2.12.0",
